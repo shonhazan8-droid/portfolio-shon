@@ -49,7 +49,7 @@ const motionRules = [
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="border-t border-[var(--color-line)] py-12">
-      <h2 className="mb-8 text-[var(--font-size-h2)] font-medium tracking-[-0.012em]">{title}</h2>
+      <h2 className="mb-8 text-[var(--font-size-h2)] font-normal tracking-[-0.012em]">{title}</h2>
       {children}
     </section>
   );
@@ -79,7 +79,7 @@ export default function StyleGuidePage() {
         <header className="pb-12">
           <p className="mb-4 text-sm text-[var(--color-faint)]">Portfolio system</p>
           <h1
-            className="max-w-[10ch] font-medium leading-[1.08] tracking-[-0.02em]"
+            className="max-w-[10ch] font-normal leading-[1.08] tracking-[-0.02em]"
             style={{ fontSize: "var(--font-size-hero)" }}
           >
             Style guide
@@ -104,7 +104,7 @@ export default function StyleGuidePage() {
                 />
                 <div>
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="text-base font-medium">{color.name}</h3>
+                    <h3 className="text-base font-normal">{color.name}</h3>
                     <span className="text-sm text-[var(--color-muted)]">{color.usage}</span>
                   </div>
                   <TokenMeta token={color.token} value={color.value} />
@@ -117,11 +117,11 @@ export default function StyleGuidePage() {
         <Section title="Typography">
           <div className="mb-8 grid gap-4 rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-5">
             <div>
-              <h3 className="text-base font-medium">Sans</h3>
+              <h3 className="text-base font-normal">Sans</h3>
               <TokenMeta token="--font-sans" value="Geist, system-ui, sans-serif" />
             </div>
             <div>
-              <h3 className="font-mono text-base font-medium">Mono</h3>
+              <h3 className="font-mono text-base font-normal">Mono</h3>
               <TokenMeta token="--font-mono" value="JetBrains Mono, monospace" />
             </div>
           </div>
@@ -130,7 +130,7 @@ export default function StyleGuidePage() {
             {typeScale.map((type) => (
               <div key={type.token} className="border-t border-[var(--color-line)] pt-4">
                 <div
-                  className="font-medium leading-[1.2] tracking-[-0.012em]"
+                  className="font-normal leading-[1.2] tracking-[-0.012em]"
                   style={{ fontSize: `var(${type.token})` }}
                 >
                   {type.sample}
@@ -146,7 +146,7 @@ export default function StyleGuidePage() {
             {layoutRules.map((rule) => (
               <div key={rule.name} className="rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-5">
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h3 className="text-base font-medium">{rule.name}</h3>
+                  <h3 className="text-base font-normal">{rule.name}</h3>
                   <span className="font-mono text-[11px] text-[var(--color-faint)]">{rule.value}</span>
                 </div>
                 <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{rule.detail}</p>
@@ -158,7 +158,7 @@ export default function StyleGuidePage() {
         <Section title="Components">
           <div className="grid gap-8">
             <div>
-              <h3 className="mb-4 text-base font-medium">Buttons</h3>
+              <h3 className="mb-4 text-base font-normal">Buttons</h3>
               <div className="flex flex-wrap gap-3">
                 <Button href="/style-guide">Primary button</Button>
                 <Button href="/style-guide" variant="ghost">Ghost button</Button>
@@ -166,7 +166,7 @@ export default function StyleGuidePage() {
             </div>
 
             <div>
-              <h3 className="mb-4 text-base font-medium">Media frames</h3>
+              <h3 className="mb-4 text-base font-normal">Media frames</h3>
               <div className="grid gap-5">
                 <div>
                   <div className="aspect-video w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-app)]">
@@ -193,7 +193,7 @@ export default function StyleGuidePage() {
           <div className="grid gap-3">
             {motionRules.map((rule) => (
               <div key={rule.token} className="rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-5">
-                <h3 className="text-base font-medium">{rule.name}</h3>
+                <h3 className="text-base font-normal">{rule.name}</h3>
                 <TokenMeta token={rule.token} value={rule.value} />
               </div>
             ))}

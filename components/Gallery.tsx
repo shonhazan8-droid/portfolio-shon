@@ -8,7 +8,7 @@ export default function Gallery() {
     <section id="work" className="py-24">
       <Container>
         <div className="mb-10 max-w-[52ch]">
-          <h2 className="text-2xl font-medium tracking-[-0.012em]">More work I&apos;m proud of</h2>
+          <h2 className="text-2xl font-normal tracking-[-0.012em]">More work I&apos;m proud of</h2>
           <p className="mt-2 text-base leading-[1.55] text-[var(--color-muted)]">
             Real projects I&apos;ve put serious work into over the years — researched, designed, and shipped to real users.
           </p>

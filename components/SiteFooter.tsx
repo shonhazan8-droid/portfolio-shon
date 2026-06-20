@@ -7,7 +7,7 @@ export default function SiteFooter() {
       <Container>
         <div className="mb-10 grid grid-cols-2 gap-8 md:grid-cols-4">
           <div>
-            <div className="mb-2.5 text-lg font-semibold tracking-tight">Shon</div>
+            <div className="mb-2.5 text-lg font-normal tracking-tight">Shon</div>
             <p className="max-w-[26ch] text-sm text-[var(--color-muted)]">
               Senior product designer. Designs and builds products end to end.
             </p>
@@ -18,7 +18,7 @@ export default function SiteFooter() {
             { heading: "Contact", links: [["Email","mailto:"],["Resume (PDF)","/resume.pdf"]] },
           ].map(col=>(
             <div key={col.heading}>
-              <h4 className="mb-3 text-xs font-medium uppercase tracking-[.08em] text-[var(--color-faint)]">{col.heading}</h4>
+              <h4 className="mb-3 text-xs font-normal uppercase tracking-[.08em] text-[var(--color-faint)]">{col.heading}</h4>
               {col.links.map(([label,href])=>(
                 <Link key={label} href={href} className="mb-2.5 block text-sm text-[var(--color-muted)] no-underline transition-colors hover:text-[var(--color-ink)]">{label}</Link>
               ))}
