@@ -5,8 +5,14 @@ import Link from "next/link";
 import Button from "./Button";
 import ArrowRight from "./ArrowRight";
 
-export default function SiteHeader() {
+type SiteHeaderProps = {
+  variant?: "default" | "caseStudy";
+};
+
+export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const isCaseStudy = variant === "caseStudy";
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -31,12 +37,25 @@ export default function SiteHeader() {
             className="logo-flip"
           />
         </Link>
-        <nav className="hidden gap-8 md:flex" aria-label="Main">
-          {[["Work","#work"],["Case studies","#cases"],["About","#about"],["Contact","#contact"]].map(([label,href])=>(
-            <Link key={href} href={href} className="text-sm text-[var(--color-muted)] no-underline transition-colors hover:text-[var(--color-ink)]">{label}</Link>
-          ))}
-        </nav>
-        <Button href="#contact" variant="primary">Get in touch <ArrowRight className="h-3 w-3" /></Button>
+        {!isCaseStudy ? (
+          <nav className="hidden gap-8 md:flex" aria-label="Main">
+            {[["Case studies","/#cases"],["About","/#about"],["Contact","/#contact"]].map(([label,href])=>(
+              <Link key={href} href={href} className="text-sm text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]">{label}</Link>
+            ))}
+          </nav>
+        ) : null}
+        <Button href={isCaseStudy ? "/#cases" : "/#contact"} variant="primary">
+          {isCaseStudy ? (
+            <>
+              <ArrowRight className="h-3 w-3 rotate-180" />
+              Back
+            </>
+          ) : (
+            <>
+              Get in touch <ArrowRight className="h-3 w-3" />
+            </>
+          )}
+        </Button>
       </div>
     </header>
   );
