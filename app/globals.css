@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg:      #F7F6F2;
+  --color-surface: #FCFBF8;
+  --color-app:     #FFFFFF;
+  --color-ink:     #1C1B19;
+  --color-muted:   #6B675F;
+  --color-faint:   #756F62;
+  --color-line:    #E7E3DA;
+  --color-accent:  #F54E00;
+  --color-btn:     #1C1B19;
+
+  --ease-out:      cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:   cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-gallery:  cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-size-caption:  0.75rem;
+  --font-size-small:    0.875rem;
+  --font-size-body:     1rem;
+  --font-size-body-lg:  1.125rem;
+  --font-size-h3:       1.25rem;
+  --font-size-h2:       1.5rem;
+  --font-size-h1:       1.875rem;
+  --font-size-hero:     clamp(2.0625rem, 4.4vw, 3.25rem);
+
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-frame: 14px;
+}
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Even line lengths on headings, fewer orphans in prose */
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+::selection { background: color-mix(in srgb, var(--color-accent) 16%, transparent); }
+
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 65%, transparent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.gallery-scroll { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
+.gallery-scroll::-webkit-scrollbar { height: 4px; }
+.gallery-scroll::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 999px; }
+
+/* Testimonials marquee — two identical halves, translate -50% loops seamlessly.
+   Pauses on hover via group-hover utility on the track. */
+@keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee-x 48s linear infinite; }
+
+/* Header logo — rests most of the cycle, then a smooth 3D flip on the Y axis
+   and back to normal, looping. Needs `perspective` on the parent. */
+@keyframes logo-flip { 0%, 68% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+.logo-flip { animation: logo-flip 5s var(--ease-in-out) infinite; transform-origin: center; backface-visibility: visible; }
+@media (prefers-reduced-motion: reduce) { .logo-flip { animation: none; } }
+
+/* Testimonial cards — perpetual gentle float so the grid feels alive, not static.
+   Each card gets its own delay/duration inline for an organic, unsynced drift. */
+@keyframes float-card { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.float-card { animation: float-card 6s var(--ease-in-out) infinite; }
+@media (prefers-reduced-motion: reduce) { .float-card { animation: none; } }
+
+/* Playful 0→1 arrow — a gentle bob so it feels alive, not decorative clutter. */
+@keyframes zto-bob { 0%, 100% { transform: translateX(0) rotate(0); } 50% { transform: translateX(2px) rotate(-4deg); } }
+.zto-arrow { animation: zto-bob 2.4s var(--ease-in-out) infinite; transform-origin: 60% 60%; }
+@media (prefers-reduced-motion: reduce) { .zto-arrow { animation: none; } }
+
+/* One-time entrance — always fires on paint (no JS/scroll gate), so it never
+   ships blank; reduced-motion collapses the duration to a snap. */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .55s var(--ease-out) both; }
+.rise-1 { animation-delay: .06s; }
+.rise-2 { animation-delay: .13s; }
+.rise-3 { animation-delay: .20s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0 !important; transition-duration: .01ms !important; }
+  /* Stop the marquee entirely and let it become a manual scroll strip */
+  .marquee-track { animation: none !important; transform: none !important; }
+  .marquee-viewport { overflow-x: auto; }
+}

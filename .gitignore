@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+.next-dev/
+out/
+
+# production
+build/
+dist/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# local environment
+.env
+.env*.local
+
+# editor and OS files
+.DS_Store
+*.log
+
+# local agent/tooling state
+.agents/
+.claude/
+.codex/
+skills-lock.json
+
+# accidental local scratch directory
+{app,components,content,public/
