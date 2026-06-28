@@ -7,7 +7,30 @@ import CaseCover from "@/components/CaseCover";
 import ArrowRight from "@/components/ArrowRight";
 import { caseStudies } from "@/content/caseStudies";
 
-const caseStudyDetails = [
+type CaseStudyCover =
+  | { type: "image"; src: string; width: number; height: number }
+  | { type: "lottie"; src: string };
+
+type CaseStudyDetail = {
+  slug: string;
+  title: string;
+  eyebrow: string;
+  year: string;
+  role: string;
+  client?: string;
+  focus?: string;
+  context: string;
+  headline: string;
+  summary: string;
+  cover: CaseStudyCover;
+  coverAlt: string;
+  challenge: string;
+  approach: string[];
+  resultTitle: string;
+  outcome: string;
+};
+
+const caseStudyDetails: CaseStudyDetail[] = [
   {
     slug: "rehabilitation-platform",
     title: "Rehabilitation platform IA",
@@ -116,14 +139,14 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </>
             ) : (
               <>
-                <p className="mb-4 text-sm text-[var(--color-faint)]">{project.eyebrow}</p>
+                <p className="mb-4 text-sm text-[var(--color-text)]">{project.eyebrow}</p>
                 <h1
                   className="max-w-[11ch] font-normal leading-[1.08] tracking-[-0.015em]"
                   style={{ fontSize: "var(--font-size-hero)" }}
                 >
                   {project.title}
                 </h1>
-                <p className="mt-6 max-w-[58ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-muted)]">
+                <p className="mt-6 max-w-[58ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-text)]">
                   {project.headline}
                 </p>
               </>
@@ -132,7 +155,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
           <section className="rise rise-1">
             {project.cover.type === "image" ? (
-              <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-app)]">
+              <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
                 <Image
                   src={project.cover.src}
                   alt={project.coverAlt}
@@ -160,15 +183,15 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           {!isRehabilitation ? (
             <section className="grid gap-8 border-b border-t border-[var(--color-line)] py-10 md:grid-cols-3">
               <div>
-                <p className="text-sm text-[var(--color-faint)]">Role</p>
+                <p className="text-sm text-[var(--color-text)]">Role</p>
                 <p className="mt-2 leading-[1.55]">{project.role}</p>
               </div>
               <div>
-                <p className="text-sm text-[var(--color-faint)]">Year</p>
+                <p className="text-sm text-[var(--color-text)]">Year</p>
                 <p className="mt-2 leading-[1.55]">{project.year}</p>
               </div>
               <div>
-                <p className="text-sm text-[var(--color-faint)]">Impact</p>
+                <p className="text-sm text-[var(--color-text)]">Impact</p>
                 <p className="mt-2 leading-[1.55]">
                   {study?.stats.map((stat) => `${stat.value} ${stat.label.toLowerCase()}`).join(" · ")}
                 </p>
@@ -384,7 +407,7 @@ function CaseStudyMeta({ items }: { items: [string, string][] }) {
       {items.map(([label, value]) => (
         <div key={label}>
           <p className="text-[10px] uppercase tracking-[.14em] text-[var(--color-accent)]">{label}</p>
-          <p className="mt-2 text-[clamp(0.8rem,1vw,0.9rem)] font-normal leading-[1.4] text-[var(--color-ink)]">
+          <p className="mt-2 text-[clamp(0.8rem,1vw,0.9rem)] font-normal leading-[1.4] text-[var(--color-text)]">
             {value}
           </p>
         </div>
@@ -395,7 +418,7 @@ function CaseStudyMeta({ items }: { items: [string, string][] }) {
 
 function IntroBlock({ children }: { children: React.ReactNode }) {
   return (
-    <section className="max-w-[58ch] space-y-7 pb-14 text-[var(--font-size-body-lg)] leading-[1.65] text-[var(--color-muted)]">
+    <section className="max-w-[58ch] space-y-7 pb-14 text-[var(--font-size-body-lg)] leading-[1.65] text-[var(--color-text)]">
       {children}
     </section>
   );
@@ -420,7 +443,7 @@ function CaseTextSection({
           </p>
         ) : null}
       </div>
-      <div className="space-y-5 text-base leading-[1.65] text-[var(--color-muted)] [&>*:not(.case-img)]:max-w-[38rem]">
+      <div className="space-y-5 text-base leading-[1.65] text-[var(--color-text)] [&>*:not(.case-img)]:max-w-[38rem]">
         {title ? (
           <h2 className="text-2xl font-normal leading-[1.35] tracking-[-0.008em] text-[var(--color-ink)]">{title}</h2>
         ) : null}
@@ -444,7 +467,7 @@ function QuoteBand() {
 function ResearchPeekCard() {
   return (
     <section className="relative left-1/2 my-14 w-screen -translate-x-1/2 overflow-hidden">
-      <div className="relative h-[180px] overflow-hidden bg-[var(--color-app)] md:h-[248px]">
+      <div className="relative h-[180px] overflow-hidden bg-[var(--color-surface)] md:h-[248px]">
         <Image
           src="/12.png"
           alt="Research artifacts, interview session, and briefing material"
@@ -473,7 +496,7 @@ function NumberedCasePoint({
         <h3 className="text-xl font-normal leading-[1.25] tracking-[-0.008em] text-[var(--color-ink)]">
           {title}
         </h3>
-        <p className="mt-4 text-base leading-[1.65] text-[var(--color-muted)]">{body}</p>
+        <p className="mt-4 text-base leading-[1.65] text-[var(--color-text)]">{body}</p>
       </div>
     </div>
   );
@@ -483,7 +506,7 @@ function FindingBlock({ title, body }: { title: string; body: string }) {
   return (
     <div>
       <h3 className="text-xl font-normal leading-[1.25] tracking-[-0.008em] text-[var(--color-ink)]">{title}</h3>
-      <p className="mt-3 text-base leading-[1.65] text-[var(--color-muted)]">{body}</p>
+      <p className="mt-3 text-base leading-[1.65] text-[var(--color-text)]">{body}</p>
     </div>
   );
 }
@@ -513,8 +536,8 @@ function NextProjectLink() {
       className="group flex items-center justify-between border-t border-[var(--color-line)] py-10 text-[var(--color-ink)] no-underline"
     >
       <span>
-        <span className="block text-sm text-[var(--color-faint)]">Next Project</span>
-        <span className="mt-2 block text-base leading-[1.4] text-[var(--color-muted)]">Israel Post Opening Bank</span>
+        <span className="block text-sm text-[var(--color-text)]">Next Project</span>
+        <span className="mt-2 block text-base leading-[1.4] text-[var(--color-text)]">Israel Post Opening Bank</span>
       </span>
       <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-accent)] transition-transform duration-150 ease-[var(--ease-out)] group-hover:translate-x-1">
         <ArrowRight className="h-3 w-3" />

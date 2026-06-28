@@ -40,7 +40,7 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
       aria-label="Selected work"
     >
       {/* Frame — one screen at a time */}
-      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-app)]">
+      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
         <div
           className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
           style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
@@ -66,14 +66,14 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
         <button
           onClick={() => go(-1)}
           aria-label="Previous"
-          className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-app)_85%,transparent)] text-[var(--color-ink)] opacity-0 backdrop-blur-sm transition-[opacity,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-[var(--color-ink)] focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
+          className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-surface)_85%,transparent)] text-[var(--color-ink)] opacity-0 backdrop-blur-sm transition-[opacity,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-[var(--color-ink)] focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
         >
           <ArrowRight className="h-3.5 w-3.5 -scale-x-100" />
         </button>
         <button
           onClick={() => go(1)}
           aria-label="Next"
-          className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-app)_85%,transparent)] text-[var(--color-ink)] opacity-0 backdrop-blur-sm transition-[opacity,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-[var(--color-ink)] focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
+          className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-surface)_85%,transparent)] text-[var(--color-ink)] opacity-0 backdrop-blur-sm transition-[opacity,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-[var(--color-ink)] focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
         >
           <ArrowRight className="h-3.5 w-3.5" />
         </button>
@@ -89,7 +89,7 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
             aria-selected={i === index}
             aria-label={`Show slide ${i + 1}`}
             className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ease-[var(--ease-out)] ${
-              i === index ? "w-5 bg-[var(--color-ink)]" : "w-1.5 bg-[var(--color-line)] hover:bg-[var(--color-faint)]"
+              i === index ? "w-5 bg-[var(--color-ink)]" : "w-1.5 bg-[var(--color-line)] hover:bg-[var(--color-text)]"
             }`}
           />
         ))}

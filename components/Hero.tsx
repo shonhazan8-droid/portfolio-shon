@@ -17,7 +17,7 @@ export default function Hero() {
           <br />
           to B2C &amp; B2B
         </h1>
-        <div className="rise rise-1 mt-6 max-w-[52ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-muted)]">
+        <div className="rise rise-1 mt-6 max-w-[52ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-text)]">
           I have worked on B2B, B2C and internal tools. Taking initiatives from{" "}
           <span className="whitespace-nowrap">
             0<ZeroToOneArrow />1

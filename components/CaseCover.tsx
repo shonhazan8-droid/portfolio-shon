@@ -48,7 +48,7 @@ export default function CaseCover({ src, label }: Props) {
   return (
     <div
       ref={containerRef}
-      className="relative flex aspect-[752/480] w-full items-center justify-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-app)]"
+      className="relative flex aspect-[752/480] w-full items-center justify-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]"
     >
       {data ? (
         <Lottie
@@ -60,7 +60,7 @@ export default function CaseCover({ src, label }: Props) {
           rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
         />
       ) : (
-        <span className="font-mono text-[11px] uppercase tracking-[.06em] text-[var(--color-faint)]">
+        <span className="font-mono text-[11px] uppercase tracking-[.06em] text-[var(--color-text)]">
           {label}
         </span>
       )}

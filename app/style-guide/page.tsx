@@ -9,15 +9,13 @@ export const metadata: Metadata = {
 };
 
 const colors = [
-  { name: "Background", token: "--color-bg", value: "#F7F6F2", usage: "Page background" },
-  { name: "Surface", token: "--color-surface", value: "#FCFBF8", usage: "Soft panels and quiet fills" },
-  { name: "App", token: "--color-app", value: "#FFFFFF", usage: "Media and elevated app frames" },
-  { name: "Ink", token: "--color-ink", value: "#1C1B19", usage: "Primary text and dark buttons" },
-  { name: "Muted", token: "--color-muted", value: "#6B675F", usage: "Body support text" },
-  { name: "Faint", token: "--color-faint", value: "#756F62", usage: "Labels, captions, quiet metadata" },
-  { name: "Line", token: "--color-line", value: "#E7E3DA", usage: "Section dividers and ghost controls" },
-  { name: "Accent", token: "--color-accent", value: "#1A3A6B", usage: "Selected states and emphasis" },
-  { name: "Button", token: "--color-btn", value: "#1C1B19", usage: "Primary CTA fill" },
+  { name: "Background", token: "--color-bg", value: "#FFFFFF", usage: "Base background across every page" },
+  { name: "Surface", token: "--color-surface", value: "#F1F0F6", usage: "Cards and small background areas" },
+  { name: "Ink", token: "--color-ink", value: "#0C0C0C", usage: "Headings" },
+  { name: "Text", token: "--color-text", value: "#333333", usage: "Body copy and all supporting text" },
+  { name: "Line", token: "--color-line", value: "#F1F0F6", usage: "Section dividers and ghost controls" },
+  { name: "Accent", token: "--color-accent", value: "#F54E00", usage: "Selected states and emphasis" },
+  { name: "Button", token: "--color-btn", value: "#0C0C0C", usage: "Primary CTA fill" },
 ];
 
 const typeScale = [
@@ -57,7 +55,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function TokenMeta({ token, value }: { token: string; value: string }) {
   return (
-    <div className="mt-1 font-mono text-[11px] leading-5 text-[var(--color-faint)]">
+    <div className="mt-1 font-mono text-[11px] leading-5 text-[var(--color-text)]">
       <span>{token}</span>
       <span className="px-2 text-[var(--color-line)]">/</span>
       <span>{value}</span>
@@ -71,20 +69,20 @@ export default function StyleGuidePage() {
       <Container className="py-12 md:py-16">
         <Link
           href="/"
-          className="mb-10 inline-flex text-sm text-[var(--color-muted)] no-underline transition-colors hover:text-[var(--color-ink)]"
+          className="mb-10 inline-flex text-sm text-[var(--color-text)] no-underline transition-colors hover:text-[var(--color-ink)]"
         >
           Back to home
         </Link>
 
         <header className="pb-12">
-          <p className="mb-4 text-sm text-[var(--color-faint)]">Portfolio system</p>
+          <p className="mb-4 text-sm text-[var(--color-text)]">Portfolio system</p>
           <h1
             className="max-w-[10ch] font-normal leading-[1.08] tracking-[-0.015em]"
             style={{ fontSize: "var(--font-size-hero)" }}
           >
             Style guide
           </h1>
-          <p className="mt-6 max-w-[54ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-muted)]">
+          <p className="mt-6 max-w-[54ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-text)]">
             A compact reference for the site's design language: color tokens, typography,
             layout rules, motion, and reusable component behavior.
           </p>
@@ -105,7 +103,7 @@ export default function StyleGuidePage() {
                 <div>
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                     <h3 className="text-base font-normal">{color.name}</h3>
-                    <span className="text-sm text-[var(--color-muted)]">{color.usage}</span>
+                    <span className="text-sm text-[var(--color-text)]">{color.usage}</span>
                   </div>
                   <TokenMeta token={color.token} value={color.value} />
                 </div>
@@ -147,9 +145,9 @@ export default function StyleGuidePage() {
               <div key={rule.name} className="rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-5">
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
                   <h3 className="text-base font-normal">{rule.name}</h3>
-                  <span className="font-mono text-[11px] text-[var(--color-faint)]">{rule.value}</span>
+                  <span className="font-mono text-[11px] text-[var(--color-text)]">{rule.value}</span>
                 </div>
-                <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">{rule.detail}</p>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-text)]">{rule.detail}</p>
               </div>
             ))}
           </div>
@@ -169,16 +167,16 @@ export default function StyleGuidePage() {
               <h3 className="mb-4 text-base font-normal">Media frames</h3>
               <div className="grid gap-5">
                 <div>
-                  <div className="aspect-video w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-app)]">
-                    <div className="flex h-full items-center justify-center bg-[var(--color-surface)] text-sm text-[var(--color-faint)]">
+                  <div className="aspect-video w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+                    <div className="flex h-full items-center justify-center bg-[var(--color-surface)] text-sm text-[var(--color-text)]">
                       16 / 9 project image frame
                     </div>
                   </div>
                   <TokenMeta token="Project frame" value="borderless, no shadow, radius 14px" />
                 </div>
                 <div>
-                  <div className="aspect-[752/480] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-app)]">
-                    <div className="flex h-full items-center justify-center bg-[var(--color-surface)] text-sm text-[var(--color-faint)]">
+                  <div className="aspect-[752/480] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+                    <div className="flex h-full items-center justify-center bg-[var(--color-surface)] text-sm text-[var(--color-text)]">
                       752 / 480 case cover frame
                     </div>
                   </div>

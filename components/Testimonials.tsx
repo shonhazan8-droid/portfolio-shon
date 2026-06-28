@@ -21,9 +21,9 @@ export default function Testimonials() {
             <figure
               key={t.name}
               style={{ animationDelay: `${i * 0.8}s`, animationDuration: `${5.6 + (i % 2) * 1.4}s` }}
-              className="float-card flex h-full flex-col gap-5 rounded-[var(--radius-frame)] border border-[var(--color-line)] bg-[var(--color-surface)] p-6"
+              className="float-card flex h-full flex-col gap-5 rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-6"
             >
-              <blockquote className="text-base leading-[1.55] text-[var(--color-ink)]">
+              <blockquote className="text-base leading-[1.55] text-[var(--color-text)]">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-auto flex items-center gap-3">
@@ -38,14 +38,14 @@ export default function Testimonials() {
                 ) : (
                   <span
                     aria-hidden="true"
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-line)] bg-[var(--color-app)] text-xs font-medium tracking-[.02em] text-[var(--color-muted)]"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] text-xs font-medium tracking-[.02em] text-[var(--color-text)]"
                   >
                     {initials(t.name)}
                   </span>
                 )}
                 <span>
                   <span className="block text-sm font-medium">{t.name}</span>
-                  <span className="block text-xs text-[var(--color-faint)]">
+                  <span className="block text-xs text-[var(--color-text)]">
                     {t.role}{t.company ? ` · ${t.company}` : ""}
                   </span>
                 </span>
