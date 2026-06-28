@@ -23,7 +23,7 @@ export default function Testimonials() {
               style={{ animationDelay: `${i * 0.8}s`, animationDuration: `${5.6 + (i % 2) * 1.4}s` }}
               className="float-card flex h-full flex-col gap-5 rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-6"
             >
-              <blockquote className="text-base leading-[1.55] text-[var(--color-text)]">
+              <blockquote className="text-base leading-[1.55] text-[var(--color-ink)]">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-auto flex items-center gap-3">
@@ -44,7 +44,7 @@ export default function Testimonials() {
                   </span>
                 )}
                 <span>
-                  <span className="block text-sm font-medium">{t.name}</span>
+                  <span className="block text-sm font-medium text-[var(--color-ink)]">{t.name}</span>
                   <span className="block text-xs text-[var(--color-text)]">
                     {t.role}{t.company ? ` · ${t.company}` : ""}
                   </span>

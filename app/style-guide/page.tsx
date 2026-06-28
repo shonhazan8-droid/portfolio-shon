@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 };
 
 const colors = [
-  { name: "Background", token: "--color-bg", value: "#FFFFFF", usage: "Base background across every page" },
-  { name: "Surface", token: "--color-surface", value: "#F1F0F6", usage: "Cards and small background areas" },
-  { name: "Ink", token: "--color-ink", value: "#0C0C0C", usage: "Headings" },
-  { name: "Text", token: "--color-text", value: "#333333", usage: "Body copy and all supporting text" },
-  { name: "Line", token: "--color-line", value: "#F1F0F6", usage: "Section dividers and ghost controls" },
+  { name: "Background", token: "--color-bg", value: "#F7F7F4", usage: "Base background across every page" },
+  { name: "Surface", token: "--color-surface", value: "#F2F1ED", usage: "Cards and small background areas" },
+  { name: "Ink", token: "--color-ink", value: "#26251E", usage: "Headings" },
+  { name: "Text", token: "--color-text", value: "#7A7974", usage: "Body copy and all supporting text" },
+  { name: "Line", token: "--color-line", value: "#F2F1ED", usage: "Section dividers and ghost controls" },
   { name: "Accent", token: "--color-accent", value: "#F54E00", usage: "Selected states and emphasis" },
-  { name: "Button", token: "--color-btn", value: "#0C0C0C", usage: "Primary CTA fill" },
+  { name: "Button", token: "--color-btn", value: "#26251E", usage: "Primary CTA fill" },
 ];
 
 const typeScale = [

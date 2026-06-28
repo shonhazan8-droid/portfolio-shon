@@ -1,11 +1,19 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { GeistMono } from "geist/font/mono";
 import SiteHeader from "@/components/SiteHeader";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import CaseCover from "@/components/CaseCover";
 import ArrowRight from "@/components/ArrowRight";
 import { caseStudies } from "@/content/caseStudies";
+import shik1 from "@/public/Case01/shik1.png";
+import shik2 from "@/public/Case01/shik2.png";
+import shik3 from "@/public/Case01/shik3.png";
+import shik4 from "@/public/Case01/shik4.png";
+import shik5 from "@/public/Case01/shik5.png";
+import shik6 from "@/public/Case01/shik6.png";
 
 type CaseStudyCover =
   | { type: "image"; src: string; width: number; height: number }
@@ -125,7 +133,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           <header className="rise pb-12">
             {isRehabilitation ? (
               <>
-                <p className="mb-8 text-sm text-[var(--color-accent)]">{project.year}</p>
+                <p className={`${GeistMono.className} mb-6 text-sm text-[var(--color-accent)]`}>{project.year}</p>
                 <h1
                   className="max-w-[44ch] text-pretty font-normal leading-[1.08] tracking-[-0.015em]"
                   style={{ fontSize: "var(--font-size-h1)" }}
@@ -184,15 +192,15 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <section className="grid gap-8 border-b border-t border-[var(--color-line)] py-10 md:grid-cols-3">
               <div>
                 <p className="text-sm text-[var(--color-text)]">Role</p>
-                <p className="mt-2 leading-[1.55]">{project.role}</p>
+                <p className="mt-2 leading-[1.55] text-[var(--color-ink)]">{project.role}</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text)]">Year</p>
-                <p className="mt-2 leading-[1.55]">{project.year}</p>
+                <p className="mt-2 leading-[1.55] text-[var(--color-ink)]">{project.year}</p>
               </div>
               <div>
                 <p className="text-sm text-[var(--color-text)]">Impact</p>
-                <p className="mt-2 leading-[1.55]">
+                <p className="mt-2 leading-[1.55] text-[var(--color-ink)]">
                   {study?.stats.map((stat) => `${stat.value} ${stat.label.toLowerCase()}`).join(" · ")}
                 </p>
               </div>
@@ -290,13 +298,13 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   creating more predictable paths through the service.
                 </p>
                 <CaseImage
-                  src="/Case01/shik1.png"
+                  src={shik1}
                   alt="Before view of the original rehabilitation navigation"
                   width={1856}
                   height={1170}
                 />
                 <CaseImage
-                  src="/Case01/shik2.png"
+                  src={shik2}
                   alt="After view of the improved rehabilitation navigation"
                   width={1856}
                   height={1170}
@@ -313,16 +321,16 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   experience before exploring available services.
                 </p>
                 <CaseImage
-                  src="/Case01/shik3.png"
+                  src={shik3}
                   alt="Before and after mobile screens for the rehabilitation service"
                   width={1856}
                   height={2050}
                 />
                 <CaseImage
-                  src="/Case01/shik4.png"
+                  src={shik4}
                   alt="Situation-based filtering and relevant service hubs for the rehabilitation service"
                   width={1856}
-                  height={1100}
+                  height={1190}
                 />
               </CaseTextSection>
 
@@ -344,13 +352,13 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   part of the design decision.
                 </p>
                 <CaseImage
-                  src="/Case01/shik5.png"
+                  src={shik5}
                   alt="Before and after search experience for the rehabilitation service"
                   width={1856}
                   height={2050}
                 />
                 <CaseImage
-                  src="/Case01/shik6.png"
+                  src={shik6}
                   alt="Search filtering and result hierarchy in the rehabilitation service"
                   width={1856}
                   height={1190}
@@ -365,7 +373,10 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </p>
               </CaseTextSection>
 
-              <NextProjectLink />
+              <CaseStudyOutro
+                title="Bank account opening, rebuilt"
+                href="/case-studies/bank-account-opening"
+              />
             </>
           ) : (
             <>
@@ -406,8 +417,8 @@ function CaseStudyMeta({ items }: { items: [string, string][] }) {
     <section className="grid gap-8 py-12 md:grid-cols-3 md:gap-12">
       {items.map(([label, value]) => (
         <div key={label}>
-          <p className="text-[10px] uppercase tracking-[.14em] text-[var(--color-accent)]">{label}</p>
-          <p className="mt-2 text-[clamp(0.8rem,1vw,0.9rem)] font-normal leading-[1.4] text-[var(--color-text)]">
+          <p className={`${GeistMono.className} text-sm uppercase tracking-normal text-[var(--color-accent)]`}>{label}</p>
+          <p className="mt-2 text-sm font-normal leading-[1.4] text-[var(--color-ink)]">
             {value}
           </p>
         </div>
@@ -418,7 +429,10 @@ function CaseStudyMeta({ items }: { items: [string, string][] }) {
 
 function IntroBlock({ children }: { children: React.ReactNode }) {
   return (
-    <section className="max-w-[58ch] space-y-7 pb-14 text-[var(--font-size-body-lg)] leading-[1.65] text-[var(--color-text)]">
+    <section
+      className="max-w-[58ch] space-y-7 pb-14 text-[var(--font-size-body-lg)] leading-[1.65]"
+      style={{ color: "var(--color-ink)" }}
+    >
       {children}
     </section>
   );
@@ -437,7 +451,7 @@ function CaseTextSection({
     <section className="grid gap-5 py-14">
       <div>
         {label ? (
-          <p className="text-sm uppercase tracking-[.08em] text-[var(--color-accent)]">
+          <p className={`${GeistMono.className} text-sm uppercase tracking-normal text-[var(--color-accent)]`}>
             <span aria-hidden="true">/ </span>
             {label}
           </p>
@@ -491,7 +505,7 @@ function NumberedCasePoint({
 }) {
   return (
     <div className="grid gap-5 md:grid-cols-[36px_1fr]">
-      <p className="text-sm leading-[1.5] text-[var(--color-accent)]">{number}</p>
+      <p className={`${GeistMono.className} text-sm leading-[1.5] text-[var(--color-accent)]`}>{number}</p>
       <div>
         <h3 className="text-xl font-normal leading-[1.25] tracking-[-0.008em] text-[var(--color-ink)]">
           {title}
@@ -517,7 +531,7 @@ function CaseImage({
   width = 1856,
   height = 1188,
 }: {
-  src: string;
+  src: string | StaticImageData;
   alt: string;
   width?: number;
   height?: number;
@@ -529,19 +543,30 @@ function CaseImage({
   );
 }
 
-function NextProjectLink() {
+function CaseStudyOutro({
+  title,
+  href,
+}: {
+  title: string;
+  href: string;
+}) {
   return (
-    <a
-      href="/case-studies/bank-account-opening"
-      className="group flex items-center justify-between border-t border-[var(--color-line)] py-10 text-[var(--color-ink)] no-underline"
-    >
-      <span>
-        <span className="block text-sm text-[var(--color-text)]">Next Project</span>
-        <span className="mt-2 block text-base leading-[1.4] text-[var(--color-text)]">Israel Post Opening Bank</span>
-      </span>
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-accent)] transition-transform duration-150 ease-[var(--ease-out)] group-hover:translate-x-1">
-        <ArrowRight className="h-3 w-3" />
-      </span>
-    </a>
+    <section aria-labelledby="next-project-title" className="border-t border-[var(--color-line)] py-10 md:py-12">
+      <p className={`${GeistMono.className} text-sm text-[var(--color-accent)]`}>Next case study</p>
+      <Link
+        href={href}
+        className="group mt-3 inline-flex items-center gap-3 no-underline outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-bg)]"
+      >
+        <h2
+          id="next-project-title"
+          className="text-[clamp(1.25rem,3vw,1.75rem)] font-normal leading-[1.2] tracking-[-0.01em] text-[var(--color-ink)]"
+        >
+          {title}
+        </h2>
+        <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-accent)] transition-transform duration-150 ease-[var(--ease-out)] group-hover:translate-x-1">
+          <ArrowRight className="h-3 w-3" />
+        </span>
+      </Link>
+    </section>
   );
 }

@@ -46,7 +46,7 @@ export default function About() {
                 key={`${r.title}-${r.period}`}
                 className="border-b border-[var(--color-line)] py-5 first:pt-0"
               >
-                <div className="text-base font-normal tracking-[-0.008em]">{r.title}</div>
+                <div className="text-base font-normal tracking-[-0.008em] text-[var(--color-ink)]">{r.title}</div>
                 <div className="mt-1 flex items-baseline justify-between gap-4">
                   <span className="text-[var(--color-text)]">{r.company}</span>
                   <span className="text-[var(--color-text)]">{r.period}</span>

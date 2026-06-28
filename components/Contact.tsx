@@ -13,7 +13,7 @@ export default function Contact() {
         >
           Let&rsquo;s build something clear.
         </h2>
-        <p className="max-w-[46ch] text-lg leading-[1.55] text-[var(--color-text)]">
+        <p className="max-w-[46ch] text-base leading-[1.55] text-[var(--color-text)]">
           I&apos;m open to product design roles and collaborations where complex systems need a clearer way forward.
           Email is the best way to reach me.
         </p>

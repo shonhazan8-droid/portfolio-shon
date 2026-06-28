@@ -40,11 +40,11 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
         {!isCaseStudy ? (
           <nav className="hidden gap-8 md:flex" aria-label="Main">
             {[["Case studies","/#cases"],["About","/#about"],["Contact","/#contact"]].map(([label,href])=>(
-              <Link key={href} href={href} className="text-sm text-[var(--color-text)] no-underline transition-colors hover:text-[var(--color-accent)]">{label}</Link>
+              <Link key={href} href={href} className="text-sm text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]">{label}</Link>
             ))}
           </nav>
         ) : null}
-        <Button href={isCaseStudy ? "/#cases" : "/#contact"} variant="primary">
+        <Button href={isCaseStudy ? "/#cases" : "/#contact"} variant="primary" className="py-[9px]!">
           {isCaseStudy ? (
             <>
               <ArrowRight className="h-3 w-3 rotate-180" />

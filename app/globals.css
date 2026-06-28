@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg:      #FFFFFF;
-  --color-surface: #F1F0F6;
-  --color-ink:     #0C0C0C;
-  --color-text:    #333333;
-  --color-line:    #F1F0F6;
+  --color-bg:      #F7F7F4;
+  --color-surface: #F2F1ED;
+  --color-ink:     #26251E;
+  --color-text:    #7A7974;
+  --color-line:    #F2F1ED;
   --color-accent:  #F54E00;
-  --color-btn:     #0C0C0C;
+  --color-btn:     #26251E;
 
   --ease-out:      cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out:   cubic-bezier(0.77, 0, 0.175, 1);
