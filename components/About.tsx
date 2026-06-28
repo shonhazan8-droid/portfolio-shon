@@ -18,10 +18,10 @@ export default function About() {
             />
           </div>
 
-          <h2 className="mt-6 text-xl font-normal tracking-[-0.02em]">Shon Hazan</h2>
-          <p className="mt-1 text-lg text-[var(--color-muted)]">Designer &amp; Creative thinker</p>
+          <h2 className="mt-6 text-xl font-normal tracking-[-0.008em]">Shon Hazan</h2>
+          <p className="mt-1 text-lg text-[var(--color-text)]">Designer &amp; Creative thinker</p>
 
-          <p className="mt-8 max-w-[52ch] text-base leading-[1.55] text-[var(--color-ink)]">
+          <p className="mt-8 max-w-[52ch] text-base leading-[1.55] text-[var(--color-text)]">
             I build scalable product systems and structured interfaces — function over decoration.
             Today I design complex systems for government and enterprise, turning high-friction,
             regulated processes into clear, usable flows.
@@ -37,7 +37,7 @@ export default function About() {
               </svg>
               Experience
             </h3>
-            <p className="mt-1 text-[var(--color-muted)]">Where I&apos;ve been</p>
+            <p className="mt-1 text-[var(--color-text)]">Where I&apos;ve been</p>
           </div>
 
           <ul>
@@ -46,10 +46,10 @@ export default function About() {
                 key={`${r.title}-${r.period}`}
                 className="border-b border-[var(--color-line)] py-5 first:pt-0"
               >
-                <div className="text-base font-normal tracking-[-0.01em]">{r.title}</div>
+                <div className="text-base font-normal tracking-[-0.008em]">{r.title}</div>
                 <div className="mt-1 flex items-baseline justify-between gap-4">
-                  <span className="text-[var(--color-muted)]">{r.company}</span>
-                  <span className="text-[var(--color-muted)]">{r.period}</span>
+                  <span className="text-[var(--color-text)]">{r.company}</span>
+                  <span className="text-[var(--color-text)]">{r.period}</span>
                 </div>
               </li>
             ))}

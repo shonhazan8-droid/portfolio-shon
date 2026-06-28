@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
+const cursorGothic = localFont({
+  variable: "--font-cursor-gothic",
   display: "swap",
+  src: [
+    { path: "./fonts/CursorGothic-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/CursorGothic-Italic.woff2", weight: "400", style: "italic" },
+    { path: "./fonts/CursorGothic-Bold.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/CursorGothic-BoldItalic.woff2", weight: "700", style: "italic" },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -15,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geist.variable}>
+    <html lang="en" className={cursorGothic.variable}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

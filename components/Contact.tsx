@@ -6,16 +6,16 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 border-t border-[var(--color-line)]">
       <Container>
-        <p className="mb-4 text-sm text-[var(--color-muted)]">Contact</p>
+        <p className="mb-4 text-sm text-[var(--color-text)]">Contact</p>
         <h2
-          className="mb-4 max-w-[16ch] font-normal leading-[1.1] tracking-[-0.02em]"
+          className="mb-4 max-w-[16ch] font-normal leading-[1.1] tracking-[-0.015em]"
           style={{ fontSize: "var(--font-size-hero)" }}
         >
           Let&rsquo;s build something clear.
         </h2>
-        <p className="max-w-[46ch] text-lg leading-[1.55] text-[var(--color-muted)]">
-          {/* Replace: availability + what you're looking for */}
-          [ Supporting line — availability, what you're looking for, how to reach you. ]
+        <p className="max-w-[46ch] text-lg leading-[1.55] text-[var(--color-text)]">
+          I&apos;m open to product design roles and collaborations where complex systems need a clearer way forward.
+          Email is the best way to reach me.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href="mailto:">Email <ArrowRight className="h-3 w-3" /></Button>
