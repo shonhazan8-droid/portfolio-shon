@@ -15,7 +15,7 @@ export default function Testimonials() {
   return (
     <section className="py-24">
       <Container>
-        <h2 className="mb-12 text-2xl font-normal tracking-[-0.012em]">Words from people I&apos;ve worked with</h2>
+        <h2 className="mb-12 text-2xl font-normal tracking-[-0.008em]">Words from people I&apos;ve worked with</h2>
         <div className="grid gap-5 sm:grid-cols-2">
           {testimonials.map((t, i) => (
             <figure

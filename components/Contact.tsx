@@ -8,7 +8,7 @@ export default function Contact() {
       <Container>
         <p className="mb-4 text-sm text-[var(--color-muted)]">Contact</p>
         <h2
-          className="mb-4 max-w-[16ch] font-normal leading-[1.1] tracking-[-0.02em]"
+          className="mb-4 max-w-[16ch] font-normal leading-[1.1] tracking-[-0.015em]"
           style={{ fontSize: "var(--font-size-hero)" }}
         >
           Let&rsquo;s build something clear.

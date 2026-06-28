@@ -49,7 +49,7 @@ const motionRules = [
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="border-t border-[var(--color-line)] py-12">
-      <h2 className="mb-8 text-[var(--font-size-h2)] font-normal tracking-[-0.012em]">{title}</h2>
+      <h2 className="mb-8 text-[var(--font-size-h2)] font-normal tracking-[-0.008em]">{title}</h2>
       {children}
     </section>
   );
@@ -79,7 +79,7 @@ export default function StyleGuidePage() {
         <header className="pb-12">
           <p className="mb-4 text-sm text-[var(--color-faint)]">Portfolio system</p>
           <h1
-            className="max-w-[10ch] font-normal leading-[1.08] tracking-[-0.02em]"
+            className="max-w-[10ch] font-normal leading-[1.08] tracking-[-0.015em]"
             style={{ fontSize: "var(--font-size-hero)" }}
           >
             Style guide
@@ -130,7 +130,7 @@ export default function StyleGuidePage() {
             {typeScale.map((type) => (
               <div key={type.token} className="border-t border-[var(--color-line)] pt-4">
                 <div
-                  className="font-normal leading-[1.2] tracking-[-0.012em]"
+                  className="font-normal leading-[1.2] tracking-[-0.008em]"
                   style={{ fontSize: `var(${type.token})` }}
                 >
                   {type.sample}

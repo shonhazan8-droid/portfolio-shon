@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg:      #F7F6F2;
+  --color-bg:      #FFFFFF;
   --color-surface: #FCFBF8;
   --color-app:     #FFFFFF;
   --color-ink:     #1C1B19;
@@ -24,10 +24,14 @@
   --font-size-h1:       1.875rem;
   --font-size-hero:     clamp(2.0625rem, 4.4vw, 3.25rem);
 
-  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-sans: var(--font-cursor-gothic), system-ui, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
   --radius-frame: 14px;
+}
+
+:root {
+  --font-sans: var(--font-cursor-gothic), system-ui, sans-serif;
 }
 
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
@@ -37,6 +41,7 @@ body {
   font-family: var(--font-sans);
   font-size: var(--font-size-body);
   line-height: 1.5;
+  letter-spacing: 0.006em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
