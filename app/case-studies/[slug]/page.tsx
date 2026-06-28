@@ -7,7 +7,30 @@ import CaseCover from "@/components/CaseCover";
 import ArrowRight from "@/components/ArrowRight";
 import { caseStudies } from "@/content/caseStudies";
 
-const caseStudyDetails = [
+type CaseStudyCover =
+  | { type: "image"; src: string; width: number; height: number }
+  | { type: "lottie"; src: string };
+
+type CaseStudyDetail = {
+  slug: string;
+  title: string;
+  eyebrow: string;
+  year: string;
+  role: string;
+  client?: string;
+  focus?: string;
+  context: string;
+  headline: string;
+  summary: string;
+  cover: CaseStudyCover;
+  coverAlt: string;
+  challenge: string;
+  approach: string[];
+  resultTitle: string;
+  outcome: string;
+};
+
+const caseStudyDetails: CaseStudyDetail[] = [
   {
     slug: "rehabilitation-platform",
     title: "Rehabilitation platform IA",
@@ -119,8 +142,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 <Image
                   src={project.cover.src}
                   alt={project.coverAlt}
-                  width={1920}
-                  height={1440}
+                  width={project.cover.width}
+                  height={project.cover.height}
                   priority
                   className="h-auto w-full"
                 />
