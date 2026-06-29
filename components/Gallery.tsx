@@ -1,20 +1,18 @@
-import Container from "./Container";
+import HomeContainer from "./HomeContainer";
 import HeroCarousel from "./HeroCarousel";
 import { getGallerySlides } from "@/content/gallery";
 
 export default function Gallery() {
   const slides = getGallerySlides();
   return (
-    <section id="work" className="py-24">
-      <Container>
-        <div className="mb-10 max-w-[52ch]">
-          <h2 className="text-2xl font-normal tracking-[-0.008em]">More work I&apos;m proud of</h2>
-          <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">
-            Real projects I&apos;ve put serious work into over the years — researched, designed, and shipped to real users.
-          </p>
-        </div>
-        <HeroCarousel slides={slides} />
-      </Container>
+    <section id="work" className="py-20 md:py-24">
+      <HomeContainer>
+        <HeroCarousel
+          slides={slides}
+          heading="More work I'm proud of"
+          description="Real projects I've put serious work into over the years — researched, designed, and shipped to real users."
+        />
+      </HomeContainer>
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import Container from "./Container";
+import HomeContainer from "./HomeContainer";
 import { testimonials } from "@/content/testimonials";
 
 function initials(name: string) {
@@ -13,8 +13,8 @@ function initials(name: string) {
 
 export default function Testimonials() {
   return (
-    <section className="py-24">
-      <Container>
+    <section className="py-20 md:py-24">
+      <HomeContainer>
         <h2 className="mb-12 text-2xl font-normal tracking-[-0.008em]">Words from people I&apos;ve worked with</h2>
         <div className="grid gap-5 sm:grid-cols-2">
           {testimonials.map((t, i) => (
@@ -53,7 +53,7 @@ export default function Testimonials() {
             </figure>
           ))}
         </div>
-      </Container>
+      </HomeContainer>
     </section>
   );
 }

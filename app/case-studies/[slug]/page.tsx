@@ -704,9 +704,7 @@ function FieldPhoto({
       <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
         <Image src={src} alt={alt} className="h-auto w-full" />
       </div>
-      <figcaption
-        className={`${GeistMono.className} mt-3 text-[var(--font-size-caption)] leading-[1.5] text-[var(--color-text)]`}
-      >
+      <figcaption className="mt-2.5 max-w-[42ch] text-[13px] leading-[1.45] text-[var(--color-text)]">
         {caption}
       </figcaption>
     </figure>

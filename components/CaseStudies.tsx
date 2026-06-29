@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "./Container";
+import HomeContainer from "./HomeContainer";
 import RustLink from "./RustLink";
 import CaseCover from "./CaseCover";
 import ArrowRight from "./ArrowRight";
@@ -7,11 +7,14 @@ import { caseStudies } from "@/content/caseStudies";
 
 export default function CaseStudies() {
   return (
-    <section id="cases" className="pb-24">
-      <Container>
-        <div className="flex flex-col gap-20">
-          {caseStudies.map(c=>(
-            <article key={c.slug} className="flex flex-col gap-8">
+    <section id="cases" className="pt-10 pb-20 md:pt-16 md:pb-24">
+      <HomeContainer>
+        <div className="grid gap-x-8 gap-y-16 md:grid-cols-2 lg:gap-x-10">
+          {caseStudies.map((c)=>(
+            <article
+              key={c.slug}
+              className="flex flex-col gap-6"
+            >
               {/* Animated cover — clickable, leads to the case page */}
               <Link
                 href={`/case-studies/${c.slug}`}
@@ -32,7 +35,7 @@ export default function CaseStudies() {
             </article>
           ))}
         </div>
-      </Container>
+      </HomeContainer>
     </section>
   );
 }

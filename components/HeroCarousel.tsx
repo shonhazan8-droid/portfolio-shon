@@ -7,9 +7,17 @@ const INTERVAL = 4500;
 
 /**
  * Selected work — one large 4:3 image at a time, auto-advancing in a loop.
- * Pauses on hover. No captions (handled separately later).
+ * Pauses on hover. Text rail + nav controls on the left, image on the right.
  */
-export default function HeroCarousel({ slides }: { slides: Slide[] }) {
+export default function HeroCarousel({
+  slides,
+  heading,
+  description,
+}: {
+  slides: Slide[];
+  heading: string;
+  description: string;
+}) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const reducedRef = useRef(false);
@@ -31,6 +39,9 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
 
   if (len === 0) return null;
 
+  const arrowBtn =
+    "flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-accent)]/[0.08] text-[var(--color-accent)] transition-[background-color,transform] duration-150 ease-[var(--ease-out)] hover:bg-[var(--color-accent)]/[0.14] active:scale-90";
+
   return (
     <div
       onMouseEnter={() => setPaused(true)}
@@ -38,61 +49,64 @@ export default function HeroCarousel({ slides }: { slides: Slide[] }) {
       role="group"
       aria-roledescription="carousel"
       aria-label="Selected work"
+      className="grid gap-10 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-center lg:gap-16"
     >
-      {/* Frame — one screen at a time */}
-      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
-        <div
-          className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
-          style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
-        >
-          {slides.map((s, i) => (
-            <div
-              key={s.src}
-              className="h-full w-full shrink-0 bg-[var(--color-surface)]"
-              aria-hidden={i !== index}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={s.src}
-                alt={s.name}
-                className="h-full w-full object-cover"
-                draggable={false}
-              />
-            </div>
-          ))}
-        </div>
+      {/* Text rail + controls */}
+      <div className="max-w-[52ch]">
+        <h2 className="text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
+        <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
 
-        {/* Arrows — fade in on hover/focus, stay reachable by keyboard */}
-        <button
-          onClick={() => go(-1)}
-          aria-label="Previous"
-          className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-surface)_85%,transparent)] text-[var(--color-ink)] opacity-0 backdrop-blur-sm transition-[opacity,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-[var(--color-ink)] focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
-        >
-          <ArrowRight className="h-3.5 w-3.5 -scale-x-100" />
-        </button>
-        <button
-          onClick={() => go(1)}
-          aria-label="Next"
-          className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-surface)_85%,transparent)] text-[var(--color-ink)] opacity-0 backdrop-blur-sm transition-[opacity,border-color,transform] duration-200 ease-[var(--ease-out)] hover:border-[var(--color-ink)] focus-visible:opacity-100 active:scale-90 group-hover:opacity-100"
-        >
-          <ArrowRight className="h-3.5 w-3.5" />
-        </button>
+        {/* Nav — arrows below the text */}
+        <div className="mt-8 flex items-center gap-3">
+          <button onClick={() => go(-1)} aria-label="Previous" className={arrowBtn}>
+            <ArrowRight className="h-3.5 w-3.5 -scale-x-100" />
+          </button>
+          <button onClick={() => go(1)} aria-label="Next" className={arrowBtn}>
+            <ArrowRight className="h-3.5 w-3.5" />
+          </button>
+        </div>
       </div>
 
-      {/* Paging dots */}
-      <div className="mt-4 flex items-center justify-center gap-1.5" role="tablist" aria-label="Choose slide">
-        {slides.map((s, i) => (
-          <button
-            key={s.src}
-            onClick={() => setIndex(i)}
-            role="tab"
-            aria-selected={i === index}
-            aria-label={`Show slide ${i + 1}`}
-            className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ease-[var(--ease-out)] ${
-              i === index ? "w-5 bg-[var(--color-ink)]" : "w-1.5 bg-[var(--color-line)] hover:bg-[var(--color-text)]"
-            }`}
-          />
-        ))}
+      {/* Frame + dots below the image */}
+      <div>
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+          <div
+            className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
+            style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+          >
+            {slides.map((s, i) => (
+              <div
+                key={s.src}
+                className="h-full w-full shrink-0 bg-[var(--color-surface)]"
+                aria-hidden={i !== index}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.src}
+                  alt={s.name}
+                  className="h-full w-full object-cover"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Paging dots */}
+        <div className="mt-5 flex items-center justify-center gap-1.5" role="tablist" aria-label="Choose slide">
+          {slides.map((s, i) => (
+            <button
+              key={s.src}
+              onClick={() => setIndex(i)}
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Show slide ${i + 1}`}
+              className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ease-[var(--ease-out)] ${
+                i === index ? "w-5 bg-[var(--color-ink)]" : "w-1.5 bg-[var(--color-line)] hover:bg-[var(--color-text)]"
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
