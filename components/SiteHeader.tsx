@@ -26,7 +26,9 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
         scrolled ? "border-[var(--color-line)]" : "border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 w-full max-w-[752px] items-center justify-between px-6 md:px-0">
+      <div
+        className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between px-6 md:px-8 xl:px-0"
+      >
         <Link href="/" aria-label="Shon" className="inline-flex no-underline transition-opacity duration-150 hover:opacity-80" style={{ perspective: "500px" }}>
           <Image
             src="/Portal.svg"

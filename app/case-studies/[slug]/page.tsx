@@ -14,6 +14,11 @@ import shik3 from "@/public/Case01/shik3.png";
 import shik4 from "@/public/Case01/shik4.png";
 import shik5 from "@/public/Case01/shik5.png";
 import shik6 from "@/public/Case01/shik6.png";
+import bankFlowStructure from "@/public/Case02/flow-structure.png";
+import bankSystemToExperience from "@/public/Case02/system-to-experience.png";
+import bankFocusedDecisions from "@/public/Case02/focused-decisions.png";
+import bankFieldBranch from "@/public/Case02/field-branch.png";
+import bankFieldSystem from "@/public/Case02/field-system.png";
 
 type CaseStudyCover =
   | { type: "image"; src: string; width: number; height: number }
@@ -73,10 +78,9 @@ const caseStudyDetails: CaseStudyDetail[] = [
     role: "Product design, onboarding flow, decision architecture",
     context:
       "A digital account-opening flow had to replace the confidence usually created by a banker sitting across the table.",
-    headline:
-      "Rebuilding a sensitive financial onboarding flow around progress, clarity, and one decision at a time.",
+    headline: "Replacing 30-minute branch visits with\n10-minute digital onboarding.",
     summary:
-      "When the process moved online, users lost the person who could explain the next step, reduce doubt, and make the application feel safe. The redesign gave that confidence back through structure.",
+      "A clerk-guided, branch-only account opening, rebuilt as a self-serve digital flow — translating regulatory complexity into clarity, progress, and one decision at a time.",
     cover: { type: "lottie", src: "/Animate/post-animate.json" },
     coverAlt: "Animated bank account opening flow preview",
     challenge:
@@ -124,6 +128,19 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   const study = caseStudies.find((item) => item.slug === project.slug);
   const isRehabilitation = project.slug === "rehabilitation-platform";
+  const isBank = project.slug === "bank-account-opening";
+  const isFeature = isRehabilitation || isBank;
+  const metaItems: [string, string][] = isRehabilitation
+    ? [
+        ["PROJECT", project.client ?? "Ministry of Defense"],
+        ["ROLE", "Product Designer · End-to-end"],
+        ["SCOPE", project.focus ?? "Strategy, IA, Core Flows"],
+      ]
+    : [
+        ["PROJECT", "Digital banking"],
+        ["ROLE", "Product Designer · End-to-end"],
+        ["SCOPE", "Research, Onboarding, Flows"],
+      ];
 
   return (
     <>
@@ -131,7 +148,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <main>
         <Container className="py-12 md:py-16">
           <header className="rise pb-12">
-            {isRehabilitation ? (
+            {isFeature ? (
               <>
                 <p className={`${GeistMono.className} mb-6 text-sm text-[var(--color-accent)]`}>{project.year}</p>
                 <h1
@@ -161,7 +178,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
           </header>
 
-          <section className="rise rise-1">
+          <section className="rise rise-1 case-media">
             {project.cover.type === "image" ? (
               <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
                 <Image
@@ -178,17 +195,9 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
           </section>
 
-          {isRehabilitation ? (
-            <CaseStudyMeta
-              items={[
-                ["PROJECT", project.client ?? "Ministry of Defense"],
-                ["ROLE", "Product Designer · End-to-end"],
-                ["SCOPE", project.focus ?? "Strategy, IA, Core Flows"],
-              ]}
-            />
-          ) : null}
+          {isFeature ? <CaseStudyMeta items={metaItems} /> : null}
 
-          {!isRehabilitation ? (
+          {!isFeature ? (
             <section className="grid gap-8 border-b border-t border-[var(--color-line)] py-10 md:grid-cols-3">
               <div>
                 <p className="text-sm text-[var(--color-text)]">Role</p>
@@ -378,6 +387,144 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 href="/case-studies/bank-account-opening"
               />
             </>
+          ) : isBank ? (
+            <>
+              <IntroBlock>
+                <p>
+                  Opening an account used to mean a physical branch visit — a manual, clerk-driven process running on
+                  legacy operational systems. The challenge was broader than digitizing paperwork.
+                </p>
+                <p>
+                  The audience included people with low digital confidence, so the interface had to teach structure as
+                  it moved — replacing face-to-face guidance with a flow people could trust and complete on their own.
+                </p>
+              </IntroBlock>
+
+              <CaseTextSection label="Problem" title="The flow relied on human orientation at every step.">
+                <p>
+                  The challenge wasn’t simplifying the process, but recreating the clarity, trust, and confidence a
+                  clerk provided — through structure, expectation-setting, and plain-language decisions.
+                </p>
+              </CaseTextSection>
+
+              <CaseTextSection label="Research">
+                <p>
+                  The work started in the branch, not in Figma. We watched clerks orienting customers rather than doing
+                  the hard parts for them. Uncertainty — not task difficulty — was the main source of friction.
+                </p>
+                <div className="space-y-11 pt-7">
+                  <NumberedCasePoint
+                    number="01"
+                    title="Field observations inside branches"
+                    body="On-site observation of the account-opening process to understand the flow, the environment, and the systems clerks actually used."
+                  />
+                  <NumberedCasePoint
+                    number="02"
+                    title="Interviews with branch clerks"
+                    body="Conversations with clerks to understand account opening from the operational side — and where customers leaned on them most."
+                  />
+                  <NumberedCasePoint
+                    number="03"
+                    title="Lean UX workshop with stakeholders"
+                    body="Early alignment between product, operations, compliance, and design before any screen was drawn."
+                  />
+                  <NumberedCasePoint
+                    number="04"
+                    title="Collaboration with regulatory and operational teams"
+                    body="Balancing regulatory requirements against usability and customer-experience needs."
+                  />
+                </div>
+                <div className="case-img my-8 grid gap-4 sm:grid-cols-2">
+                  <FieldPhoto
+                    src={bankFieldBranch}
+                    alt="A branch clerk’s workstation with the legacy account-opening terminal"
+                    caption="The branch reality — a clerk’s desk and the legacy terminal behind account opening."
+                  />
+                  <FieldPhoto
+                    src={bankFieldSystem}
+                    alt="The legacy operational system observed in use during branch sessions"
+                    caption="Observing the operational system in use, to learn what each step really asked for."
+                  />
+                </div>
+              </CaseTextSection>
+
+              <CaseTextSection label="Insights" title="Three insights that shaped the design.">
+                <div className="space-y-8">
+                  <FindingBlock
+                    title="The branch experience was a guidance layer."
+                    body="Customers relied on clerks to sequence the process, explain what mattered, and reassure them they were on the right path."
+                  />
+                  <FindingBlock
+                    title="Uncertainty, not task difficulty, created friction."
+                    body="People got stuck when they didn’t know how long it would take, why something was needed, or what counted as success."
+                  />
+                  <FindingBlock
+                    title="Regulation needed translation."
+                    body="The product couldn’t simply expose operational rules. It had to turn them into a legible customer journey."
+                  />
+                </div>
+              </CaseTextSection>
+
+              <CaseTextSection label="Direction" title="Recreating confidence in a self-service flow.">
+                <p>
+                  The goal was a self-serve process people could finish independently — even on their first digital
+                  banking flow. One meaningful decision per screen, with progress and expectation-setting doing the work
+                  a clerk used to do.
+                </p>
+              </CaseTextSection>
+
+              <CaseTextSection title="From internal system to customer experience.">
+                <p>
+                  The operational flow was redesigned into a visible, user-facing sequence that explained why each stage
+                  existed. Backend and compliance steps were reframed as clear customer actions.
+                </p>
+                <CaseImage
+                  src={bankSystemToExperience}
+                  alt="The legacy internal terminal reframed into a clean customer-facing mobile flow"
+                  width={1774}
+                  height={1114}
+                />
+              </CaseTextSection>
+
+              <CaseTextSection title="Reducing cognitive load through focused decisions.">
+                <p>
+                  Regulatory requirements were broken into isolated, digestible decisions. Each screen was narrowed to a
+                  single choice or input, with supporting copy explaining what was needed and why.
+                </p>
+                <CaseImage
+                  src={bankFocusedDecisions}
+                  alt="Conditional follow-up questions that keep each screen to a single decision"
+                  width={1774}
+                  height={1114}
+                />
+              </CaseTextSection>
+
+              <CaseTextSection title="Setting expectations through structure.">
+                <p>
+                  Visible progress, onboarding framing, and consistent sequencing replaced much of the reassurance
+                  branch staff used to provide.
+                </p>
+                <CaseImage
+                  src={bankFlowStructure}
+                  alt="A three-phase structure with a visible step-of-three progress indicator across screens"
+                  width={1774}
+                  height={1114}
+                />
+              </CaseTextSection>
+
+              <CaseTextSection label="Outcome" title="From a 30-minute branch visit to a 10-minute digital flow.">
+                <p>
+                  The final experience turned a clerk-guided branch process into a structured self-service onboarding
+                  flow. Account-opening time dropped from roughly 30 minutes in-branch to about 10 minutes digitally —
+                  uncertainty reduced through clearer structure, visible progress, and simpler decisions throughout.
+                </p>
+              </CaseTextSection>
+
+              <CaseStudyOutro
+                title="Rehabilitation platform IA"
+                href="/case-studies/rehabilitation-platform"
+              />
+            </>
           ) : (
             <>
               <CaseTextSection title="Context">
@@ -414,11 +561,11 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
 function CaseStudyMeta({ items }: { items: [string, string][] }) {
   return (
-    <section className="grid gap-8 py-12 md:grid-cols-3 md:gap-12">
+    <section className="grid gap-8 py-12 md:grid-cols-3 md:gap-7">
       {items.map(([label, value]) => (
         <div key={label}>
           <p className={`${GeistMono.className} text-sm uppercase tracking-normal text-[var(--color-accent)]`}>{label}</p>
-          <p className="mt-2 text-sm font-normal leading-[1.4] text-[var(--color-ink)]">
+          <p className="mt-2 whitespace-nowrap text-base font-normal leading-[1.4] text-[var(--color-ink)]">
             {value}
           </p>
         </div>
@@ -540,6 +687,29 @@ function CaseImage({
     <div className="case-img my-8 w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
       <Image src={src} alt={alt} width={width} height={height} className="h-auto w-full" />
     </div>
+  );
+}
+
+function FieldPhoto({
+  src,
+  alt,
+  caption,
+}: {
+  src: StaticImageData;
+  alt: string;
+  caption: string;
+}) {
+  return (
+    <figure className="m-0">
+      <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+        <Image src={src} alt={alt} className="h-auto w-full" />
+      </div>
+      <figcaption
+        className={`${GeistMono.className} mt-3 text-[var(--font-size-caption)] leading-[1.5] text-[var(--color-text)]`}
+      >
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 

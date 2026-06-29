@@ -29,4 +29,4 @@ next-env.d.ts
 skills-lock.json
 
 # accidental local scratch directory
-{app,components,content,public/
+\{app,components,content,public/

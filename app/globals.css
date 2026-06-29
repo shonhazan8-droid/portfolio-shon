@@ -67,6 +67,16 @@ p { text-wrap: pretty; }
   border-radius: 3px;
 }
 
+/* Case-study media (cover + figures) grow wider than the 752px text column —
+   up to 872px, re-centered — via symmetric negative margins (no transform, so it
+   never fights the .rise entrance). Clamped so it never shrinks below the text
+   column or overflows narrow viewports. */
+.case-media.case-media,
+.case-img.case-img {
+  width: auto;
+  margin-inline: min(0px, calc((min(872px, 100vw - 3rem) - 100%) / -2));
+}
+
 .gallery-scroll { scrollbar-width: thin; scrollbar-color: var(--color-line) transparent; }
 .gallery-scroll::-webkit-scrollbar { height: 4px; }
 .gallery-scroll::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 999px; }
