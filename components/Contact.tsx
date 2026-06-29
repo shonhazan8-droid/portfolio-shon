@@ -10,7 +10,7 @@ export default function Contact() {
       className="relative isolate mt-12 min-h-[480px] overflow-hidden pt-10 pb-6 md:mt-16 md:flex md:min-h-[520px] md:flex-col md:justify-center md:pt-14 md:pb-8"
     >
       <Image
-        src="/Footer-bg.png"
+        src="/Footer-bg-2.png"
         alt=""
         fill
         sizes="100vw"

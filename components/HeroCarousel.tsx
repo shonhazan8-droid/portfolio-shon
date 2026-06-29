@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Slide } from "@/content/gallery";
-import ArrowRight from "./ArrowRight";
+import ArrowCircle from "./ArrowCircle";
 
 const INTERVAL = 4500;
 
@@ -40,7 +40,7 @@ export default function HeroCarousel({
   if (len === 0) return null;
 
   const arrowBtn =
-    "flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-accent)]/[0.08] text-[var(--color-accent)] transition-[background-color,transform] duration-150 ease-[var(--ease-out)] hover:bg-[var(--color-accent)]/[0.14] active:scale-90";
+    "flex h-10 w-10 items-center justify-center rounded-full transition-[opacity,transform] duration-150 ease-[var(--ease-out)] hover:opacity-80 active:scale-90";
 
   return (
     <div
@@ -59,10 +59,10 @@ export default function HeroCarousel({
         {/* Nav — arrows below the text */}
         <div className="mt-8 flex items-center gap-3">
           <button onClick={() => go(-1)} aria-label="Previous" className={arrowBtn}>
-            <ArrowRight className="h-3.5 w-3.5 -scale-x-100" />
+            <ArrowCircle className="h-10 w-10" />
           </button>
           <button onClick={() => go(1)} aria-label="Next" className={arrowBtn}>
-            <ArrowRight className="h-3.5 w-3.5" />
+            <ArrowCircle className="h-10 w-10 -scale-x-100" />
           </button>
         </div>
       </div>

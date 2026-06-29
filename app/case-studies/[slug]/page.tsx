@@ -473,7 +473,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 </p>
               </CaseTextSection>
 
-              <CaseTextSection title="From internal system to customer experience.">
+              <CaseTextSection label="Reframe" title="From internal system to customer experience.">
                 <p>
                   The operational flow was redesigned into a visible, user-facing sequence that explained why each stage
                   existed. Backend and compliance steps were reframed as clear customer actions.
@@ -486,7 +486,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 />
               </CaseTextSection>
 
-              <CaseTextSection title="Reducing cognitive load through focused decisions.">
+              <CaseTextSection label="Focus" title="Reducing cognitive load through focused decisions.">
                 <p>
                   Regulatory requirements were broken into isolated, digestible decisions. Each screen was narrowed to a
                   single choice or input, with supporting copy explaining what was needed and why.
@@ -499,7 +499,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 />
               </CaseTextSection>
 
-              <CaseTextSection title="Setting expectations through structure.">
+              <CaseTextSection label="Structure" title="Setting expectations through structure.">
                 <p>
                   Visible progress, onboarding framing, and consistent sequencing replaced much of the reassurance
                   branch staff used to provide.
@@ -561,7 +561,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
 function CaseStudyMeta({ items }: { items: [string, string][] }) {
   return (
-    <section className="grid gap-8 py-12 md:grid-cols-3 md:gap-7">
+    <section className="flex flex-col gap-8 py-12 md:flex-row md:justify-between md:gap-10">
       {items.map(([label, value]) => (
         <div key={label}>
           <p className={`${GeistMono.className} text-sm uppercase tracking-normal text-[var(--color-accent)]`}>{label}</p>
@@ -701,8 +701,8 @@ function FieldPhoto({
 }) {
   return (
     <figure className="m-0">
-      <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
-        <Image src={src} alt={alt} className="h-auto w-full" />
+      <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+        <Image src={src} alt={alt} className="h-full w-full object-cover" />
       </div>
       <figcaption className="mt-2.5 max-w-[42ch] text-[13px] leading-[1.45] text-[var(--color-text)]">
         {caption}
