@@ -1,8 +1,8 @@
 export type Testimonial = { quote: string; name: string; role: string; company?: string; avatar?: string };
 
 export const testimonials: Testimonial[] = [
-  { quote: "Turned a vague, high-stakes problem into a structure the whole team could build against.", name: "Shani Konyak", role: "Head of Product", company: "Ministry of Defense", avatar: "/people/shani.jpeg" },
-  { quote: "Rare mix of systems thinking and craft — the design system he built still holds up two years on.", name: "Yury Vitman", role: "Head of Design", company: "Matrix", avatar: "/people/yuri.jpeg" },
-  { quote: "Made a complex onboarding flow feel obvious. Drop-off fell the week we shipped it.", name: "Maya Michal", role: "Head of Product", company: "Israel Post", avatar: "/people/maya.jpeg" },
-  { quote: "The kind of designer who makes everyone around him better — clear, fast, and never loses the details.", name: "Raz Talbi", role: "Product Designer", avatar: "/people/raz.jpeg" },
+  { quote: "When we brought him in, the problem felt unsolvable. Too many departments, too many edge cases. The first thing he did wasn't design, it was reframing the question. He showed us the system underneath the mess, and the team finally started arguing about the right things.", name: "Shani Konyak", role: "Head of Product", company: "Ministry of Defense", avatar: "/people/shani.jpeg" },
+  { quote: "He has judgment you can't really teach, knowing which detail matters and which one to let go. He thinks like a product person, not just a designer, so the work holds up under real constraints. And he raised the bar quietly. People started defending their decisions better just from sitting near him.", name: "Yury Vitman", role: "Head of Design", company: "Matrix", avatar: "/people/yuri.jpeg" },
+  { quote: "Most designers hand you screens. He sat in the messy middle with me, balancing regulation, business goals, and what real people could handle. He helped shape the product itself, not just how it looked, and pushed back when a business ask would have hurt users.", name: "Maya Michal", role: "Head of Product", company: "Israel Post", avatar: "/people/maya.jpeg" },
+  { quote: "He never told me what to design. He asked the question that made me notice what I'd missed, then let me get there myself. Working next to him, I stopped chasing pixels and started thinking in problems and trade-offs. Most of what I trust in my own judgment now started in those reviews.", name: "Raz Talbi", role: "Product Designer", avatar: "/people/raz.jpeg" },
 ];

@@ -434,7 +434,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                     body="Balancing regulatory requirements against usability and customer-experience needs."
                   />
                 </div>
-                <div className="case-img my-8 grid gap-4 sm:grid-cols-2">
+                <div className="case-img mt-14 mb-8 grid gap-4 sm:grid-cols-2">
                   <FieldPhoto
                     src={bankFieldBranch}
                     alt="A branch clerk’s workstation with the legacy account-opening terminal"
