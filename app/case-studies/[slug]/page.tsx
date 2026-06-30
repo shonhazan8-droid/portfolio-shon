@@ -374,11 +374,41 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 />
               </CaseTextSection>
 
-              <CaseTextSection label="Outcome" title="The site started answering the questions users actually arrived with.">
+              <CaseTextSection label="Evidence of Impact">
+                <p className="text-sm italic leading-[1.5] text-[var(--color-text)]">
+                  Observed through Google Analytics, Microsoft Clarity session recordings, and follow-up usability
+                  sessions after launch.
+                </p>
+                <div className="space-y-8 pt-2">
+                  <FindingBlock
+                    title="Clearer navigation journeys"
+                    body="Users reached relevant services through more direct paths, with fewer unnecessary navigation decisions before finding what was relevant to them."
+                  />
+                  <FindingBlock
+                    title="Reduced reliance on internal search"
+                    body="Analytics showed a noticeable reduction in internal search usage after introducing situation-based navigation, suggesting users were able to find relevant content through the information architecture itself."
+                  />
+                  <FindingBlock
+                    title="Faster orientation"
+                    body="Follow-up usability sessions showed users identified the correct starting point earlier, spending less time figuring out where to begin."
+                  />
+                  <FindingBlock
+                    title="Reduced dependency on organizational knowledge"
+                    body="Users no longer needed to understand the Ministry’s internal structure before finding the service relevant to their situation."
+                  />
+                  <FindingBlock
+                    title="72 forms removed from the primary navigation"
+                    body="Simplifying the primary navigation reduced noise, shortened decision paths, and made the experience easier to understand."
+                  />
+                </div>
+              </CaseTextSection>
+
+              <CaseTextSection label="Reflection">
                 <p>
-                  The work shifted the service from a directory of departments to an experience organized around real
-                  situations. Users could understand what mattered, what applied to them, and what to do next without
-                  first decoding the organization behind the service.
+                  Looking back, the biggest success wasn’t the navigation itself. It was changing how the team thought
+                  about the product. We stopped organizing around departments and started organizing around people’s
+                  real situations. Once that shift happened, every design decision became easier to align, easier to
+                  validate through research, and ultimately easier for users to navigate.
                 </p>
               </CaseTextSection>
 
