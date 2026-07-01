@@ -13,9 +13,15 @@ const cursorGothic = localFont({
   ],
 });
 
+// Always resolve OG/canonical URLs to the PUBLIC production domain.
+// VERCEL_URL (per-deployment) is intentionally avoided: those URLs sit behind
+// Vercel Deployment Protection and 302 to a login page, so social crawlers
+// can't fetch the OG image from them.
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://portfolio-shon.vercel.app");
 
 const siteDescription =
   "Six years designing clarity into complex products. Fintech, public sector, health.";
