@@ -13,9 +13,39 @@ const cursorGothic = localFont({
   ],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+const siteDescription =
+  "Six years designing clarity into complex products. Fintech, public sector, health.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Shon · Senior Product Designer",
-  description: "Six years designing clarity into complex products. Fintech, public sector, health.",
+  description: siteDescription,
+  openGraph: {
+    title: "Shon Hazan · Product Designer",
+    description: siteDescription,
+    url: "/",
+    siteName: "Shon Hazan",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-cover.png",
+        width: 1200,
+        height: 664,
+        alt: "Shon Hazan · Product Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shon Hazan · Product Designer",
+    description: siteDescription,
+    images: ["/og-cover.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
