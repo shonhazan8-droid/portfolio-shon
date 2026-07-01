@@ -13,7 +13,7 @@ const IMAGE_RE = /\.(png|jpe?g|webp|avif|gif|svg)$/i;
 
 /**
  * Reads every image in /public/work and turns it into a gallery slide.
- * Whatever is in the folder shows up — drop a file in, it appears.
+ * Whatever is in the folder shows up: drop a file in, it appears.
  * Files matched against projects.ts (by filename) keep their metadata;
  * unmatched files get a caption derived from the filename.
  */

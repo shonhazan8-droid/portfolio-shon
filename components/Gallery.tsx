@@ -10,7 +10,7 @@ export default function Gallery() {
         <HeroCarousel
           slides={slides}
           heading="More work I'm proud of"
-          description="Real projects I've put serious work into over the years — researched, designed, and shipped to real users."
+          description="Real projects I've put serious work into over the years, researched, designed, and shipped to real users."
         />
       </HomeContainer>
     </section>

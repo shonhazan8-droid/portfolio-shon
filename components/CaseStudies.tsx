@@ -15,7 +15,7 @@ export default function CaseStudies() {
               key={c.slug}
               className="flex flex-col gap-6"
             >
-              {/* Animated cover — clickable, leads to the case page */}
+              {/* Animated cover: clickable, leads to the case page */}
               <Link
                 href={`/case-studies/${c.slug}`}
                 aria-label={`Open ${c.title} case study`}

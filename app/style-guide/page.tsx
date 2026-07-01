@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import Container from "@/components/Container";
 
 export const metadata: Metadata = {
-  title: "Style Guide — Shon",
+  title: "Style Guide · Shon",
   description: "Design tokens, typography, colors, spacing, and component rules for the portfolio.",
 };
 

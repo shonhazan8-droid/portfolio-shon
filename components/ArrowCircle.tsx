@@ -1,5 +1,5 @@
 /**
- * Carousel nav arrow — custom, matched to the site language:
+ * Carousel nav arrow: custom, matched to the site language:
  * a soft accent-tinted disc (like the RustLink pill) with a thin, refined
  * line arrow. Points left by default; flip with -scale-x-100 for next.
  */

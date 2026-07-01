@@ -14,6 +14,7 @@ import shik3 from "@/public/Case01/shik3.png";
 import shik4 from "@/public/Case01/shik4.png";
 import shik5 from "@/public/Case01/shik5.png";
 import shik6 from "@/public/Case01/shik6.png";
+import researchCollage from "@/public/Case01/26253.png";
 import bankFlowStructure from "@/public/Case02/flow-structure.png";
 import bankSystemToExperience from "@/public/Case02/system-to-experience.png";
 import bankFocusedDecisions from "@/public/Case02/focused-decisions.png";
@@ -80,7 +81,7 @@ const caseStudyDetails: CaseStudyDetail[] = [
       "A digital account-opening flow had to replace the confidence usually created by a banker sitting across the table.",
     headline: "Replacing 30-minute branch visits with\n10-minute digital onboarding.",
     summary:
-      "A clerk-guided, branch-only account opening, rebuilt as a self-serve digital flow — translating regulatory complexity into clarity, progress, and one decision at a time.",
+      "A clerk-guided, branch-only account opening, rebuilt as a self-serve digital flow that translates regulatory complexity into clarity, progress, and one decision at a time.",
     cover: { type: "lottie", src: "/Animate/post-animate.json" },
     coverAlt: "Animated bank account opening flow preview",
     challenge:
@@ -263,6 +264,18 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                     body="Usability testing, journey mapping, and cross-functional workshops helped identify where the service structure diverged from real-world situations and decision-making."
                   />
                 </div>
+                <div className="case-img mt-14">
+                  <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+                    <Image
+                      src={researchCollage}
+                      alt="Research in progress: remote user interviews, a How-Might-We workshop wall, and stakeholder sessions"
+                      className="h-auto w-full"
+                    />
+                  </div>
+                  <p className="mt-3 text-[13px] italic leading-[1.45] text-[var(--color-text)]">
+                    Remote interviews, a How-Might-We workshop, and stakeholder sessions, where the reframe took shape.
+                  </p>
+                </div>
               </CaseTextSection>
 
               <CaseTextSection label="Findings" title="Three findings that changed the strategy.">
@@ -352,12 +365,12 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 <p>
                   Instead of shipping nothing, I made a deliberate trade-off: a lighter interim solution that still
                   created value. Content type labels and a clearer result hierarchy helped users understand results
-                  faster and navigate them more confidently — not the ideal, but a real improvement under the
+                  faster and navigate them more confidently. Not the ideal, but a real improvement under the
                   constraint.
                 </p>
                 <p>
                   Bringing life situations into search context was scoped as an intentional next step, planned for a
-                  later phase rather than forced prematurely. Naming the compromise — and the path beyond it — was
+                  later phase rather than forced prematurely. Naming the compromise, and the path beyond it, was
                   part of the design decision.
                 </p>
                 <CaseImage
@@ -421,26 +434,26 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             <>
               <IntroBlock>
                 <p>
-                  Opening an account used to mean a physical branch visit — a manual, clerk-driven process running on
+                  Opening an account used to mean a physical branch visit, a manual, clerk-driven process running on
                   legacy operational systems. The challenge was broader than digitizing paperwork.
                 </p>
                 <p>
                   The audience included people with low digital confidence, so the interface had to teach structure as
-                  it moved — replacing face-to-face guidance with a flow people could trust and complete on their own.
+                  it moved, replacing face-to-face guidance with a flow people could trust and complete on their own.
                 </p>
               </IntroBlock>
 
               <CaseTextSection label="Problem" title="The flow relied on human orientation at every step.">
                 <p>
                   The challenge wasn’t simplifying the process, but recreating the clarity, trust, and confidence a
-                  clerk provided — through structure, expectation-setting, and plain-language decisions.
+                  clerk provided, through structure, expectation-setting, and plain-language decisions.
                 </p>
               </CaseTextSection>
 
               <CaseTextSection label="Research">
                 <p>
                   The work started in the branch, not in Figma. We watched clerks orienting customers rather than doing
-                  the hard parts for them. Uncertainty — not task difficulty — was the main source of friction.
+                  the hard parts for them. Uncertainty, not task difficulty, was the main source of friction.
                 </p>
                 <div className="space-y-11 pt-7">
                   <NumberedCasePoint
@@ -451,7 +464,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   <NumberedCasePoint
                     number="02"
                     title="Interviews with branch clerks"
-                    body="Conversations with clerks to understand account opening from the operational side — and where customers leaned on them most."
+                    body="Conversations with clerks to understand account opening from the operational side, and where customers leaned on them most."
                   />
                   <NumberedCasePoint
                     number="03"
@@ -468,7 +481,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                   <FieldPhoto
                     src={bankFieldBranch}
                     alt="A branch clerk’s workstation with the legacy account-opening terminal"
-                    caption="The branch reality — a clerk’s desk and the legacy terminal behind account opening."
+                    caption="The branch reality: a clerk’s desk and the legacy terminal behind account opening."
                   />
                   <FieldPhoto
                     src={bankFieldSystem}
@@ -497,7 +510,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
               <CaseTextSection label="Direction" title="Recreating confidence in a self-service flow.">
                 <p>
-                  The goal was a self-serve process people could finish independently — even on their first digital
+                  The goal was a self-serve process people could finish independently, even on their first digital
                   banking flow. One meaningful decision per screen, with progress and expectation-setting doing the work
                   a clerk used to do.
                 </p>
@@ -545,8 +558,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               <CaseTextSection label="Outcome" title="From a 30-minute branch visit to a 10-minute digital flow.">
                 <p>
                   The final experience turned a clerk-guided branch process into a structured self-service onboarding
-                  flow. Account-opening time dropped from roughly 30 minutes in-branch to about 10 minutes digitally —
-                  uncertainty reduced through clearer structure, visible progress, and simpler decisions throughout.
+                  flow. Account-opening time dropped from roughly 30 minutes in-branch to about 10 minutes digitally.
+                  Uncertainty was reduced through clearer structure, visible progress, and simpler decisions throughout.
                 </p>
               </CaseTextSection>
 

@@ -14,7 +14,7 @@ const cursorGothic = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Shon — Senior Product Designer",
+  title: "Shon · Senior Product Designer",
   description: "Six years designing clarity into complex products. Fintech, public sector, health.",
 };
 

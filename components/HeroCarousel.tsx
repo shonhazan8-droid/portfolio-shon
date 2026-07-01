@@ -6,7 +6,7 @@ import ArrowCircle from "./ArrowCircle";
 const INTERVAL = 4500;
 
 /**
- * Selected work — one large 4:3 image at a time, auto-advancing in a loop.
+ * Selected work: one large 4:3 image at a time, auto-advancing in a loop.
  * Pauses on hover. Text rail + nav controls on the left, image on the right.
  */
 export default function HeroCarousel({
@@ -56,7 +56,7 @@ export default function HeroCarousel({
         <h2 className="text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
         <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
 
-        {/* Nav — arrows below the text */}
+        {/* Nav: arrows below the text */}
         <div className="mt-8 flex items-center gap-3">
           <button onClick={() => go(-1)} aria-label="Previous" className={arrowBtn}>
             <ArrowCircle className="h-10 w-10" />

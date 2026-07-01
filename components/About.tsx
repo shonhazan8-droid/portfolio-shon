@@ -7,7 +7,7 @@ export default function About() {
       <HomeContainer className="grid gap-16 lg:grid-cols-[2fr_1fr] lg:gap-24">
         {/* Profile */}
         <div className="max-w-[640px]">
-          {/* Portrait — pre-composed image, shown as-is */}
+          {/* Portrait: pre-composed image, shown as-is */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/portrait-framed.png"
@@ -20,7 +20,7 @@ export default function About() {
           <p className="mt-1 text-base leading-[1.55] text-[var(--color-text)]">Designer &amp; Creative thinker</p>
 
           <p className="mt-8 max-w-[52ch] text-base leading-[1.55] text-[var(--color-ink)]">
-            I build scalable product systems and structured interfaces — function over decoration.
+            I build scalable product systems and structured interfaces. Function over decoration.
             Today I design complex systems for government and enterprise, turning high-friction,
             regulated processes into clear, usable flows.
           </p>

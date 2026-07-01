@@ -17,7 +17,7 @@ export default function Contact() {
         className="-z-20 object-cover object-bottom"
       />
 
-      {/* Soft fade — page background melts into the image so its top edge isn't a hard line */}
+      {/* Soft fade: page background melts into the image so its top edge isn't a hard line */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-[var(--color-bg)] to-transparent md:h-40"
