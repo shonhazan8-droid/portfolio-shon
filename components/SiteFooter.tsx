@@ -14,14 +14,22 @@ export default function SiteFooter() {
           </div>
           {[
             { heading: "Pages", links: [["Work","#work"],["Case studies","#cases"],["About","#about"]] },
-            { heading: "Social", links: [["LinkedIn","https://linkedin.com/in/shon-hazan-095373199"],["Read.cv","#"],["X / Twitter","#"]] },
-            { heading: "Contact", links: [["Email","mailto:"],["Resume (PDF)","/resume.pdf"]] },
+            { heading: "Social", links: [["LinkedIn","https://www.linkedin.com/in/shon-hazan-095373199/?skipRedirect=true"],["Read.cv","#"],["X / Twitter","#"]] },
+            { heading: "Contact", links: [["Email","mailto:Shonhazan8@gmail.com"],["Resume","https://drive.google.com/file/d/1pL5ENpNmZ9Pq7UTChxkHYIIwOOk3G6Db/view"]] },
           ].map(col=>(
             <div key={col.heading}>
               <h4 className="mb-3 text-xs font-normal uppercase tracking-[.08em] text-[var(--color-text)]">{col.heading}</h4>
-              {col.links.map(([label,href])=>(
-                <Link key={label} href={href} className="mb-2.5 block text-sm text-[var(--color-text)] no-underline transition-colors hover:text-[var(--color-ink)]">{label}</Link>
-              ))}
+              {col.links.map(([label,href])=>{
+                const external = href.startsWith("http");
+                return (
+                  <Link
+                    key={label}
+                    href={href}
+                    {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    className="mb-2.5 block text-sm text-[var(--color-text)] no-underline transition-colors hover:text-[var(--color-ink)]"
+                  >{label}</Link>
+                );
+              })}
             </div>
           ))}
         </div>

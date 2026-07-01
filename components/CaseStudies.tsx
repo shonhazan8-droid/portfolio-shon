@@ -27,7 +27,7 @@ export default function CaseStudies() {
               <div className="max-w-[600px]">
                 <p className="mb-3 text-sm text-[var(--color-text)]">{c.eyebrow}</p>
                 <h3 className="text-2xl font-normal leading-[1.2] tracking-[-0.008em]">{c.title}</h3>
-                <p className="mt-3 text-base leading-[1.55] text-[var(--color-text)]">{c.summary}</p>
+                <p className="mt-3 whitespace-pre-line text-base leading-[1.55] text-[var(--color-text)]">{c.summary}</p>
                 <div className="mt-6">
                   <RustLink href={`/case-studies/${c.slug}`}>Read case study <ArrowRight className="h-3 w-3" /></RustLink>
                 </div>

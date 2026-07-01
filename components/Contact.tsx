@@ -37,17 +37,25 @@ export default function Contact() {
             </div>
 
             <div className="flex flex-wrap gap-4 md:justify-end">
-              <Button href="mailto:" className="justify-center px-5! py-3!">
+              <Button href="mailto:Shonhazan8@gmail.com" className="justify-center px-5! py-3!">
                 Email <ArrowRight className="h-3 w-3" />
               </Button>
               <Button
-                href="https://linkedin.com/in/shon-hazan-095373199"
+                href="https://www.linkedin.com/in/shon-hazan-095373199/?skipRedirect=true"
                 variant="ghost"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="justify-center px-5! py-3!"
               >
                 LinkedIn
               </Button>
-              <Button href="/resume.pdf" variant="ghost" className="justify-center px-5! py-3!">
+              <Button
+                href="https://drive.google.com/file/d/1pL5ENpNmZ9Pq7UTChxkHYIIwOOk3G6Db/view"
+                variant="ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="justify-center px-5! py-3!"
+              >
                 Resume
               </Button>
             </div>

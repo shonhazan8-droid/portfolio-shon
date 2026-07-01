@@ -7,19 +7,17 @@ export default function About() {
       <HomeContainer className="grid gap-16 lg:grid-cols-[2fr_1fr] lg:gap-24">
         {/* Profile */}
         <div className="max-w-[640px]">
-          {/* Portrait — black & white */}
-          <div className="aspect-[4/5] w-[180px] overflow-hidden rounded-[18px] bg-[var(--color-surface)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/Profile.png"
-              alt="Shon Hazan"
-              className="h-full w-full object-cover grayscale"
-              draggable={false}
-            />
-          </div>
+          {/* Portrait — pre-composed image, shown as-is */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/portrait-framed.png"
+            alt="Shon Hazan"
+            className="h-auto w-[112px]"
+            draggable={false}
+          />
 
           <h2 className="mt-6 text-xl font-normal tracking-[-0.008em]">Shon Hazan</h2>
-          <p className="mt-1 text-lg text-[var(--color-text)]">Designer &amp; Creative thinker</p>
+          <p className="mt-1 text-base leading-[1.55] text-[var(--color-text)]">Designer &amp; Creative thinker</p>
 
           <p className="mt-8 max-w-[52ch] text-base leading-[1.55] text-[var(--color-ink)]">
             I build scalable product systems and structured interfaces — function over decoration.

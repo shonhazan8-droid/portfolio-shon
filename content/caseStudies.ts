@@ -14,7 +14,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "rehabilitation-platform",
     eyebrow: "Case study · Public sector",
     title: "Rehabilitation platform IA",
-    summary: "The site was organized around departments. We reorganized it around real life situations and stripped 72 forms from the primary path.",
+    summary: "The site was organized around departments. We reorganized it around\nthe real situations that bring people in.",
     stats: [{ value: "−72", label: "Forms removed" }, { value: "3×", label: "Faster to find" }],
     cover: "/Animate/shik-animate.json",
   },
