@@ -15,7 +15,7 @@ export default function SiteFooter() {
           {[
             { heading: "Pages", links: [["Work","#work"],["Case studies","#cases"],["About","#about"]] },
             { heading: "Social", links: [["LinkedIn","https://www.linkedin.com/in/shon-hazan-095373199/?skipRedirect=true"],["Read.cv","#"],["X / Twitter","#"]] },
-            { heading: "Contact", links: [["Email","mailto:Shonhazan8@gmail.com"],["Resume","https://drive.google.com/file/d/1pL5ENpNmZ9Pq7UTChxkHYIIwOOk3G6Db/view"]] },
+            { heading: "Contact", links: [["Email","mailto:Shonhazan8@gmail.com"],["Resume","https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing"]] },
           ].map(col=>(
             <div key={col.heading}>
               <h4 className="mb-3 text-xs font-normal uppercase tracking-[.08em] text-[var(--color-text)]">{col.heading}</h4>

@@ -38,7 +38,7 @@ export default function Hero() {
           driven by user insights and business impact.
         </div>
         <div className="rise rise-2 mt-8 flex flex-wrap gap-3">
-          <Button href="https://drive.google.com/file/d/1pL5ENpNmZ9Pq7UTChxkHYIIwOOk3G6Db/view" target="_blank" rel="noopener noreferrer">
+          <Button href="https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing" target="_blank" rel="noopener noreferrer">
             Resume
           </Button>
           <Button

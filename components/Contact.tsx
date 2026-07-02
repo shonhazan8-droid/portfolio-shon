@@ -50,7 +50,7 @@ export default function Contact() {
                 LinkedIn
               </Button>
               <Button
-                href="https://drive.google.com/file/d/1pL5ENpNmZ9Pq7UTChxkHYIIwOOk3G6Db/view"
+                href="https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing"
                 variant="ghost"
                 target="_blank"
                 rel="noopener noreferrer"
