@@ -31,7 +31,7 @@ export default function Hero() {
           className="rise rise-1 mt-6 max-w-[52ch] text-[var(--font-size-body-lg)] leading-[1.55]"
           style={{ color: "var(--color-ink)" }}
         >
-          I have worked on B2B, B2C and internal tools. Taking initiatives from{" "}
+          From regulated fintech to public-sector systems and internal tools. Taking initiatives from{" "}
           <span className="whitespace-nowrap">
             0<ZeroToOneArrow />1
           </span>{" "}

@@ -28,7 +28,7 @@ const siteDescription =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Shon · Senior Product Designer",
+  title: "Shon Hazan · Product Designer",
   description: siteDescription,
   openGraph: {
     title: "Shon Hazan · Product Designer",

@@ -4,10 +4,8 @@ import { notFound } from "next/navigation";
 import { GeistMono } from "geist/font/mono";
 import SiteHeader from "@/components/SiteHeader";
 import Container from "@/components/Container";
-import Button from "@/components/Button";
 import CaseCover from "@/components/CaseCover";
 import ArrowRight from "@/components/ArrowRight";
-import { caseStudies } from "@/content/caseStudies";
 import shik1 from "@/public/Case01/shik1.png";
 import shik2 from "@/public/Case01/shik2.png";
 import shik3 from "@/public/Case01/shik3.png";
@@ -28,72 +26,44 @@ type CaseStudyCover =
 type CaseStudyDetail = {
   slug: string;
   title: string;
-  eyebrow: string;
   year: string;
-  role: string;
-  client?: string;
-  focus?: string;
-  context: string;
   headline: string;
   summary: string;
   cover: CaseStudyCover;
   coverAlt: string;
-  challenge: string;
-  approach: string[];
-  resultTitle: string;
-  outcome: string;
+  meta: [string, string][];
 };
 
 const caseStudyDetails: CaseStudyDetail[] = [
   {
     slug: "rehabilitation-platform",
     title: "Rehabilitation platform IA",
-    eyebrow: "Public sector case study",
     year: "2025 - 2026",
-    role: "Product Designer",
-    client: "Ministry of Defense",
-    focus: "Strategy, IA, Core Flows",
-    context:
-      "A government rehabilitation experience serving people who needed clear medical, operational, and service information in moments that were already heavy.",
     headline: "People weren’t looking for information.\nThey were looking for certainty.",
     summary:
       "The platform exposed different services and assets from personnel through some of the hardest points of their service, injury, benefits, and recovery. It had to carry complex information without making people decode the organization first.",
     cover: { type: "lottie", src: "/Animate/shik-animate.json" },
     coverAlt: "Rehabilitation platform homepage interface",
-    challenge:
-      "The experience reflected how the organization worked, not how people think. Users arrived with questions, but had to translate those questions into departments, benefits, documents, and service names.",
-    approach: [
-      "Studied how users actually understood their situation before they understood the services around it.",
-      "Mapped the system around situations and questions instead of departments and internal ownership.",
-      "Restructured content so relevance, next actions, and reassurance appeared before forms and service names.",
+    meta: [
+      ["PROJECT", "Ministry of Defense"],
+      ["ROLE", "Product Designer · End-to-end"],
+      ["SCOPE", "Strategy, IA, Core Flows"],
     ],
-    resultTitle: "Less organizational logic. More human orientation.",
-    outcome:
-      "The site started answering the questions users actually arrived with, helping them understand what mattered, what applied to them, and what they should do next.",
   },
   {
     slug: "bank-account-opening",
     title: "Bank account opening, rebuilt",
-    eyebrow: "Fintech case study",
-    year: "2022",
-    role: "Product design, onboarding flow, decision architecture",
-    context:
-      "A digital account-opening flow had to replace the confidence usually created by a banker sitting across the table.",
+    year: "2025",
     headline: "Replacing 30-minute branch visits with\n10-minute digital onboarding.",
     summary:
       "A clerk-guided, branch-only account opening, rebuilt as a self-serve digital flow that translates regulatory complexity into clarity, progress, and one decision at a time.",
     cover: { type: "lottie", src: "/Animate/post-animate.json" },
     coverAlt: "Animated bank account opening flow preview",
-    challenge:
-      "Users were asked to complete a high-trust financial task without the reassurance of a human guide. Too many decisions appeared together, progress felt unclear, and uncertainty turned into drop-off.",
-    approach: [
-      "Split the application into clear moments so each screen asked for one decision or one small group of related details.",
-      "Made progress visible throughout the flow, reducing the sense of an open-ended form.",
-      "Rewrote decision points around user confidence: what is needed, why it matters, and what happens next.",
+    meta: [
+      ["PROJECT", "Digital banking"],
+      ["ROLE", "Product Designer · End-to-end"],
+      ["SCOPE", "Research, Onboarding, Flows"],
     ],
-    resultTitle: "A flow that explains itself while users move through it.",
-    outcome:
-      "The redesigned path made the application feel more guided and less transactional, improving completion while lowering the friction that had pushed users out of the flow.",
   },
 ];
 
@@ -114,7 +84,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   }
 
   return {
-    title: `${project.title} - Shon`,
+    title: `${project.title} · Shon Hazan`,
     description: project.summary,
   };
 }
@@ -127,21 +97,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound();
   }
 
-  const study = caseStudies.find((item) => item.slug === project.slug);
   const isRehabilitation = project.slug === "rehabilitation-platform";
-  const isBank = project.slug === "bank-account-opening";
-  const isFeature = isRehabilitation || isBank;
-  const metaItems: [string, string][] = isRehabilitation
-    ? [
-        ["PROJECT", project.client ?? "Ministry of Defense"],
-        ["ROLE", "Product Designer · End-to-end"],
-        ["SCOPE", project.focus ?? "Strategy, IA, Core Flows"],
-      ]
-    : [
-        ["PROJECT", "Digital banking"],
-        ["ROLE", "Product Designer · End-to-end"],
-        ["SCOPE", "Research, Onboarding, Flows"],
-      ];
 
   return (
     <>
@@ -149,34 +105,17 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <main>
         <Container className="py-12 md:py-16">
           <header className="rise pb-12">
-            {isFeature ? (
-              <>
-                <p className={`${GeistMono.className} mb-6 text-sm text-[var(--color-accent)]`}>{project.year}</p>
-                <h1
-                  className="max-w-[44ch] text-pretty font-normal leading-[1.08] tracking-[-0.015em]"
-                  style={{ fontSize: "var(--font-size-h1)" }}
-                >
-                  {project.headline.split("\n").map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </h1>
-              </>
-            ) : (
-              <>
-                <p className="mb-4 text-sm text-[var(--color-text)]">{project.eyebrow}</p>
-                <h1
-                  className="max-w-[11ch] font-normal leading-[1.08] tracking-[-0.015em]"
-                  style={{ fontSize: "var(--font-size-hero)" }}
-                >
-                  {project.title}
-                </h1>
-                <p className="mt-6 max-w-[58ch] text-[var(--font-size-body-lg)] leading-[1.55] text-[var(--color-text)]">
-                  {project.headline}
-                </p>
-              </>
-            )}
+            <p className={`${GeistMono.className} mb-6 text-sm text-[var(--color-accent)]`}>{project.year}</p>
+            <h1
+              className="max-w-[44ch] text-pretty font-normal leading-[1.08] tracking-[-0.015em]"
+              style={{ fontSize: "var(--font-size-h1)" }}
+            >
+              {project.headline.split("\n").map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </h1>
           </header>
 
           <section className="rise rise-1 case-media">
@@ -196,26 +135,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
           </section>
 
-          {isFeature ? <CaseStudyMeta items={metaItems} /> : null}
-
-          {!isFeature ? (
-            <section className="grid gap-8 border-b border-t border-[var(--color-line)] py-10 md:grid-cols-3">
-              <div>
-                <p className="text-sm text-[var(--color-text)]">Role</p>
-                <p className="mt-2 leading-[1.55] text-[var(--color-ink)]">{project.role}</p>
-              </div>
-              <div>
-                <p className="text-sm text-[var(--color-text)]">Year</p>
-                <p className="mt-2 leading-[1.55] text-[var(--color-ink)]">{project.year}</p>
-              </div>
-              <div>
-                <p className="text-sm text-[var(--color-text)]">Impact</p>
-                <p className="mt-2 leading-[1.55] text-[var(--color-ink)]">
-                  {study?.stats.map((stat) => `${stat.value} ${stat.label.toLowerCase()}`).join(" · ")}
-                </p>
-              </div>
-            </section>
-          ) : null}
+          <CaseStudyMeta items={project.meta} />
 
           {isRehabilitation ? (
             <>
@@ -272,7 +192,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                       className="h-auto w-full"
                     />
                   </div>
-                  <p className="mt-3 text-[13px] italic leading-[1.45] text-[var(--color-text)]">
+                  <p className="mt-4 text-[15px] italic leading-[1.5] text-[var(--color-text)]">
                     Remote interviews, a How-Might-We workshop, and stakeholder sessions, where the reframe took shape.
                   </p>
                 </div>
@@ -430,7 +350,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 href="/case-studies/bank-account-opening"
               />
             </>
-          ) : isBank ? (
+          ) : (
             <>
               <IntroBlock>
                 <p>
@@ -568,33 +488,6 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 href="/case-studies/rehabilitation-platform"
               />
             </>
-          ) : (
-            <>
-              <CaseTextSection title="Context">
-                <p>{project.context}</p>
-                <p>{project.summary}</p>
-              </CaseTextSection>
-
-              <CaseTextSection title="Challenge">
-                <p>{project.challenge}</p>
-              </CaseTextSection>
-
-              <CaseTextSection title="Approach">
-                {project.approach.map((item) => (
-                  <p key={item}>{item}</p>
-                ))}
-              </CaseTextSection>
-
-              <CaseTextSection label="Result" title={project.resultTitle}>
-                <p>{project.outcome}</p>
-              </CaseTextSection>
-
-              <div className="py-14 md:pl-[252px]">
-                <Button href="/#contact">
-                  Talk about a project <ArrowRight className="h-3 w-3" />
-                </Button>
-              </div>
-            </>
           )}
         </Container>
       </main>
@@ -652,33 +545,6 @@ function CaseTextSection({
           <h2 className="text-2xl font-normal leading-[1.35] tracking-[-0.008em] text-[var(--color-ink)]">{title}</h2>
         ) : null}
         {children}
-      </div>
-    </section>
-  );
-}
-
-function QuoteBand() {
-  return (
-    <section className="relative left-1/2 my-12 w-screen -translate-x-1/2 bg-[var(--color-surface)] px-6 py-14 text-center md:px-12 md:py-16">
-      <p className="mx-auto max-w-[22ch] text-[clamp(2rem,3vw,2.75rem)] font-normal leading-[1.18] tracking-[-0.026em] text-[var(--color-ink)]">
-        Information was organized around services.{" "}
-        <span className="text-[var(--color-accent)]">Users arrived with situations.</span>
-      </p>
-    </section>
-  );
-}
-
-function ResearchPeekCard() {
-  return (
-    <section className="relative left-1/2 my-14 w-screen -translate-x-1/2 overflow-hidden">
-      <div className="relative h-[180px] overflow-hidden bg-[var(--color-surface)] md:h-[248px]">
-        <Image
-          src="/12.png"
-          alt="Research artifacts, interview session, and briefing material"
-          width={2047}
-          height={581}
-          className="absolute left-1/2 top-0 h-auto w-[1320px] max-w-none -translate-x-1/2 md:w-[1680px] lg:w-[2047px]"
-        />
       </div>
     </section>
   );

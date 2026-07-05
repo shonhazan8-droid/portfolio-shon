@@ -24,6 +24,10 @@ export default function About() {
             Today I design complex systems for government and enterprise, turning high-friction,
             regulated processes into clear, usable flows.
           </p>
+          <p className="mt-4 max-w-[52ch] text-base leading-[1.55] text-[var(--color-ink)]">
+            AI is part of my daily practice, from research synthesis to working prototypes, so
+            ideas get tested in hours instead of weeks.
+          </p>
         </div>
 
         {/* Experience */}
