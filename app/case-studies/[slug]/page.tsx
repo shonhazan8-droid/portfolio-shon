@@ -38,7 +38,7 @@ const caseStudyDetails: CaseStudyDetail[] = [
   {
     slug: "rehabilitation-platform",
     title: "Rehabilitation platform IA",
-    year: "2025 - 2026",
+    year: "2024 - 2026",
     headline: "People weren’t looking for information.\nThey were looking for certainty.",
     summary:
       "The platform exposed different services and assets from personnel through some of the hardest points of their service, injury, benefits, and recovery. It had to carry complex information without making people decode the organization first.",
