@@ -16,8 +16,7 @@ export default function CaseStudies() {
               key={c.slug}
               className="flex flex-col gap-6"
             >
-              {/* Animated cover: clickable, leads to the case page.
-                  Cursor-follow bubble + curtain transition on the way in. */}
+              {/* Animated cover: clickable, leads to the case page. */}
               <CursorBubble label="Read case">
                 <TransitionLink
                   href={`/case-studies/${c.slug}`}

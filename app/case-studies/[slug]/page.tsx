@@ -13,9 +13,9 @@ import shik4 from "@/public/Case01/shik4.png";
 import shik5 from "@/public/Case01/shik5.png";
 import shik6 from "@/public/Case01/shik6.png";
 import researchCollage from "@/public/Case01/26253.png";
-import bankFlowStructure from "@/public/Case02/flow-structure111.png";
-import bankSystemToExperience from "@/public/Case02/system-to-experience111.png";
-import bankFocusedDecisions from "@/public/Case02/focused-decisions111.png";
+import bankFlowStructure from "@/public/Case02/flow-structure.png";
+import bankSystemToExperience from "@/public/Case02/system-to-experience.png";
+import bankFocusedDecisions from "@/public/Case02/focused-decisions.png";
 import bankFieldBranch from "@/public/Case02/field-branch.png";
 import bankFieldSystem from "@/public/Case02/field-system.png";
 
@@ -104,7 +104,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       <SiteHeader variant="caseStudy" />
       <main>
         <Container className="py-12 md:py-16">
-          <header className="rise pb-12">
+          <header className="case-load case-load-0 pb-12">
             <p className={`${GeistMono.className} mb-6 text-sm text-[var(--color-accent)]`}>{project.year}</p>
             <h1
               className="max-w-[44ch] text-pretty font-normal leading-[1.08] tracking-[-0.015em]"
@@ -118,7 +118,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             </h1>
           </header>
 
-          <section className="rise rise-1 case-media">
+          <section className="case-media">
             {project.cover.type === "image" ? (
               <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
                 <Image
@@ -497,7 +497,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
 function CaseStudyMeta({ items }: { items: [string, string][] }) {
   return (
-    <section className="flex flex-col gap-8 py-12 md:flex-row md:justify-between md:gap-10">
+    <section className="case-load case-load-2 flex flex-col gap-8 py-12 md:flex-row md:justify-between md:gap-10">
       {items.map(([label, value]) => (
         <div key={label}>
           <p className={`${GeistMono.className} text-sm uppercase tracking-normal text-[var(--color-accent)]`}>{label}</p>
@@ -513,7 +513,7 @@ function CaseStudyMeta({ items }: { items: [string, string][] }) {
 function IntroBlock({ children }: { children: React.ReactNode }) {
   return (
     <section
-      className="max-w-[58ch] space-y-7 pb-14 text-[var(--font-size-body-lg)] leading-[1.65]"
+      className="case-load case-load-3 max-w-[58ch] space-y-7 pb-14 text-[var(--font-size-body-lg)] leading-[1.65]"
       style={{ color: "var(--color-ink)" }}
     >
       {children}
@@ -531,7 +531,7 @@ function CaseTextSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid gap-5 py-14">
+    <section className="case-load case-load-section grid gap-5 py-14">
       <div>
         {label ? (
           <p className={`${GeistMono.className} text-sm uppercase tracking-normal text-[var(--color-accent)]`}>

@@ -132,13 +132,6 @@ p { text-wrap: pretty; }
 @keyframes header-drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
 .header-drop { animation: header-drop 1s var(--ease-gallery) both; animation-delay: 1.1s; }
 
-/* Case covers — cinematic load: quick fade while the artwork slowly
-   settles from a 115% zoom (Ken Burns style, keeps moving after load). */
-@keyframes cover-enter { from { opacity: 0; } to { opacity: 1; } }
-.cover-enter { animation: cover-enter .9s var(--ease-gallery) both; }
-@keyframes cover-zoom { from { transform: scale(1.15) translateZ(0); } to { transform: scale(1) translateZ(0); } }
-.cover-zoom { will-change: transform; animation: cover-zoom 5.5s var(--ease-gallery) both; }
-
 /* First-visit splash — accent cover, logo spins in, whole thing lifts by ~1.9s.
    Pure CSS timeline so it can never get stuck; repeat visits (html[data-splash="seen"],
    set by an inline script before paint) and reduced-motion skip it entirely. */
@@ -171,28 +164,28 @@ p { text-wrap: pretty; }
 html[data-splash="seen"] .splash { display: none; }
 @media (prefers-reduced-motion: reduce) { .splash { display: none; } }
 
-/* Curtain route transition — an accent panel rises from the bottom to cover
-   the viewport, the route swaps underneath, then the panel continues upward
-   to reveal the new page. One continuous direction, splash-orange identity.
-   Driven by components/PageTransition.tsx; reduced-motion never engages it. */
-.curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  background: var(--color-accent);
-  transform: translateY(101%);
-  pointer-events: none;
+/* Case-study load rhythm — no route overlay. The content itself settles in:
+   headline first, then media, metadata, intro, and the narrative sections. */
+@keyframes case-load {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
 }
-.curtain-cover {
-  animation: curtain-cover .6s var(--ease-in-out) both;
-  pointer-events: auto;
+.case-load {
+  animation: case-load .72s var(--ease-gallery) both;
 }
-.curtain-reveal {
-  animation: curtain-reveal .72s var(--ease-gallery) .06s both;
-  pointer-events: auto;
-}
-@keyframes curtain-cover { from { transform: translateY(101%); } to { transform: translateY(0); } }
-@keyframes curtain-reveal { from { transform: translateY(0); } to { transform: translateY(-101%); } }
+.case-load-0 { animation-delay: .06s; }
+.case-load-1 { animation-delay: .16s; }
+.case-load-2 { animation-delay: .26s; }
+.case-load-3 { animation-delay: .34s; }
+.case-load-section { animation-delay: .42s; }
 
 /* Cursor-follow bubble — over case covers the native cursor gives way to a
    small accent pill trailing the pointer (components/CursorBubble.tsx moves

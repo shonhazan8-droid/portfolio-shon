@@ -9,7 +9,6 @@ export type Slide = {
   metric: string;
   description: string;
   client?: string;
-  tags?: string[];
 };
 
 /**
@@ -25,8 +24,7 @@ export const placeholderSlides: Slide[] = [
     category: "Government • 2024",
     metric: "",
     description:
-      "Redesigned the public website and personal area, improving navigation, information architecture and self-service.",
-    tags: ["UX Research", "Product Design", "Accessibility"],
+      "Redesigned the public website and personal area for easier self-service.",
   },
   {
     src: "/work/31.png",
@@ -35,8 +33,7 @@ export const placeholderSlides: Slide[] = [
     category: "Enterprise • 2023",
     metric: "",
     description:
-      "Designed a kiosk experience for bill payments used across Israel Post branches.",
-    tags: ["Kiosk", "Service Design", "UX"],
+      "Designed a kiosk experience for bill payments across Israel Post branches.",
   },
   {
     src: "/work/41.png",
@@ -45,8 +42,7 @@ export const placeholderSlides: Slide[] = [
     category: "Fintech • 2023",
     metric: "",
     description:
-      "Designed an end-to-end insurance comparison flow with a gamified onboarding experience.",
-    tags: ["Conversion", "Gamification", "Landing Page"],
+      "Designed an end-to-end insurance comparison flow with gamified onboarding.",
   },
   {
     src: "/work/51.png",
@@ -55,8 +51,7 @@ export const placeholderSlides: Slide[] = [
     category: "Internal Tool • 2024",
     metric: "",
     description:
-      "Designed an operational dashboard for analyzing submitted forms and prioritizing cases using AI-assisted insights.",
-    tags: ["AI Features", "Dashboard", "Internal Tool"],
+      "Designed a dashboard for reviewing forms and prioritizing cases with AI.",
   },
   {
     src: "/work/136shots_so.png",
@@ -65,8 +60,7 @@ export const placeholderSlides: Slide[] = [
     category: "B2B • 2022",
     metric: "",
     description:
-      "Redesigned a complex internal system for managing electrical consultants and field operations.",
-    tags: ["B2B", "Complex Workflows", "Dashboard"],
+      "Redesigned the system managing electrical consultants and field operations.",
   },
   {
     src: "/work/742shots_so.png",
@@ -75,8 +69,7 @@ export const placeholderSlides: Slide[] = [
     category: "Internal Tool • 2022",
     metric: "",
     description:
-      "Redesigned the system used by clerks to manage parcel pickup across delivery centers.",
-    tags: ["Internal System", "Service Design"],
+      "Redesigned the system clerks use to manage parcel pickup across centers.",
   },
   {
     src: "/work/824shots_so.png",
@@ -85,8 +78,7 @@ export const placeholderSlides: Slide[] = [
     category: "Consumer Product • 2023",
     metric: "",
     description:
-      "Restructured the homepage and navigation to improve content discovery and user journeys.",
-    tags: ["Information Architecture", "Navigation"],
+      "Restructured the homepage to improve content discovery and navigation.",
   },
 ];
 

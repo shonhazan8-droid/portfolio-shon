@@ -10,6 +10,7 @@ export default function CaseCover({ src, label }: Props) {
   const reduced = useRef(false);
   const [data, setData] = useState<object | null>(null);
   const [inView, setInView] = useState(false);
+  const [ready, setReady] = useState(false);
 
   // Observe visibility; preload a little before entering the viewport.
   useEffect(() => {
@@ -35,15 +36,19 @@ export default function CaseCover({ src, label }: Props) {
     return () => { cancelled = true; };
   }, [inView, data, src]);
 
-  // Lottie's own `autoplay` starts the loop reliably once data mounts (the JSON
-  // is only fetched while in view). This effect just pauses offscreen / on
-  // reduced-motion and resumes when it comes back.
+  // Toggle play/pause for visibility changes after the initial load. The
+  // first play is handled by the `autoplay` prop below, since calling
+  // `.play()` here before lottie-web finishes initializing is a silent no-op.
   useEffect(() => {
     const l = lottieRef.current;
-    if (!l || !data) return;
-    if (inView && !reduced.current) l.play();
-    else l.pause();
-  }, [inView, data]);
+    if (!l || !ready) return;
+
+    if (inView && !reduced.current) {
+      l.play();
+    } else {
+      l.pause();
+    }
+  }, [inView, ready]);
 
   return (
     <div
@@ -51,18 +56,15 @@ export default function CaseCover({ src, label }: Props) {
       className="relative flex aspect-[752/540] w-full items-center justify-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]"
     >
       {data ? (
-        <div className="cover-enter h-full w-full">
-          <div className="cover-zoom h-full w-full">
-            <Lottie
-              lottieRef={lottieRef}
-              animationData={data}
-              loop
-              autoplay
-              className="h-full w-full"
-              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
-            />
-          </div>
-        </div>
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={data}
+          loop
+          autoplay={inView && !reduced.current}
+          onDOMLoaded={() => setReady(true)}
+          className="h-full w-full"
+          rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+        />
       ) : (
         <span className="font-mono text-[11px] uppercase tracking-[.06em] text-[var(--color-text)]">
           {label}

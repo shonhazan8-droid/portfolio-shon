@@ -4,10 +4,7 @@ import { usePageTransition } from "./PageTransition";
 
 type Props = React.ComponentProps<typeof Link> & { href: string };
 
-/**
- * A next/link that routes through the curtain transition.
- * Modified clicks (new tab, middle-click) fall through to the browser.
- */
+/** A next/link that preserves modified clicks while using the shared navigator. */
 export default function TransitionLink({ href, onClick, children, ...rest }: Props) {
   const navigate = usePageTransition();
 

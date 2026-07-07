@@ -9,7 +9,7 @@ type Props = {
   style?: React.CSSProperties;
   target?: string;
   rel?: string;
-  /** Route through the curtain page transition (internal links only). */
+  /** Route through the shared internal navigator. */
   transition?: boolean;
 };
 

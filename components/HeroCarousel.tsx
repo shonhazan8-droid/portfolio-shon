@@ -80,24 +80,12 @@ export default function HeroCarousel({
           </span>
           <h3 className="text-base tracking-[-0.008em]">
             {current.client ? (
-              <span className="text-[var(--color-text)]">{current.client} · </span>
+              <span className="text-[var(--color-ink)]">{current.client} · </span>
             ) : null}
             <span className="font-medium text-[var(--color-ink)]">{current.name}</span>
           </h3>
           {current.description ? (
             <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{current.description}</p>
-          ) : null}
-          {current.tags?.length ? (
-            <ul className="mt-3 flex flex-wrap gap-1.5">
-              {current.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-full bg-[var(--color-bg)] px-2.5 py-1 text-xs text-[var(--color-text)]"
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
           ) : null}
         </div>
       </div>
