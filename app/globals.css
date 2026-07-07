@@ -139,7 +139,7 @@ p { text-wrap: pretty; }
 @keyframes cover-zoom { from { transform: scale(1.15) translateZ(0); } to { transform: scale(1) translateZ(0); } }
 .cover-zoom { will-change: transform; animation: cover-zoom 5.5s var(--ease-gallery) both; }
 
-/* First-visit splash — accent cover, logo pops, whole thing lifts by ~1.3s.
+/* First-visit splash — accent cover, logo spins in, whole thing lifts by ~1.9s.
    Pure CSS timeline so it can never get stuck; repeat visits (html[data-splash="seen"],
    set by an inline script before paint) and reduced-motion skip it entirely. */
 .splash {
@@ -150,11 +150,23 @@ p { text-wrap: pretty; }
   place-items: center;
   background: var(--color-accent);
   pointer-events: none;
-  animation: splash-out .45s var(--ease-gallery) .85s both;
+  animation: splash-out .55s var(--ease-gallery) 1.35s both;
 }
-.splash svg { width: 56px; height: 56px; animation: splash-logo .7s var(--ease-gallery) both; }
+.splash-inner { perspective: 600px; }
+.splash svg {
+  width: 56px;
+  height: 56px;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+  animation: splash-logo-spin 1.18s var(--ease-gallery) both;
+}
 @keyframes splash-out { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
-@keyframes splash-logo { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+@keyframes splash-logo-spin {
+  0% { opacity: 0; transform: rotate(-24deg) scale(.72); }
+  38% { opacity: 1; transform: rotate(210deg) scale(1.08); }
+  72% { opacity: 1; transform: rotate(340deg) scale(.98); }
+  100% { opacity: 1; transform: rotate(360deg) scale(1); }
+}
 html[data-splash="seen"] .splash { display: none; }
 @media (prefers-reduced-motion: reduce) { .splash { display: none; } }
 

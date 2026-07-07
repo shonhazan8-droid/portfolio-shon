@@ -44,16 +44,9 @@ export default function Contact() {
                 className="inline-flex items-center gap-1.5 no-underline transition-opacity duration-150 hover:opacity-80"
               >
                 <Image src="/Portal.svg" alt="" width={36} height={36} className="h-9 w-9" />
-                <span
-                  className="text-[16px] font-medium tracking-[-0.04em] text-[#201B21]"
-                  style={{ fontFamily: "var(--font-open-runde)" }}
-                >
-                  Shon hazan
-                </span>
               </Link>
 
-              <p className="mt-12 text-base tracking-[-0.02em] text-[var(--color-text)]">Contact</p>
-              <h2 className="mt-5 text-[1.875rem] font-normal leading-[1.3] tracking-[-0.04em] text-[var(--color-ink)]">
+              <h2 className="mt-12 text-[1.875rem] font-normal leading-[1.3] tracking-[-0.04em] text-[var(--color-ink)]">
                 <span className="block">Looking for the right</span>
                 <span className="block">problem to own.</span>
               </h2>
@@ -72,7 +65,7 @@ export default function Contact() {
                 href={linkedInHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-btn)] px-5 py-3 text-sm font-medium text-white no-underline transition-[transform,opacity] duration-150 ease-[var(--ease-out)] hover:-translate-y-px hover:opacity-90 active:translate-y-0"
+                className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-surface)] px-5 py-3 text-sm font-medium text-[var(--color-ink)] no-underline transition-[transform,background-color,color] duration-150 ease-[var(--ease-out)] hover:-translate-y-px hover:bg-[color-mix(in_srgb,var(--color-accent)_9%,var(--color-surface))] hover:text-[var(--color-accent)] active:translate-y-0"
               >
                 <LinkedInIcon />
                 LinkedIn

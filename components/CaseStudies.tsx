@@ -7,7 +7,7 @@ import { caseStudies } from "@/content/caseStudies";
 
 export default function CaseStudies() {
   return (
-    <section id="cases" className="py-20 md:py-24">
+    <section id="cases" className="pt-16 pb-20 md:pt-20 md:pb-24">
       <HomeContainer>
         <div className="grid gap-x-6 gap-y-16 md:grid-cols-2">
           {caseStudies.map((c)=>(
@@ -26,7 +26,7 @@ export default function CaseStudies() {
               {/* Text */}
               <div className="max-w-[600px]">
                 <p className="mb-3 text-sm text-[var(--color-text)]">{c.eyebrow}</p>
-                <h3 className="text-2xl font-normal leading-[1.2] tracking-[-0.008em]">{c.title}</h3>
+                <h3 className="text-xl font-normal leading-[1.25] tracking-[-0.008em]">{c.title}</h3>
                 <p className="mt-3 whitespace-pre-line text-base leading-[1.55] text-[var(--color-text)]">{c.summary}</p>
                 <div className="mt-6">
                   <RustLink href={`/case-studies/${c.slug}`}>Read case study <ArrowRight className="h-3 w-3" /></RustLink>

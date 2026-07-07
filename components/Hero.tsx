@@ -6,7 +6,7 @@ import ZeroToOneArrow from "./ZeroToOneArrow";
 
 export default function Hero() {
   return (
-    <section className="pt-16 pb-20 md:pt-[88px] md:pb-[88px]">
+    <section className="pt-[72px] pb-20 md:pt-[88px] md:pb-[88px]">
       <HomeContainer>
         <div className="max-w-[660px]">
           <Image

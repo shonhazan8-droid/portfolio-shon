@@ -81,7 +81,7 @@ export default function HeroCarousel({
           ) : null}
           <div className="mt-7 flex items-center justify-between gap-4">
             <span className="text-sm text-[var(--color-ink)]">{current.category}</span>
-            <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 font-mono text-xs tracking-[.04em] text-[var(--color-accent)]">
+            <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
               {pad(index + 1)}/{pad(len)}
             </span>
           </div>

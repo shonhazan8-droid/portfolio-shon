@@ -9,6 +9,8 @@ type SiteHeaderProps = {
   variant?: "default" | "caseStudy";
 };
 
+const resumeHref = "https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing";
+
 export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const isCaseStudy = variant === "caseStudy";
@@ -63,7 +65,7 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
             ))}
           </nav>
           <Button
-            href="https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing"
+            href={resumeHref}
             target="_blank"
             rel="noopener noreferrer"
             variant="primary"
@@ -72,6 +74,15 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
             Resume
           </Button>
         </div>
+        <Button
+          href={resumeHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="primary"
+          className="py-[9px]! md:hidden"
+        >
+          Resume
+        </Button>
       </div>
     </header>
   );

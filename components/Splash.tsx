@@ -1,6 +1,6 @@
 /**
  * First-visit splash: accent-orange cover with the logo (colors inverted),
- * dismissed by a pure-CSS timeline (~1.3s total) — no JS needed to hide it.
+ * dismissed by a pure-CSS timeline (~1.9s total) — no JS needed to hide it.
  * An inline script in layout marks repeat visits (html[data-splash="seen"])
  * so it only plays once per session; reduced-motion skips it entirely.
  */
