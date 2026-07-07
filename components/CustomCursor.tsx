@@ -50,14 +50,29 @@ export default function CustomCursor() {
 
     const CLICKABLE = 'a, button, [role="button"], input, textarea, select, summary, label, [data-cursor-hover]';
 
+    // Position lerp only — cheap (one transform per frame). The loop stops as
+    // soon as the dot has caught up with the pointer, so it never runs while
+    // the cursor is idle.
     const tick = () => {
       x += (tx - x) * 0.35;
       y += (ty - y) * 0.35;
-      dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      if (Math.abs(tx - x) + Math.abs(ty - y) > 0.1) {
+        dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        raf = requestAnimationFrame(tick);
+      } else {
+        dot.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+        raf = 0;
+      }
+    };
+
+    // Sampling the element under the cursor (elementFromPoint + a getComputedStyle
+    // walk up the tree) forces synchronous layout, so it must NOT run every
+    // frame. Throttle it to run at most every 100ms, and only on real movement.
+    let lastSample = 0;
+    const sample = () => {
       const el = document.elementFromPoint(tx, ty) as HTMLElement | null;
       dot.classList.toggle("on-dark", bgLuminance(el) < 0.4);
       dot.classList.toggle("on-clickable", !!el?.closest(CLICKABLE));
-      raf = requestAnimationFrame(tick);
     };
 
     const onMove = (e: PointerEvent) => {
@@ -71,6 +86,11 @@ export default function CustomCursor() {
       // event (window-exit, page transition, etc) never leaves the dot
       // stuck invisible once the pointer is clearly back in motion.
       dot.classList.add("custom-cursor-visible");
+      const now = performance.now();
+      if (now - lastSample > 100) {
+        lastSample = now;
+        sample();
+      }
       if (!raf) raf = requestAnimationFrame(tick);
     };
     // Only hide on a genuine cursor-leaves-the-browser-window event

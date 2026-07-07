@@ -1,7 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-import { projects } from "./projects";
-
 export type Slide = {
   src: string;
   name: string;
@@ -11,11 +7,7 @@ export type Slide = {
   client?: string;
 };
 
-/**
- * Placeholder gallery content — real copy, stand-in images (reusing whatever
- * is already in /public/work). Swap the `src` values and refine text later.
- * The carousel currently reads this instead of getGallerySlides().
- */
+/** Gallery content for the "More work" carousel (components/HeroCarousel.tsx). */
 export const placeholderSlides: Slide[] = [
   {
     src: "/work/21.png",
@@ -81,45 +73,3 @@ export const placeholderSlides: Slide[] = [
       "Restructured the homepage to improve content discovery and navigation.",
   },
 ];
-
-const IMAGE_RE = /\.(png|jpe?g|webp|avif|gif|svg)$/i;
-
-/**
- * Reads every image in /public/work and turns it into a gallery slide.
- * Whatever is in the folder shows up: drop a file in, it appears.
- * Files matched against projects.ts (by filename) keep their metadata;
- * unmatched files get a caption derived from the filename.
- */
-export function getGallerySlides(): Slide[] {
-  const dir = path.join(process.cwd(), "public", "work");
-
-  let files: string[] = [];
-  try {
-    files = fs.readdirSync(dir).filter((f) => IMAGE_RE.test(f));
-  } catch {
-    files = [];
-  }
-
-  files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-
-  const byFile = new Map(
-    projects
-      .filter((p) => p.image)
-      .map((p) => [p.image!.replace(/^\/work\//, ""), p] as const),
-  );
-
-  return files.map((file) => {
-    const meta = byFile.get(file);
-    if (meta) {
-      return { src: `/work/${file}`, name: meta.name, category: meta.category, metric: meta.metric, description: meta.description };
-    }
-
-    const name = file
-      .replace(IMAGE_RE, "")
-      .replace(/[-_]+/g, " ")
-      .trim()
-      .replace(/\b\w/g, (c) => c.toUpperCase());
-
-    return { src: `/work/${file}`, name: name || file, category: "Selected work", metric: "", description: "" };
-  });
-}
