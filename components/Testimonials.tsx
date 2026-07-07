@@ -27,7 +27,7 @@ export default function Testimonials() {
             >
               <QuoteMark className="mb-3 h-5 w-5 text-[var(--color-accent)]" />
               <blockquote className="mb-6 text-base leading-[1.55] text-[var(--color-ink)]">
-                &ldquo;{t.quote}&rdquo;
+                {t.quote}
               </blockquote>
               <figcaption className="flex items-center gap-3 md:mt-auto">
                 {t.avatar ? (

@@ -70,6 +70,10 @@ export default function CursorBubble({
       area.removeEventListener("pointermove", onMove);
       area.removeEventListener("pointerleave", onLeave);
       if (raf) cancelAnimationFrame(raf);
+      // If this unmounts mid-hover (e.g. clicking through to a case study
+      // page transition), pointerleave never fires — make sure the global
+      // cursor dot doesn't stay hidden forever.
+      if (active) window.dispatchEvent(new CustomEvent("cursorbubble", { detail: false }));
     };
   }, []);
 

@@ -70,7 +70,13 @@ export default function CustomCursor() {
       }
       if (!raf) raf = requestAnimationFrame(tick);
     };
-    const onLeaveWindow = () => dot.classList.remove("custom-cursor-visible");
+    // Only hide on a genuine cursor-leaves-the-browser-window event
+    // (relatedTarget is null in that case) — not on the DOM swaps that
+    // happen during page-transition navigation, which can otherwise fire a
+    // spurious mouseleave on document and leave the dot stuck hidden.
+    const onLeaveWindow = (e: MouseEvent) => {
+      if (!e.relatedTarget) dot.classList.remove("custom-cursor-visible");
+    };
     const onEnterWindow = () => { if (started) dot.classList.add("custom-cursor-visible"); };
     const onBubble = (e: Event) => {
       dot.classList.toggle("custom-cursor-hidden", (e as CustomEvent<boolean>).detail);
