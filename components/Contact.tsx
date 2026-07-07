@@ -46,7 +46,7 @@ export default function Contact() {
                 href={linkedInHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-surface)] px-5 py-3 text-sm font-medium text-[var(--color-ink)] no-underline transition-[transform,background-color,color] duration-150 ease-[var(--ease-out)] hover:-translate-y-px hover:bg-[color-mix(in_srgb,var(--color-accent)_9%,var(--color-surface))] hover:text-[var(--color-accent)] active:translate-y-0"
+                className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)]/[0.08] px-5 py-3 text-sm font-medium text-[var(--color-accent)] no-underline transition-[gap,background-color] duration-150 ease-[var(--ease-out)] hover:gap-3 hover:bg-[var(--color-accent)]/[0.14]"
               >
                 LinkedIn
                 <ArrowUpRight className="h-[13px] w-[13px] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

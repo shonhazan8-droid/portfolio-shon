@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import PageTransition from "@/components/PageTransition";
 import SmoothScroll from "@/components/SmoothScroll";
 import Splash from "@/components/Splash";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const cursorGothic = localFont({
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <Splash />
+        <CustomCursor />
         <SmoothScroll />
         <PageTransition>{children}</PageTransition>
       </body>

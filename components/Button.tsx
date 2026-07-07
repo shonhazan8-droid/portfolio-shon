@@ -16,7 +16,7 @@ type Props = {
 export default function Button({ href, variant = "primary", children, className = "", style, target, rel, transition = false }: Props) {
   const base = "inline-flex items-center gap-2 rounded-full px-5 py-[11px] text-sm font-medium cursor-pointer no-underline transition-[transform,opacity,border-color,background-color] duration-150 ease-[var(--ease-out)] active:scale-[0.97]";
   const styles = {
-    primary: "bg-[var(--color-btn)] text-white hover:-translate-y-px hover:opacity-90 active:translate-y-0",
+    primary: "bg-[var(--color-btn)] text-white hover:opacity-90",
     ghost:   "border border-[color-mix(in_srgb,var(--color-text)_45%,transparent)] text-[var(--color-ink)] hover:border-[var(--color-ink)] hover:bg-[var(--color-surface)]",
   };
   const Component = transition ? TransitionLink : Link;

@@ -17,7 +17,7 @@ export default function CaseStudies() {
               className="flex flex-col gap-6"
             >
               {/* Animated cover: clickable, leads to the case page. */}
-              <CursorBubble label="Read case">
+              <CursorBubble label="View">
                 <TransitionLink
                   href={`/case-studies/${c.slug}`}
                   aria-label={`Open ${c.title} case study`}

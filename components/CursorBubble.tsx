@@ -49,6 +49,7 @@ export default function CursorBubble({
       x = tx; y = ty;
       bubble.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       area.classList.add("bubble-active");
+      window.dispatchEvent(new CustomEvent("cursorbubble", { detail: true }));
       if (!raf) raf = requestAnimationFrame(tick);
     };
     const onMove = (e: PointerEvent) => {
@@ -58,6 +59,7 @@ export default function CursorBubble({
     const onLeave = () => {
       active = false;
       area.classList.remove("bubble-active");
+      window.dispatchEvent(new CustomEvent("cursorbubble", { detail: false }));
     };
 
     area.addEventListener("pointerenter", onEnter);

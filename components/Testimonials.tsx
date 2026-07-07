@@ -23,10 +23,10 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <figure
               key={t.name}
-              className="flex h-full flex-col rounded-[var(--radius-frame)] border border-[var(--color-surface)] bg-[var(--color-bg)] px-8 py-8"
+              className="flex h-full flex-col rounded-[var(--radius-frame)] border border-[var(--color-surface)] bg-[var(--color-bg)] px-8 py-6"
             >
-              <QuoteMark className="mb-5 h-6 w-6 text-[var(--color-accent)]" />
-              <blockquote className="mb-8 text-lg leading-[1.6] text-[var(--color-ink)]">
+              <QuoteMark className="mb-3 h-5 w-5 text-[var(--color-accent)]" />
+              <blockquote className="mb-6 text-base leading-[1.55] text-[var(--color-ink)]">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="flex items-center gap-3 md:mt-auto">
@@ -35,13 +35,13 @@ export default function Testimonials() {
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="h-11 w-11 shrink-0 rounded-full object-cover"
+                    className="h-10 w-10 shrink-0 rounded-full object-cover"
                     draggable={false}
                   />
                 ) : (
                   <span
                     aria-hidden="true"
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-xs font-medium tracking-[.02em] text-[var(--color-text)]"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-xs font-medium tracking-[.02em] text-[var(--color-text)]"
                   >
                     {initials(t.name)}
                   </span>

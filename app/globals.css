@@ -221,6 +221,38 @@ html[data-splash="seen"] .splash { display: none; }
 @media (hover: none), (pointer: coarse) { .cursor-bubble { display: none; } }
 @media (prefers-reduced-motion: reduce) { .cursor-bubble { display: none; } }
 
+/* Global cursor replacement (components/CustomCursor.tsx): a small solid
+   dot, dark by default and flipped to white over dark backgrounds so it
+   always stays visible without odd blend-mode tints. `.custom-cursor` is
+   only added by JS on fine-pointer, non-reduced-motion devices, so
+   touch/no-JS visitors keep the native cursor. */
+html.custom-cursor,
+html.custom-cursor * { cursor: none; }
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s var(--ease-out);
+}
+.custom-cursor-dot.custom-cursor-visible { opacity: 1; }
+.custom-cursor-dot.custom-cursor-hidden { opacity: 0; }
+.custom-cursor-dot-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--color-ink);
+  transform: scale(1);
+  transition: transform .18s var(--ease-out), background-color .15s var(--ease-out);
+}
+.custom-cursor-dot.on-dark .custom-cursor-dot-inner { background: #fff; }
+.custom-cursor-dot.on-clickable .custom-cursor-dot-inner { transform: scale(1.6); }
+
 /* Scroll reveal — below-fold sections drift up 16px as they enter the
    viewport. Gated on html.lenis (added by JS): no-JS and reduced-motion
    visitors always see content; nothing ships blank. */
