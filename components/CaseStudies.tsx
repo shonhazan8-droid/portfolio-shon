@@ -7,9 +7,9 @@ import { caseStudies } from "@/content/caseStudies";
 
 export default function CaseStudies() {
   return (
-    <section id="cases" className="pt-10 pb-20 md:pt-16 md:pb-24">
+    <section id="cases" className="py-20 md:py-24">
       <HomeContainer>
-        <div className="grid gap-x-8 gap-y-16 md:grid-cols-2 lg:gap-x-10">
+        <div className="grid gap-x-6 gap-y-16 md:grid-cols-2">
           {caseStudies.map((c)=>(
             <article
               key={c.slug}

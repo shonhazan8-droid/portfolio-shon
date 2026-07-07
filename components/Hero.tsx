@@ -6,7 +6,7 @@ import ZeroToOneArrow from "./ZeroToOneArrow";
 
 export default function Hero() {
   return (
-    <section className="py-16 md:py-20">
+    <section className="pt-16 pb-20 md:pt-[88px] md:pb-[88px]">
       <HomeContainer>
         <div className="max-w-[660px]">
           <Image
@@ -15,10 +15,10 @@ export default function Hero() {
             width={69}
             height={26}
             priority
-            className="rise mb-3 h-auto w-[60px] md:w-[69px]"
+            className="badge-pop mb-3 h-auto w-[60px] md:w-[69px]"
           />
         <h1
-          className="rise rise-1 max-w-[18ch] text-balance font-normal leading-[1.22] tracking-[-0.015em]"
+          className="rise max-w-[18ch] text-balance font-normal leading-[1.22] tracking-[-0.015em]"
           style={{ fontSize: "clamp(1.625rem, 2.9vw, 2.125rem)" }}
         >
           Product Designer

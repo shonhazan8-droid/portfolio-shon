@@ -20,53 +20,58 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  if (isCaseStudy) {
+    return (
+      <header className="sticky top-0 z-20 px-4 pt-3 md:px-6">
+        <Button
+          href="/#cases"
+          variant="ghost"
+          className="border-transparent! py-[9px]! text-[16px]! font-medium! tracking-[-0.04em]! text-[#201B21]! hover:border-transparent! hover:opacity-90"
+          style={{ backgroundColor: "var(--color-surface)", fontFamily: "var(--font-open-runde)" }}
+        >
+          <ArrowRight className="h-3 w-3 rotate-180" />
+          Back
+        </Button>
+      </header>
+    );
+  }
+
   return (
-    <header
-      className={`sticky top-0 z-20 border-b bg-[color-mix(in_srgb,var(--color-bg)_88%,transparent)] backdrop-blur-md transition-colors duration-200 ${
-        scrolled ? "border-[var(--color-line)]" : "border-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-20 px-4 pt-3 md:px-6">
       <div
-        className={`relative flex h-16 w-full items-center justify-between ${
-          isCaseStudy
-            ? "px-6 md:px-8"
-            : "mx-auto max-w-[1200px] px-6 md:px-8 xl:px-0"
+        className={`header-drop relative mx-auto flex h-16 w-full items-center justify-between rounded-full border pl-6 pr-3 transition-all duration-500 ease-[cubic-bezier(.22,1,.36,1)] ${
+          scrolled
+            ? "max-w-[752px] border-[var(--color-line)] bg-[color-mix(in_srgb,var(--color-surface)_85%,transparent)] backdrop-blur-xl"
+            : "max-w-[1027px] border-transparent bg-[var(--color-surface)]"
         }`}
       >
-        {!isCaseStudy ? (
-          <>
-            <Link href="/" aria-label="Shon" className="inline-flex no-underline transition-opacity duration-150 hover:opacity-80" style={{ perspective: "500px" }}>
-              <Image
-                src="/Portal.svg"
-                alt="Shon"
-                width={40}
-                height={40}
-                priority
-                className="logo-flip"
-              />
-            </Link>
-            <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 gap-8 md:flex" aria-label="Main">
-              {[["Case studies","/#cases"],["About","/#about"],["Contact","/#contact"]].map(([label,href])=>(
-                <Link key={href} href={href} className="text-sm text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]">{label}</Link>
-              ))}
-            </nav>
-          </>
-        ) : null}
-        {isCaseStudy ? (
+        <Link href="/" aria-label="Shon" className="inline-flex items-center gap-1.5 no-underline transition-opacity duration-150 hover:opacity-80" style={{ perspective: "500px" }}>
+          <Image
+            src="/Portal.svg"
+            alt=""
+            width={36}
+            height={36}
+            priority
+            className="logo-flip"
+          />
+          <span className="text-[16px] font-medium tracking-[-0.04em] text-[#201B21]" style={{ fontFamily: "var(--font-open-runde)" }}>Shon hazan</span>
+        </Link>
+        <div className="hidden items-center gap-8 md:flex">
+          <nav className="flex items-center gap-8" aria-label="Main">
+            {[["Work","/#cases"],["About","/#about"],["Contact","/#contact"]].map(([label,href])=>(
+              <Link key={href} href={href} className="text-sm text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]">{label}</Link>
+            ))}
+          </nav>
           <Button
-            href="/#cases"
-            variant="ghost"
-            className="mr-auto border-transparent! py-[9px]! font-normal! hover:border-transparent! hover:opacity-90"
-            style={{ backgroundColor: "var(--color-surface)" }}
+            href="https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="primary"
+            className="py-[9px]!"
           >
-            <ArrowRight className="h-3 w-3 rotate-180" />
-            Back
+            Resume
           </Button>
-        ) : (
-          <Button href="/#contact" variant="primary" className="py-[9px]!">
-            Get in touch <ArrowRight className="h-3 w-3" />
-          </Button>
-        )}
+        </div>
       </div>
     </header>
   );

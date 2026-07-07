@@ -7,6 +7,7 @@ export type Slide = {
   name: string;
   category: string;
   metric: string;
+  description: string;
 };
 
 const IMAGE_RE = /\.(png|jpe?g|webp|avif|gif|svg)$/i;
@@ -38,7 +39,7 @@ export function getGallerySlides(): Slide[] {
   return files.map((file) => {
     const meta = byFile.get(file);
     if (meta) {
-      return { src: `/work/${file}`, name: meta.name, category: meta.category, metric: meta.metric };
+      return { src: `/work/${file}`, name: meta.name, category: meta.category, metric: meta.metric, description: meta.description };
     }
 
     const name = file
@@ -47,6 +48,6 @@ export function getGallerySlides(): Slide[] {
       .trim()
       .replace(/\b\w/g, (c) => c.toUpperCase());
 
-    return { src: `/work/${file}`, name: name || file, category: "Selected work", metric: "" };
+    return { src: `/work/${file}`, name: name || file, category: "Selected work", metric: "", description: "" };
   });
 }

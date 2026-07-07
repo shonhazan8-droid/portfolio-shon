@@ -1,57 +1,53 @@
 import HomeContainer from "./HomeContainer";
+import Reveal from "./Reveal";
 import { experience } from "@/content/experience";
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-[var(--color-line)] py-20 md:py-24">
-      <HomeContainer className="grid gap-16 lg:grid-cols-[2fr_1fr] lg:gap-24">
-        {/* Profile */}
-        <div className="max-w-[640px]">
-          {/* Portrait: pre-composed image, shown as-is */}
+    <section id="about" className="py-20 md:py-24">
+      <Reveal>
+      <HomeContainer className="grid gap-14 lg:grid-cols-[240px_1fr] lg:gap-20">
+        {/* Left: portrait + meta */}
+        <div className="flex flex-col">
+          {/* Profile card: exported as-is from Figma (tilt, photo, name/role baked in) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/portrait-framed.png"
-            alt="Shon Hazan"
-            className="h-auto w-[112px]"
+            src="/Container.svg"
+            alt="Shon Hazan — Product Designer"
+            className="h-auto w-full max-w-[230px]"
             draggable={false}
           />
-
-          <h2 className="mt-6 text-xl font-normal tracking-[-0.008em]">Shon Hazan</h2>
-          <p className="mt-1 text-base leading-[1.55] text-[var(--color-text)]">Designer &amp; Creative thinker</p>
-
-          <p className="mt-8 max-w-[52ch] text-base leading-[1.55] text-[var(--color-ink)]">
-            I build scalable product systems and structured interfaces. Function over decoration.
-            Today I design complex systems for government and enterprise, turning high-friction,
-            regulated processes into clear, usable flows.
-          </p>
         </div>
 
-        {/* Experience */}
-        <div>
-          <h3 className="flex items-center gap-2 text-xl font-normal">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--color-accent)" aria-hidden="true">
-              <path d="M12 0c.5 6.2 5.3 11 11.5 11.5C17.3 12 12.5 16.8 12 23c-.5-6.2-5.3-11-11.5-11.5C6.7 11 11.5 6.2 12 0z" />
-            </svg>
-            Experience
-          </h3>
-          <p className="mt-1 text-[var(--color-text)]">Where I&apos;ve been</p>
+        {/* Right: statement + intro + experience */}
+        <div className="max-w-[640px]">
+          <h2 className="text-[clamp(1.6rem,3vw,2.05rem)] font-normal leading-[1.25] tracking-[-0.014em]">
+            I build scalable product systems.<br />
+            Structure over decoration.
+          </h2>
+          <p className="mt-6 max-w-[62ch] text-base leading-[1.6] text-[var(--color-text)]">
+            Today I design complex systems for government and enterprise, turning high-friction,
+            regulated processes into clear, usable flows. I work best in cross-functional
+            environments where the design problem sits inside a business problem.
+          </p>
 
-          <ul className="mt-8">
+          <ul className="mt-14">
             {experience.map((r) => (
               <li
                 key={`${r.title}-${r.period}`}
-                className="border-b border-[var(--color-line)] py-5 first:pt-0"
+                className="flex items-baseline justify-between gap-4 border-b border-[var(--color-line)] py-5 first:border-t"
               >
-                <div className="text-base font-normal tracking-[-0.008em] text-[var(--color-ink)]">{r.title}</div>
-                <div className="mt-1 flex items-baseline justify-between gap-4">
-                  <span className="text-[var(--color-text)]">{r.company}</span>
-                  <span className="text-[var(--color-text)]">{r.period}</span>
+                <div>
+                  <div className="text-base font-medium tracking-[-0.008em] text-[var(--color-ink)]">{r.title}</div>
+                  <div className="mt-0.5 text-sm text-[var(--color-text)]">{r.company}</div>
                 </div>
+                <span className="whitespace-nowrap text-[var(--color-text)]">{r.period}</span>
               </li>
             ))}
           </ul>
         </div>
       </HomeContainer>
+      </Reveal>
     </section>
   );
 }

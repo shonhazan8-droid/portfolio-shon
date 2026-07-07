@@ -48,17 +48,21 @@ export default function CaseCover({ src, label }: Props) {
   return (
     <div
       ref={containerRef}
-      className="relative flex aspect-[752/480] w-full items-center justify-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]"
+      className="relative flex aspect-[752/540] w-full items-center justify-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]"
     >
       {data ? (
-        <Lottie
-          lottieRef={lottieRef}
-          animationData={data}
-          loop
-          autoplay
-          className="h-full w-full"
-          rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
-        />
+        <div className="cover-enter h-full w-full">
+          <div className="cover-zoom h-full w-full">
+            <Lottie
+              lottieRef={lottieRef}
+              animationData={data}
+              loop
+              autoplay
+              className="h-full w-full"
+              rendererSettings={{ preserveAspectRatio: "xMidYMid slice" }}
+            />
+          </div>
+        </div>
       ) : (
         <span className="font-mono text-[11px] uppercase tracking-[.06em] text-[var(--color-text)]">
           {label}

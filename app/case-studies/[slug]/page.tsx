@@ -13,9 +13,9 @@ import shik4 from "@/public/Case01/shik4.png";
 import shik5 from "@/public/Case01/shik5.png";
 import shik6 from "@/public/Case01/shik6.png";
 import researchCollage from "@/public/Case01/26253.png";
-import bankFlowStructure from "@/public/Case02/flow-structure.png";
-import bankSystemToExperience from "@/public/Case02/system-to-experience.png";
-import bankFocusedDecisions from "@/public/Case02/focused-decisions.png";
+import bankFlowStructure from "@/public/Case02/flow-structure111.png";
+import bankSystemToExperience from "@/public/Case02/system-to-experience111.png";
+import bankFocusedDecisions from "@/public/Case02/focused-decisions111.png";
 import bankFieldBranch from "@/public/Case02/field-branch.png";
 import bankFieldSystem from "@/public/Case02/field-system.png";
 

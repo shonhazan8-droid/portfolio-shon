@@ -39,6 +39,9 @@ export default function HeroCarousel({
 
   if (len === 0) return null;
 
+  const current = slides[index];
+  const pad = (n: number) => String(n).padStart(2, "0");
+
   const arrowBtn =
     "flex h-10 w-10 items-center justify-center rounded-full transition-[opacity,transform] duration-150 ease-[var(--ease-out)] hover:opacity-80 active:scale-90";
 
@@ -49,12 +52,12 @@ export default function HeroCarousel({
       role="group"
       aria-roledescription="carousel"
       aria-label="Selected work"
-      className="grid gap-10 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-center lg:gap-16"
+      className="grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-stretch lg:gap-6"
     >
-      {/* Text rail + controls */}
-      <div className="max-w-[52ch]">
+      {/* Text rail + controls + slide info card */}
+      <div className="flex flex-col">
         <h2 className="text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
-        <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
+        <p className="mt-2 max-w-[52ch] text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
 
         {/* Nav: arrows below the text */}
         <div className="mt-8 flex items-center gap-3">
@@ -65,46 +68,46 @@ export default function HeroCarousel({
             <ArrowCircle className="h-10 w-10 -scale-x-100" />
           </button>
         </div>
-      </div>
 
-      {/* Frame + dots below the image */}
-      <div>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
-          <div
-            className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
-            style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
-          >
-            {slides.map((s, i) => (
-              <div
-                key={s.src}
-                className="h-full w-full shrink-0 bg-[var(--color-surface)]"
-                aria-hidden={i !== index}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={s.src}
-                  alt={s.name}
-                  className="h-full w-full object-cover"
-                  draggable={false}
-                />
-              </div>
-            ))}
+        {/* Info card: follows the active slide */}
+        <div
+          key={current.src}
+          aria-live="polite"
+          className="info-fade mt-10 rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-6 lg:mt-auto"
+        >
+          <h3 className="text-base font-medium tracking-[-0.008em] text-[var(--color-ink)]">{current.name}</h3>
+          {current.description ? (
+            <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{current.description}</p>
+          ) : null}
+          <div className="mt-7 flex items-center justify-between gap-4">
+            <span className="text-sm text-[var(--color-ink)]">{current.category}</span>
+            <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 font-mono text-xs tracking-[.04em] text-[var(--color-accent)]">
+              {pad(index + 1)}/{pad(len)}
+            </span>
           </div>
         </div>
+      </div>
 
-        {/* Paging dots */}
-        <div className="mt-5 flex items-center justify-center gap-1.5" role="tablist" aria-label="Choose slide">
+      {/* Sliding frame */}
+      <div className="relative aspect-[4/3] w-full self-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+        <div
+          className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
+          style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+        >
           {slides.map((s, i) => (
-            <button
+            <div
               key={s.src}
-              onClick={() => setIndex(i)}
-              role="tab"
-              aria-selected={i === index}
-              aria-label={`Show slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ease-[var(--ease-out)] ${
-                i === index ? "w-5 bg-[var(--color-ink)]" : "w-1.5 bg-[var(--color-line)] hover:bg-[var(--color-text)]"
-              }`}
-            />
+              className="h-full w-full shrink-0 bg-[var(--color-surface)]"
+              aria-hidden={i !== index}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={s.src}
+                alt={s.name}
+                className="h-full w-full object-cover"
+                draggable={false}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import SmoothScroll from "@/components/SmoothScroll";
+import Splash from "@/components/Splash";
 import "./globals.css";
 
 const cursorGothic = localFont({
@@ -10,6 +12,17 @@ const cursorGothic = localFont({
     { path: "./fonts/CursorGothic-Italic.woff2", weight: "400", style: "italic" },
     { path: "./fonts/CursorGothic-Bold.woff2", weight: "700", style: "normal" },
     { path: "./fonts/CursorGothic-BoldItalic.woff2", weight: "700", style: "italic" },
+  ],
+});
+
+const openRunde = localFont({
+  variable: "--font-open-runde",
+  display: "swap",
+  src: [
+    { path: "./fonts/OpenRunde-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/OpenRunde-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/OpenRunde-Semibold.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/OpenRunde-Bold.woff2", weight: "700", style: "normal" },
   ],
 });
 
@@ -56,7 +69,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cursorGothic.variable}>
+    <html lang="en" className={`${cursorGothic.variable} ${openRunde.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -65,7 +78,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {/* Mark repeat visits before paint so the splash only plays once per session */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('sh-splash'))document.documentElement.dataset.splash='seen';else sessionStorage.setItem('sh-splash','1')}catch(e){}",
+          }}
+        />
+        <Splash />
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }
