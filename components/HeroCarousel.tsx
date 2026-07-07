@@ -75,16 +75,30 @@ export default function HeroCarousel({
           aria-live="polite"
           className="info-fade mt-10 rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-6 lg:mt-auto"
         >
-          <h3 className="text-base font-medium tracking-[-0.008em] text-[var(--color-ink)]">{current.name}</h3>
+          <span className="mb-4 inline-block rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
+            {pad(index + 1)}/{pad(len)}
+          </span>
+          <h3 className="text-base tracking-[-0.008em]">
+            {current.client ? (
+              <span className="text-[var(--color-text)]">{current.client} · </span>
+            ) : null}
+            <span className="font-medium text-[var(--color-ink)]">{current.name}</span>
+          </h3>
           {current.description ? (
             <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{current.description}</p>
           ) : null}
-          <div className="mt-7 flex items-center justify-between gap-4">
-            <span className="text-sm text-[var(--color-ink)]">{current.category}</span>
-            <span className="rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
-              {pad(index + 1)}/{pad(len)}
-            </span>
-          </div>
+          {current.tags?.length ? (
+            <ul className="mt-3 flex flex-wrap gap-1.5">
+              {current.tags.map((tag) => (
+                <li
+                  key={tag}
+                  className="rounded-full bg-[var(--color-bg)] px-2.5 py-1 text-xs text-[var(--color-text)]"
+                >
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </div>
 

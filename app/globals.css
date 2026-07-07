@@ -156,16 +156,17 @@ p { text-wrap: pretty; }
 .splash svg {
   width: 56px;
   height: 56px;
-  transform-origin: 50% 50%;
+  transform-origin: 47.97% 50.46%; /* icon's true visual centroid, not the box center — keeps the spin pinned in place */
   will-change: transform, opacity;
-  animation: splash-logo-spin 1.18s var(--ease-gallery) both;
+  animation:
+    splash-logo-fade .4s ease-out both,
+    splash-logo-spin 1.3s cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 @keyframes splash-out { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+@keyframes splash-logo-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes splash-logo-spin {
-  0% { opacity: 0; transform: rotate(-24deg) scale(.72); }
-  38% { opacity: 1; transform: rotate(210deg) scale(1.08); }
-  72% { opacity: 1; transform: rotate(340deg) scale(.98); }
-  100% { opacity: 1; transform: rotate(360deg) scale(1); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 html[data-splash="seen"] .splash { display: none; }
 @media (prefers-reduced-motion: reduce) { .splash { display: none; } }

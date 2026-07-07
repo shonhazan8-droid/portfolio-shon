@@ -1,10 +1,10 @@
 import HomeContainer from "./HomeContainer";
 import HeroCarousel from "./HeroCarousel";
 import Reveal from "./Reveal";
-import { getGallerySlides } from "@/content/gallery";
+import { placeholderSlides } from "@/content/gallery";
 
 export default function Gallery() {
-  const slides = getGallerySlides();
+  const slides = placeholderSlides;
   return (
     <section id="work" className="py-20 md:py-24">
       <Reveal>
