@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import HomeContainer from "./HomeContainer";
 import Reveal from "./Reveal";
 
@@ -18,15 +20,6 @@ function MailIcon() {
   );
 }
 
-function FileIcon() {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" className="h-4 w-4">
-      <path d="M9.5 1.5H4.25a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V4.75L9.5 1.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
-      <path d="M9.5 1.5v3.25h3.25M5.75 8.5h4.5M5.75 11h4.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function LinkedInIcon() {
   return (
     <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" className="h-4 w-4">
@@ -35,65 +28,64 @@ function LinkedInIcon() {
   );
 }
 
-const links = [
-  {
-    label: "Resume",
-    href: "https://drive.google.com/file/d/1qKo8IO4lXuZ-khmXrRMzQStjYEVFvfIy/view?usp=sharing",
-    icon: <FileIcon />,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/shon-hazan-095373199/?skipRedirect=true",
-    icon: <LinkedInIcon />,
-  },
-];
+const emailHref = "mailto:Shonhazan8@gmail.com";
+const linkedInHref = "https://www.linkedin.com/in/shon-hazan-095373199/?skipRedirect=true";
 
 export default function Contact() {
   return (
-    <footer id="contact" className="bg-[var(--color-surface)] pt-20 pb-16 md:pt-24 md:pb-20">
+    <footer id="contact" className="bg-[var(--color-bg)]">
       <Reveal>
-      <HomeContainer>
-        <p className="text-base tracking-[-0.02em] text-[var(--color-text)]">Contact</p>
-
-        <div className="mt-5 flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
-          <div>
-            <h2 className="text-[1.875rem] font-normal leading-[1.3] tracking-[-0.044em] text-[var(--color-ink)]">
-              Looking for the right
-              <br />
-              problem to own.
-            </h2>
-            <a
-              href="mailto:Shonhazan8@gmail.com"
-              className="group mt-7 inline-flex items-center gap-2.5 text-[17px] tracking-[-0.024em] text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]"
-            >
-              <MailIcon />
-              shonhazan8@gmail.com
-              <ArrowUpRight className="h-[13px] w-[13px] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </a>
-          </div>
-
-          <ul className="w-full md:w-[200px]">
-            {links.map((l) => (
-              <li key={l.label} className="border-b border-black/[0.07]">
-                <a
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between py-3.5 text-[15px] tracking-[-0.02em] text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]"
+        <HomeContainer>
+          <div className="grid gap-14 py-20 md:grid-cols-[1fr_auto] md:items-end md:py-24">
+            <div>
+              <Link
+                href="/"
+                aria-label="Shon Hazan home"
+                className="inline-flex items-center gap-1.5 no-underline transition-opacity duration-150 hover:opacity-80"
+              >
+                <Image src="/Portal.svg" alt="" width={36} height={36} className="h-9 w-9" />
+                <span
+                  className="text-[16px] font-medium tracking-[-0.04em] text-[#201B21]"
+                  style={{ fontFamily: "var(--font-open-runde)" }}
                 >
-                  <span className="flex items-center gap-2.5">
-                    {l.icon}
-                    {l.label}
-                  </span>
-                  <ArrowUpRight className="h-[13px] w-[13px] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  Shon hazan
+                </span>
+              </Link>
 
-        <p className="mt-16 text-center text-xs text-[var(--color-text)]">&copy; 2026 Designed by me.</p>
-      </HomeContainer>
+              <p className="mt-12 text-base tracking-[-0.02em] text-[var(--color-text)]">Contact</p>
+              <h2 className="mt-5 text-[1.875rem] font-normal leading-[1.3] tracking-[-0.04em] text-[var(--color-ink)]">
+                <span className="block">Looking for the right</span>
+                <span className="block">problem to own.</span>
+              </h2>
+            </div>
+
+            <nav aria-label="Footer links" className="flex flex-col items-start gap-3 md:items-end">
+              <a
+                href={emailHref}
+                className="group inline-flex items-center gap-2.5 text-[17px] tracking-[-0.024em] text-[var(--color-ink)] no-underline transition-colors hover:text-[var(--color-accent)]"
+              >
+                <MailIcon />
+                shonhazan8@gmail.com
+                <ArrowUpRight className="h-[13px] w-[13px] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href={linkedInHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-btn)] px-5 py-3 text-sm font-medium text-white no-underline transition-[transform,opacity] duration-150 ease-[var(--ease-out)] hover:-translate-y-px hover:opacity-90 active:translate-y-0"
+              >
+                <LinkedInIcon />
+                LinkedIn
+                <ArrowUpRight className="h-[13px] w-[13px] transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            </nav>
+          </div>
+        </HomeContainer>
+        <div className="bg-[var(--color-surface)]">
+          <HomeContainer>
+            <p className="py-5 text-center text-xs text-[var(--color-text)]">&copy; 2026 Designed &amp; built by me.</p>
+          </HomeContainer>
+        </div>
       </Reveal>
     </footer>
   );
