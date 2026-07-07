@@ -253,6 +253,18 @@ html.custom-cursor * { cursor: none; }
 .custom-cursor-dot.on-dark .custom-cursor-dot-inner { background: #fff; }
 .custom-cursor-dot.on-clickable .custom-cursor-dot-inner { transform: scale(1.6); }
 
+/* About portrait (components/ProfileCard.tsx): a slow idle float on the
+   wrapper, plus a light cursor-following tilt applied to the image itself
+   via inline style — kept on separate elements so the two transforms don't
+   overwrite each other. */
+.profile-card-wrap { display: inline-block; perspective: 500px; }
+.profile-card-float { animation: profile-card-float 5.5s ease-in-out infinite; }
+.profile-card-img { transition: transform .2s var(--ease-out); will-change: transform; }
+@keyframes profile-card-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
 /* Scroll reveal — below-fold sections drift up 16px as they enter the
    viewport. Gated on html.lenis (added by JS): no-JS and reduced-motion
    visitors always see content; nothing ships blank. */

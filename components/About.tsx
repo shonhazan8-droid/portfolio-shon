@@ -1,5 +1,6 @@
 import HomeContainer from "./HomeContainer";
 import Reveal from "./Reveal";
+import ProfileCard from "./ProfileCard";
 import { experience } from "@/content/experience";
 
 export default function About() {
@@ -9,26 +10,20 @@ export default function About() {
       <HomeContainer className="grid gap-14 lg:grid-cols-[240px_1fr] lg:gap-20">
         {/* Left: portrait + meta */}
         <div className="flex flex-col">
-          {/* Profile card: exported as-is from Figma (tilt, photo, name/role baked in) */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/Container.svg"
-            alt="Shon Hazan — Product Designer"
-            className="h-auto w-full max-w-[230px]"
-            draggable={false}
-          />
+          <ProfileCard />
         </div>
 
         {/* Right: statement + intro + experience */}
         <div className="max-w-[640px]">
           <h2 className="text-[clamp(1.6rem,3vw,2.05rem)] font-normal leading-[1.25] tracking-[-0.014em]">
-            I build scalable product systems.<br />
-            Structure over decoration.
+            A bit about me
           </h2>
           <p className="mt-6 max-w-[62ch] text-base leading-[1.6] text-[var(--color-text)]">
-            Today I design complex systems for government and enterprise, turning high-friction,
-            regulated processes into clear, usable flows. I work best in cross-functional
-            environments where the design problem sits inside a business problem.
+            I&apos;m obsessed with understanding how things work, and always
+            experimenting with better ways to design them. Over the past six years I&apos;ve
+            worked across different industries and product types, which taught me to adapt
+            quickly instead of relying on familiar patterns. AI is now a core part of that
+            process, not as a replacement for thinking, but as a way to think better.
           </p>
 
           <ul className="mt-14">
