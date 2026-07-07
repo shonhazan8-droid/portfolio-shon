@@ -1,7 +1,8 @@
-import Link from "next/link";
 import HomeContainer from "./HomeContainer";
 import RustLink from "./RustLink";
 import CaseCover from "./CaseCover";
+import CursorBubble from "./CursorBubble";
+import TransitionLink from "./TransitionLink";
 import ArrowRight from "./ArrowRight";
 import { caseStudies } from "@/content/caseStudies";
 
@@ -15,14 +16,17 @@ export default function CaseStudies() {
               key={c.slug}
               className="flex flex-col gap-6"
             >
-              {/* Animated cover: clickable, leads to the case page */}
-              <Link
-                href={`/case-studies/${c.slug}`}
-                aria-label={`Open ${c.title} case study`}
-                className="block overflow-hidden rounded-[var(--radius-frame)] transition-transform duration-300 ease-[var(--ease-out)] will-change-transform hover:scale-[1.01]"
-              >
-                <CaseCover src={c.cover ?? ""} label="[ Case cover ]" />
-              </Link>
+              {/* Animated cover: clickable, leads to the case page.
+                  Cursor-follow bubble + curtain transition on the way in. */}
+              <CursorBubble label="Read case">
+                <TransitionLink
+                  href={`/case-studies/${c.slug}`}
+                  aria-label={`Open ${c.title} case study`}
+                  className="block overflow-hidden rounded-[var(--radius-frame)] transition-transform duration-300 ease-[var(--ease-out)] will-change-transform hover:scale-[1.01]"
+                >
+                  <CaseCover src={c.cover ?? ""} label="[ Case cover ]" />
+                </TransitionLink>
+              </CursorBubble>
               {/* Text */}
               <div className="max-w-[600px]">
                 <p className="mb-3 text-sm text-[var(--color-text)]">{c.eyebrow}</p>

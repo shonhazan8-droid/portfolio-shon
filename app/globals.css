@@ -171,6 +171,63 @@ p { text-wrap: pretty; }
 html[data-splash="seen"] .splash { display: none; }
 @media (prefers-reduced-motion: reduce) { .splash { display: none; } }
 
+/* Curtain route transition — an accent panel rises from the bottom to cover
+   the viewport, the route swaps underneath, then the panel continues upward
+   to reveal the new page. One continuous direction, splash-orange identity.
+   Driven by components/PageTransition.tsx; reduced-motion never engages it. */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: var(--color-accent);
+  transform: translateY(101%);
+  pointer-events: none;
+}
+.curtain-cover {
+  animation: curtain-cover .6s var(--ease-in-out) both;
+  pointer-events: auto;
+}
+.curtain-reveal {
+  animation: curtain-reveal .72s var(--ease-gallery) .06s both;
+  pointer-events: auto;
+}
+@keyframes curtain-cover { from { transform: translateY(101%); } to { transform: translateY(0); } }
+@keyframes curtain-reveal { from { transform: translateY(0); } to { transform: translateY(-101%); } }
+
+/* Cursor-follow bubble — over case covers the native cursor gives way to a
+   small accent pill trailing the pointer (components/CursorBubble.tsx moves
+   the outer element; the pill itself only scales/fades). */
+.cursor-bubble-area.bubble-active,
+.cursor-bubble-area.bubble-active * { cursor: none; }
+.cursor-bubble {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 45;
+  pointer-events: none;
+}
+.cursor-bubble-pill {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  color: #FFE7DB;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.4);
+  transition: transform .35s var(--ease-gallery), opacity .22s var(--ease-out);
+}
+.bubble-active .cursor-bubble-pill {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+@media (hover: none), (pointer: coarse) { .cursor-bubble { display: none; } }
+@media (prefers-reduced-motion: reduce) { .cursor-bubble { display: none; } }
+
 /* Scroll reveal — below-fold sections drift up 16px as they enter the
    viewport. Gated on html.lenis (added by JS): no-JS and reduced-motion
    visitors always see content; nothing ships blank. */

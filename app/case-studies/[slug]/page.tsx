@@ -1,10 +1,10 @@
 import Image, { type StaticImageData } from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GeistMono } from "geist/font/mono";
 import SiteHeader from "@/components/SiteHeader";
 import Container from "@/components/Container";
 import CaseCover from "@/components/CaseCover";
+import TransitionLink from "@/components/TransitionLink";
 import ArrowRight from "@/components/ArrowRight";
 import shik1 from "@/public/Case01/shik1.png";
 import shik2 from "@/public/Case01/shik2.png";
@@ -630,7 +630,7 @@ function CaseStudyOutro({
   return (
     <section aria-labelledby="next-project-title" className="border-t border-[var(--color-line)] py-10 md:py-12">
       <p className={`${GeistMono.className} text-sm text-[var(--color-accent)]`}>Next case study</p>
-      <Link
+      <TransitionLink
         href={href}
         className="group mt-3 inline-flex items-center gap-3 no-underline outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--color-bg)]"
       >
@@ -643,7 +643,7 @@ function CaseStudyOutro({
         <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-surface)] text-[var(--color-accent)] transition-transform duration-150 ease-[var(--ease-out)] group-hover:translate-x-1">
           <ArrowRight className="h-3 w-3" />
         </span>
-      </Link>
+      </TransitionLink>
     </section>
   );
 }

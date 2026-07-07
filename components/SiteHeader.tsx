@@ -28,8 +28,9 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
         <Button
           href="/#cases"
           variant="ghost"
-          className="border-transparent! py-[9px]! text-[16px]! font-medium! tracking-[-0.04em]! text-[#201B21]! hover:border-transparent! hover:opacity-90"
-          style={{ backgroundColor: "var(--color-surface)", fontFamily: "var(--font-open-runde)" }}
+          transition
+          className="border-transparent! py-[9px]! text-[16px]! text-[var(--color-ink)]! hover:border-transparent! hover:opacity-90"
+          style={{ backgroundColor: "var(--color-surface)" }}
         >
           <ArrowRight className="h-3 w-3 rotate-180" />
           Back

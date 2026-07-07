@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import PageTransition from "@/components/PageTransition";
 import SmoothScroll from "@/components/SmoothScroll";
 import Splash from "@/components/Splash";
 import "./globals.css";
@@ -92,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <Splash />
         <SmoothScroll />
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );
