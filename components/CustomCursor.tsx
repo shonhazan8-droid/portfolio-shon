@@ -66,8 +66,11 @@ export default function CustomCursor() {
         started = true;
         x = tx; y = ty;
         dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        dot.classList.add("custom-cursor-visible");
       }
+      // Idempotent: any move guarantees visibility, so a stray leave/hide
+      // event (window-exit, page transition, etc) never leaves the dot
+      // stuck invisible once the pointer is clearly back in motion.
+      dot.classList.add("custom-cursor-visible");
       if (!raf) raf = requestAnimationFrame(tick);
     };
     // Only hide on a genuine cursor-leaves-the-browser-window event
