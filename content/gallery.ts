@@ -10,7 +10,7 @@ export type Slide = {
 /** Gallery content for the "More work" carousel (components/HeroCarousel.tsx). */
 export const placeholderSlides: Slide[] = [
   {
-    src: "/work/21.png",
+    src: "/work/G1.0.png",
     client: "Ministry of Defense",
     name: "Public Website & Personal Area",
     category: "Government • 2024",
@@ -19,7 +19,7 @@ export const placeholderSlides: Slide[] = [
       "Redesigned the public website and personal area for easier self-service.",
   },
   {
-    src: "/work/31.png",
+    src: "/work/G2.0.png",
     client: "Israel Post",
     name: "Self-Service Payment Kiosk",
     category: "Enterprise • 2023",
@@ -28,7 +28,7 @@ export const placeholderSlides: Slide[] = [
       "Designed a kiosk experience for bill payments across Israel Post branches.",
   },
   {
-    src: "/work/41.png",
+    src: "/work/G3.0.png",
     client: "Polissa",
     name: "Insurance Comparison Platform",
     category: "Fintech • 2023",
@@ -37,7 +37,7 @@ export const placeholderSlides: Slide[] = [
       "Designed an end-to-end insurance comparison flow with gamified onboarding.",
   },
   {
-    src: "/work/51.png",
+    src: "/work/G4.0.png",
     client: "Ministry of Defense",
     name: "Internal AI Dashboard",
     category: "Internal Tool • 2024",
@@ -46,7 +46,7 @@ export const placeholderSlides: Slide[] = [
       "Designed a dashboard for reviewing forms and prioritizing cases with AI.",
   },
   {
-    src: "/work/136shots_so.png",
+    src: "/work/G5.0.png",
     client: "Israel Electric Corporation",
     name: "Electric Consultants Dashboard",
     category: "B2B • 2022",
@@ -55,7 +55,7 @@ export const placeholderSlides: Slide[] = [
       "Redesigned the system managing electrical consultants and field operations.",
   },
   {
-    src: "/work/742shots_so.png",
+    src: "/work/G6.0.png",
     client: "Israel Post",
     name: "Parcel Pickup System",
     category: "Internal Tool • 2022",
@@ -64,7 +64,7 @@ export const placeholderSlides: Slide[] = [
       "Redesigned the system clerks use to manage parcel pickup across centers.",
   },
   {
-    src: "/work/824shots_so.png",
+    src: "/work/G7.0.png",
     client: "Israel Post",
     name: "Homepage & Information Architecture",
     category: "Consumer Product • 2023",

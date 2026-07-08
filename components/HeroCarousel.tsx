@@ -45,10 +45,15 @@ export default function HeroCarousel({
   const arrowBtn =
     "flex h-10 w-10 items-center justify-center rounded-full transition-[opacity,transform] duration-150 ease-[var(--ease-out)] hover:opacity-80 active:scale-90";
 
+  // Pause autoplay only over the interactive/content bits (image, info card,
+  // arrows) — not the heading/description above them.
+  const pauseHandlers = {
+    onMouseEnter: () => setPaused(true),
+    onMouseLeave: () => setPaused(false),
+  };
+
   return (
     <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       role="group"
       aria-roledescription="carousel"
       aria-label="Selected work"
@@ -60,7 +65,7 @@ export default function HeroCarousel({
         <p className="mt-2 max-w-[52ch] text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
 
         {/* Nav: arrows below the text */}
-        <div className="mt-8 flex items-center gap-3">
+        <div {...pauseHandlers} className="mt-8 flex w-fit items-center gap-3">
           <button onClick={() => go(-1)} aria-label="Previous" className={arrowBtn}>
             <ArrowCircle className="h-10 w-10" />
           </button>
@@ -72,8 +77,9 @@ export default function HeroCarousel({
         {/* Info card: follows the active slide */}
         <div
           key={current.src}
+          {...pauseHandlers}
           aria-live="polite"
-          className="info-fade mt-10 rounded-[var(--radius-frame)] bg-[var(--color-surface)] p-6 lg:mt-auto"
+          className="info-fade mt-10 rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)] p-6 lg:mt-auto"
         >
           <span className="mb-4 inline-block rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
             {pad(index + 1)}/{pad(len)}
@@ -91,7 +97,10 @@ export default function HeroCarousel({
       </div>
 
       {/* Sliding frame */}
-      <div className="relative aspect-[4/3] w-full self-center overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+      <div
+        {...pauseHandlers}
+        className="relative aspect-[4/3] w-full self-center overflow-hidden rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)]"
+      >
         <div
           className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
           style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
