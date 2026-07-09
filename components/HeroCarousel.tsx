@@ -61,8 +61,8 @@ export default function HeroCarousel({
     >
       {/* Text rail + controls + slide info card */}
       <div className="flex flex-col">
-        <h2 className="text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
-        <p className="mt-2 max-w-[52ch] text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
+        <h2 className="max-w-[290px] text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
+        <p className="mt-2 max-w-[290px] text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
 
         {/* Nav: arrows below the text */}
         <div {...pauseHandlers} className="mt-8 flex w-fit items-center gap-3">

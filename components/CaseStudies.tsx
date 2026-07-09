@@ -28,7 +28,6 @@ export default function CaseStudies() {
               </CursorBubble>
               {/* Text */}
               <div className="max-w-[600px]">
-                <p className="mb-3 text-sm text-[var(--color-text)]">{c.eyebrow}</p>
                 <h3 className="text-xl font-normal leading-[1.25] tracking-[-0.008em]">{c.title}</h3>
                 <p className="mt-3 whitespace-pre-line text-base leading-[1.55] text-[var(--color-text)]">{c.summary}</p>
                 <div className="mt-6">
