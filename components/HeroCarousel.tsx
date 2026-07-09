@@ -6,8 +6,10 @@ import ArrowCircle from "./ArrowCircle";
 const INTERVAL = 4500;
 
 /**
- * Selected work: one large 4:3 image at a time, auto-advancing in a loop.
- * Pauses on hover. Text rail + nav controls on the left, image on the right.
+ * Selected work carousel. Two layouts share one state:
+ *  - Desktop (lg+): text rail + info card on the left, large image on the right.
+ *  - Mobile (<lg): a swipeable full-width image stacked over the info card,
+ *    with a dot indicator. Both auto-advance and honor reduced motion.
  */
 export default function HeroCarousel({
   slides,
@@ -21,6 +23,7 @@ export default function HeroCarousel({
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const reducedRef = useRef(false);
+  const touchStartX = useRef<number | null>(null);
   const len = slides.length;
 
   const go = useCallback((dir: number) => {
@@ -52,73 +55,137 @@ export default function HeroCarousel({
     onMouseLeave: () => setPaused(false),
   };
 
-  return (
-    <div
-      role="group"
-      aria-roledescription="carousel"
-      aria-label="Selected work"
-      className="grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] lg:items-stretch lg:gap-6"
-    >
-      {/* Text rail + controls + slide info card */}
-      <div className="flex flex-col">
-        <h2 className="max-w-[290px] text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
-        <p className="mt-2 max-w-[290px] text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
+  // Horizontal swipe on touch devices → previous/next slide.
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = touchStartX.current;
+    touchStartX.current = null;
+    if (start == null) return;
+    const dx = e.changedTouches[0].clientX - start;
+    if (Math.abs(dx) < 40) return;
+    go(dx < 0 ? 1 : -1);
+  };
 
-        {/* Nav: arrows below the text */}
-        <div {...pauseHandlers} className="mt-8 flex w-fit items-center gap-3">
-          <button onClick={() => go(-1)} aria-label="Previous" className={arrowBtn}>
-            <ArrowCircle className="h-10 w-10" />
-          </button>
-          <button onClick={() => go(1)} aria-label="Next" className={arrowBtn}>
-            <ArrowCircle className="h-10 w-10 -scale-x-100" />
-          </button>
+  // Shared sliding track of images (used by both layouts).
+  const track = (
+    <div
+      className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
+      style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+    >
+      {slides.map((s, i) => (
+        <div
+          key={s.src}
+          className="h-full w-full shrink-0 bg-[var(--color-surface)]"
+          aria-hidden={i !== index}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={s.src}
+            alt={s.name}
+            className="h-full w-full object-cover"
+            draggable={false}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
+  const infoCardInner = (
+    <>
+      <span className="mb-4 inline-block rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
+        {pad(index + 1)}/{pad(len)}
+      </span>
+      <h3 className="text-base tracking-[-0.008em]">
+        {current.client ? (
+          <span className="text-[var(--color-ink)]">{current.client} · </span>
+        ) : null}
+        <span className="font-medium text-[var(--color-ink)]">{current.name}</span>
+      </h3>
+      {current.description ? (
+        <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{current.description}</p>
+      ) : null}
+    </>
+  );
+
+  return (
+    <div role="group" aria-roledescription="carousel" aria-label="Selected work">
+      {/* ---------- Desktop (lg+) ---------- */}
+      <div className="hidden lg:grid lg:grid-cols-[340px_minmax(0,1fr)] lg:items-stretch lg:gap-6">
+        {/* Text rail + controls + slide info card */}
+        <div className="flex flex-col">
+          <h2 className="max-w-[290px] text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
+          <p className="mt-2 max-w-[290px] text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
+
+          {/* Nav: arrows below the text */}
+          <div {...pauseHandlers} className="mt-8 flex w-fit items-center gap-3">
+            <button onClick={() => go(-1)} aria-label="Previous" className={arrowBtn}>
+              <ArrowCircle className="h-10 w-10" />
+            </button>
+            <button onClick={() => go(1)} aria-label="Next" className={arrowBtn}>
+              <ArrowCircle className="h-10 w-10 -scale-x-100" />
+            </button>
+          </div>
+
+          {/* Info card: follows the active slide */}
+          <div
+            key={current.src}
+            {...pauseHandlers}
+            aria-live="polite"
+            className="info-fade mt-10 rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)] p-6 lg:mt-auto"
+          >
+            {infoCardInner}
+          </div>
         </div>
 
-        {/* Info card: follows the active slide */}
+        {/* Sliding frame */}
         <div
-          key={current.src}
           {...pauseHandlers}
-          aria-live="polite"
-          className="info-fade mt-10 rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)] p-6 lg:mt-auto"
+          className="relative aspect-[4/3] w-full self-center overflow-hidden rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)]"
         >
-          <span className="mb-4 inline-block rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
-            {pad(index + 1)}/{pad(len)}
-          </span>
-          <h3 className="text-base tracking-[-0.008em]">
-            {current.client ? (
-              <span className="text-[var(--color-ink)]">{current.client} · </span>
-            ) : null}
-            <span className="font-medium text-[var(--color-ink)]">{current.name}</span>
-          </h3>
-          {current.description ? (
-            <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{current.description}</p>
-          ) : null}
+          {track}
         </div>
       </div>
 
-      {/* Sliding frame */}
-      <div
-        {...pauseHandlers}
-        className="relative aspect-[4/3] w-full self-center overflow-hidden rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)]"
-      >
+      {/* ---------- Mobile (<lg) ---------- */}
+      <div className="lg:hidden">
+        <h2 className="text-2xl font-normal tracking-[-0.008em]">{heading}</h2>
+        <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{description}</p>
+
+        {/* Swipeable frame — pan-y lets the page scroll vertically while we
+            capture horizontal swipes. */}
         <div
-          className="flex h-full will-change-transform transition-transform duration-[850ms] ease-[var(--ease-gallery)]"
-          style={{ transform: `translate3d(-${index * 100}%, 0, 0)` }}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          className="relative mt-6 aspect-[4/3] w-full touch-pan-y select-none overflow-hidden rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)]"
         >
+          {track}
+        </div>
+
+        {/* Info card */}
+        <div
+          key={current.src}
+          aria-live="polite"
+          className="info-fade mt-4 rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)] p-6"
+        >
+          {infoCardInner}
+        </div>
+
+        {/* Dot indicator */}
+        <div className="mt-6 flex justify-center gap-2">
           {slides.map((s, i) => (
-            <div
+            <button
               key={s.src}
-              className="h-full w-full shrink-0 bg-[var(--color-surface)]"
-              aria-hidden={i !== index}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={s.src}
-                alt={s.name}
-                className="h-full w-full object-cover"
-                draggable={false}
-              />
-            </div>
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              aria-current={i === index}
+              className={`h-2 rounded-full transition-all duration-300 ease-[var(--ease-out)] ${
+                i === index
+                  ? "w-6 bg-[var(--color-accent)]"
+                  : "w-2 bg-[color-mix(in_srgb,var(--color-ink)_15%,transparent)]"
+              }`}
+            />
           ))}
         </div>
       </div>
