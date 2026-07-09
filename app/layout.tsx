@@ -46,6 +46,35 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Shon Hazan · Product Designer",
   description: siteDescription,
+  applicationName: "Shon Hazan · Portfolio",
+  authors: [{ name: "Shon Hazan", url: siteUrl }],
+  creator: "Shon Hazan",
+  publisher: "Shon Hazan",
+  keywords: [
+    "Shon Hazan",
+    "Product Designer",
+    "UX Designer",
+    "UI Designer",
+    "Product design portfolio",
+    "UX portfolio",
+    "Design systems",
+    "Information architecture",
+    "Fintech design",
+    "Public sector UX",
+    "AI product design",
+  ],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Shon Hazan · Product Designer",
     description: siteDescription,
@@ -70,6 +99,75 @@ export const metadata: Metadata = {
   },
 };
 
+// Machine-readable profile (schema.org). Not rendered visually, but parsed by
+// search engines and AI systems (e.g. recruiting tools) for a richer, accurate
+// picture than the on-page copy alone. Facts here are all derived from the
+// site's own content — no invented credentials.
+const profileJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: "Shon Hazan",
+      givenName: "Shon",
+      familyName: "Hazan",
+      jobTitle: "Product Designer",
+      description:
+        "Shon Hazan is a product designer with 6+ years of experience designing clear, usable products across fintech, public sector, and healthcare. Currently a Senior UX Designer at Matrix, he has designed end-to-end experiences for organizations including the Israeli Ministry of Defense, Israel Post, Israel Post Bank, and Sheba Medical Center, spanning user research, information architecture, core flows, and design systems, with AI woven into his process.",
+      url: siteUrl,
+      email: "shonhazan8@gmail.com",
+      image: `${siteUrl}/og-cover.png`,
+      sameAs: ["https://www.linkedin.com/in/shon-hazan-095373199/"],
+      worksFor: { "@type": "Organization", name: "Matrix" },
+      knowsLanguage: ["English", "Hebrew"],
+      knowsAbout: [
+        "Product design",
+        "User experience (UX) design",
+        "User interface (UI) design",
+        "Information architecture",
+        "User research",
+        "Design systems",
+        "Interaction design",
+        "Prototyping",
+        "Usability testing",
+        "AI-assisted design",
+        "B2B products",
+        "B2C products",
+        "Fintech",
+        "Public sector digital services",
+        "Healthcare product design",
+      ],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Product Designer",
+        occupationLocation: { "@type": "Country", name: "Israel" },
+        skills:
+          "Product design, UX design, UI design, information architecture, user research, design systems, AI-assisted design, prototyping, usability testing",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Shon Hazan · Product Designer",
+      description: siteDescription,
+      inLanguage: "en",
+      publisher: { "@id": `${siteUrl}/#person` },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${siteUrl}/#profilepage`,
+      url: siteUrl,
+      name: "Shon Hazan · Product Designer",
+      inLanguage: "en",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#person` },
+      mainEntity: { "@id": `${siteUrl}/#person` },
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -86,6 +184,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        {/* Structured data: machine-readable profile for search engines and AI. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
+        />
         {/* Mark repeat visits before paint so the splash only plays once per session */}
         <script
           dangerouslySetInnerHTML={{

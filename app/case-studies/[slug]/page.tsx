@@ -83,9 +83,26 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
     return {};
   }
 
+  const pageTitle = `${project.title} · Shon Hazan`;
+  const url = `/case-studies/${slug}`;
+
   return {
-    title: `${project.title} · Shon Hazan`,
+    title: pageTitle,
     description: project.summary,
+    alternates: { canonical: url },
+    openGraph: {
+      title: pageTitle,
+      description: project.summary,
+      url,
+      type: "article",
+      images: ["/og-cover.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description: project.summary,
+      images: ["/og-cover.png"],
+    },
   };
 }
 
