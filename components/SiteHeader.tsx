@@ -15,6 +15,20 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const isCaseStudy = variant === "caseStudy";
 
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+
+    event.preventDefault();
+
+    if (window.location.pathname === "/") {
+      window.history.replaceState(null, "", "/");
+      window.location.reload();
+      return;
+    }
+
+    window.location.href = "/";
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -26,7 +40,7 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
     return (
       <header className="sticky top-0 z-20 px-4 pt-3 md:px-6">
         <Button
-          href="/#cases"
+          href="/"
           variant="ghost"
           transition
           className="border-transparent! py-[9px]! text-[16px]! text-[var(--color-ink)]! hover:border-transparent! hover:opacity-90"
@@ -48,7 +62,7 @@ export default function SiteHeader({ variant = "default" }: SiteHeaderProps) {
             : "max-w-[1027px] border-transparent bg-[var(--color-surface)]"
         }`}
       >
-        <Link href="/" aria-label="Shon" className="inline-flex items-center gap-1.5 no-underline transition-opacity duration-150 hover:opacity-80" style={{ perspective: "500px" }}>
+        <Link href="/" aria-label="Shon" onClick={handleLogoClick} className="inline-flex items-center gap-1.5 no-underline transition-opacity duration-150 hover:opacity-80" style={{ perspective: "500px" }}>
           <Image
             src="/Portal.svg"
             alt=""
