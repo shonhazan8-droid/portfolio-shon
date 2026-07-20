@@ -18,6 +18,17 @@ import bankSystemToExperience from "@/public/Case02/system-to-experience.png";
 import bankFocusedDecisions from "@/public/Case02/focused-decisions.png";
 import bankFieldBranch from "@/public/Case02/field-branch.png";
 import bankFieldSystem from "@/public/Case02/field-system.png";
+// TODO(placeholder): these are "before" screenshots pulled from the original
+// UX expert report, not final production screenshots. Swap for real
+// production captures of the shipped AI-classification flow before shipping
+// this case study. See vault: 03 Projects/Portfolio Site/01 In Progress/
+// Case Study - Document Upload/README.md for what's still needed.
+// The old flow shown once, as a single 3-screen "before" strip (empty state →
+// subject dropdown open → after one file). Replaces the scattered per-screen
+// stills so the same UI isn't repeated across multiple sections.
+import oldFlowComposite from "@/public/Case03/26273.png";
+// The before/after comparison, placed near the end as the transformation payoff.
+import beforeAfter from "@/public/Case03/beforeafter.png";
 
 type CaseStudyCover =
   | { type: "image"; src: string; width: number; height: number }
@@ -33,6 +44,10 @@ type CaseStudyDetail = {
   coverAlt: string;
   meta: [string, string][];
 };
+
+// Keep the Document Upload case private until Shon explicitly decides to publish it.
+// Set NEXT_PUBLIC_PUBLISH_DOCUMENT_UPLOAD=true only when the case is ready to go live.
+const isDocumentUploadPublished = process.env.NEXT_PUBLIC_PUBLISH_DOCUMENT_UPLOAD === "true";
 
 const caseStudyDetails: CaseStudyDetail[] = [
   {
@@ -65,10 +80,31 @@ const caseStudyDetails: CaseStudyDetail[] = [
       ["SCOPE", "Research, Onboarding, Flows"],
     ],
   },
+  {
+    // DRAFT — scope to confirm. See vault README for full brief.
+    // 2026-07-11: reframed per /design-team review — differentiator is "the
+    // system understands content," not "responsibility shift" (that framing
+    // is already used by the Rehabilitation Platform case).
+    slug: "document-upload",
+    title: "Document submission, rethought",
+    year: "2025 - 2026",
+    headline: "The system used to ask people to explain their files.\nNow it reads them instead.",
+    summary:
+      "Uploading a document meant classifying it first. We replaced that step with a system that understands what people submit — without asking them to explain it.",
+    cover: { type: "image", src: "/Case03/casehero.png", width: 1774, height: 1114 },
+    coverAlt: "The redesigned submission flow: a single clean upload area, and the uploaded files automatically classified by the system with editable type tags.",
+    meta: [
+      ["PROJECT", "Ministry of Defense"],
+      ["ROLE", "Product Designer · End-to-end"],
+      ["SCOPE", "Research, AI-assisted flow"],
+    ],
+  },
 ];
 
 export function generateStaticParams() {
-  return caseStudyDetails.map((project) => ({ slug: project.slug }));
+  return caseStudyDetails
+    .filter((project) => project.slug !== "document-upload" || isDocumentUploadPublished)
+    .map((project) => ({ slug: project.slug }));
 }
 
 type CaseStudyPageProps = {
@@ -77,7 +113,9 @@ type CaseStudyPageProps = {
 
 export async function generateMetadata({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const project = caseStudyDetails.find((item) => item.slug === slug);
+  const project = caseStudyDetails.find(
+    (item) => item.slug === slug && (item.slug !== "document-upload" || isDocumentUploadPublished),
+  );
 
   if (!project) {
     return {};
@@ -114,7 +152,9 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     notFound();
   }
 
-  const isRehabilitation = project.slug === "rehabilitation-platform";
+  // Each case study's body lives in its own component (below) and is looked
+  // up by slug — avoids a growing ternary/if-else chain as more cases are added.
+  const Body = CASE_BODIES[project.slug];
 
   return (
     <>
@@ -154,9 +194,19 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
           <CaseStudyMeta items={project.meta} />
 
-          {isRehabilitation ? (
-            <>
-              <IntroBlock>
+          {Body ? <Body /> : null}
+        </Container>
+      </main>
+    </>
+  );
+}
+
+// --- Case study bodies (one component per slug, looked up via CASE_BODIES) ---
+
+function RehabilitationBody() {
+  return (
+    <>
+      <IntroBlock>
                 <p>
                   The platform supports IDF disabled veterans and security forces personnel through some of the
                   hardest periods of their lives: recovery, rights, benefits, and the ordinary logistics that suddenly
@@ -366,10 +416,14 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 title="Bank account opening, rebuilt"
                 href="/case-studies/bank-account-opening"
               />
-            </>
-          ) : (
-            <>
-              <IntroBlock>
+    </>
+  );
+}
+
+function BankAccountBody() {
+  return (
+    <>
+      <IntroBlock>
                 <p>
                   Opening an account used to mean a physical branch visit, a manual, clerk-driven process running on
                   legacy operational systems. The challenge was broader than digitizing paperwork.
@@ -501,16 +555,215 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </CaseTextSection>
 
               <CaseStudyOutro
-                title="Rehabilitation platform IA"
-                href="/case-studies/rehabilitation-platform"
+                title={isDocumentUploadPublished ? "Document upload, rethought with AI" : "Rehabilitation platform IA"}
+                href={isDocumentUploadPublished ? "/case-studies/document-upload" : "/case-studies/rehabilitation-platform"}
               />
-            </>
-          )}
-        </Container>
-      </main>
     </>
   );
 }
+
+// DRAFT — placeholder body, rebuilt 2026-07-11 per /design-team review of a
+// new narrative brief. Real screenshots still don't exist for most sections —
+// every unlabeled gap below is a PlaceholderVisual, clearly marked. DO NOT
+// commit/push/deploy until every placeholder is replaced with a real
+// production screenshot (a page with visible "[PLACEHOLDER]" text in
+// production contradicts the case study's own point). See vault README:
+// 03 Projects/Portfolio Site/01 In Progress/Case Study - Document Upload/README.md
+function DocumentUploadBody() {
+  return (
+    <>
+      <IntroBlock>
+        <p>
+          Uploading a document should be one of the simplest things a person does in a product. In the
+          Rehabilitation Division&rsquo;s platform, it had quietly become one of the most cognitively
+          demanding — and it sat in front of nearly every service, so that weight spread everywhere.
+        </p>
+      </IntroBlock>
+
+      <CaseTextSection label="The conflict" title="The person thinks in documents. The system thinks in categories.">
+        <p>
+          Ask someone what they&rsquo;re doing, and it&rsquo;s one sentence. Ask the system, and it&rsquo;s a
+          checklist.
+        </p>
+        <MentalModelComparison />
+        <p className="pt-2">
+          Every line in that second column is a decision the system made the person answer before it would
+          take a single file. The whole project lived in that gap.
+        </p>
+      </CaseTextSection>
+
+      <CaseTextSection label="The cost" title="Every screen asked for another decision.">
+        <p>
+          This wasn&rsquo;t a hunch. I took the live flow apart to see exactly how much it put on the person,
+          then checked that against how people actually behaved.
+        </p>
+        <div className="space-y-11 pt-7">
+          <NumberedCasePoint
+            number="01"
+            title="A close audit of the live flow"
+            body="I went through the flow screen by screen, rating each friction point by severity. The same shape kept repeating — decide first, then you may act — and it got worse with every extra document a request carried."
+          />
+          <NumberedCasePoint
+            number="02"
+            title="What people actually did"
+            body="Then I looked at real behavior — Google Analytics for the numbers, and Microsoft Clarity session recordings to watch where people stalled, backed out, or dumped everything under one category to avoid the choices."
+          />
+        </div>
+        <div className="case-img mt-14">
+          <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+            <Image
+              src={oldFlowComposite}
+              alt="The old upload flow across three screens: choosing a subject before uploading, the subject dropdown open, and the state after one file where a second attach area appears with two different 'add file' actions."
+              className="h-auto w-full"
+            />
+          </div>
+          <p className="mt-4 text-[15px] italic leading-[1.5] text-[var(--color-text)]">
+            Each screen adds a decision: pick a subject before you can upload, reopen the same menu for every
+            file, then untangle a second attach area the moment a document doesn&rsquo;t match the first.
+          </p>
+        </div>
+        <p className="pt-2">Then the behavior data settled it. Of 1,038,513 requests submitted in 2025:</p>
+        <StatCallout value="4.3%">
+          bundled more than one document type. People weren&rsquo;t using the flow wrong — they were escaping
+          it, dumping everything under one category to dodge the pile of decisions.
+        </StatCallout>
+      </CaseTextSection>
+
+      <CaseTextSection label="Scale" title="And it was rarely one document.">
+        <p>
+          A single rehabilitation request could carry eight documents. Sometimes fourteen — across different
+          categories, some required, some optional, some the person wasn&rsquo;t sure about. Every one of them
+          meant another full round of the same decisions.
+        </p>
+        <p>
+          That was the real brief. Not &ldquo;make upload nicer,&rdquo; but: hold that much complexity without
+          handing it to the person one decision at a time.
+        </p>
+      </CaseTextSection>
+
+      <CaseTextSection label="Directions" title="What if the person didn't have to decide at all?">
+        <p>
+          Add it up: for every file, choose a category, a topic, a state, a group — then repeat. The design
+          problem was never the upload button. It was the stack of decisions standing in front of it.
+        </p>
+        <p>
+          So the question stopped being &ldquo;how do we lay this out better&rdquo; and became: who has to make
+          all these decisions — and what if the answer could be no one? I explored three ways to get there,
+          each one taking more of the decision off the person.
+        </p>
+        <p>
+          These aren&rsquo;t mockups. I built each direction as real, working screens in Figma Make —
+          vibe-coding them from scratch, then wiring in our own design-system tokens so they behaved like the
+          live product. That let me iterate in hours, and judge each version the way it would actually feel: the
+          motion, the hovers, the moment a file lands. The clips below are those builds, editor and all.
+        </p>
+
+        <SolutionDirection
+          status="Rejected"
+          title="Move the decision — make it once, for everything."
+          body="One control set a category for the whole batch. Faster only if every document was the same type — and per the data, they almost never were. The decision was still the person's; it just moved."
+        />
+        <CaseVideo
+          src="/Case03/solution-rejected.mp4"
+          poster="/Case03/poster-rejected.png"
+          caption="Direction 1: one category applied to every file at once, plus a per-file dropdown. The decision is still there — now in two places."
+        />
+
+        <SolutionDirection
+          status="Interim"
+          title="Soften the decision — make it friendlier."
+          body="Files were grouped by type through named areas instead of a blocking dropdown. Genuinely better. But it still asked people to know what each document was before the system would take it."
+        />
+        <CaseVideo
+          src="/Case03/solution-interim.mp4"
+          poster="/Case03/poster-interim.png"
+          caption="Direction 2: grouping by type with named cards and chips. Cleaner — but classification is still the person's job."
+        />
+
+        <SolutionDirection
+          status="Shipped"
+          title="Remove the decision — let the system read the file."
+          body="The person drops every file in one action. The system reads each one, assigns its type, and shows it back with an edit control in case it's wrong. The only direction that took the decision off the person entirely — which is exactly why the rest of the flow could get this simple."
+        />
+        <CaseVideo
+          src="/Case03/solution-ai.mp4"
+          poster="/Case03/poster-ai.png"
+          caption="Direction 3, shipped: upload everything, the system classifies each file, and you can correct any label."
+        />
+
+        <p className="pt-2">
+          The first two directions moved the decision around. Only the third made it disappear — and the moment
+          no one had to classify anything, the whole flow got simpler on its own.
+        </p>
+      </CaseTextSection>
+
+      <CaseTextSection label="The shipped flow" title="The system reads the file. The person explains nothing.">
+        <p>
+          The clip above shows it end to end. You drop every file at once, with nothing to classify first.
+          Behind the upload, the AI reads each document and tags it against the classification list we defined
+          in the backend — the exact set of categories a person used to sort through by hand. The result comes
+          back editable, in case it&rsquo;s wrong, but the default path asks the person for nothing.
+        </p>
+        <p>
+          That&rsquo;s where the AI actually lives: not a feature bolted on top, but the thing doing the one job
+          we took off the person — matching a document to the system&rsquo;s own categories. The taxonomy didn&rsquo;t
+          change; who has to navigate it did.
+        </p>
+        <p>
+          Everything else falls out of that one move. A single, legible status instead of per-file menus.
+          Preview and validation before anything is sent. One progress indicator for the whole request, whether
+          it holds one document or fourteen. Each part earns its place by removing a decision, not adding a
+          feature.
+        </p>
+        <div className="case-img mt-14">
+          <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+            <Image
+              src={beforeAfter}
+              alt="Before and after, side by side: the old screen with a subject dropdown and a disabled upload button, next to the redesigned screen with a single open upload area."
+              className="h-auto w-full"
+            />
+          </div>
+          <p className="mt-4 text-[15px] italic leading-[1.5] text-[var(--color-text)]">
+            Before and after: a screen built around the system&rsquo;s categories, remade into one that asks for
+            the file and nothing else.
+          </p>
+        </div>
+      </CaseTextSection>
+
+      <CaseTextSection label="Outcome" title="Fewer decisions, and room to grow.">
+        <p>
+          The redesign pulled the decisions out of the front of the flow, and left an architecture that can take
+          new document types without a rebuild each time. The numbers that would prove it — completion time,
+          drop-off, support load — aren&rsquo;t in yet, so I won&rsquo;t claim a result the data hasn&rsquo;t
+          shown. The 4.3% measured the problem; the fix will be measured by how the flow gets used.
+        </p>
+      </CaseTextSection>
+
+      <CaseTextSection label="Reflection">
+        <p>
+          This project changed how I think about AI in product design. The goal was never to make the interface
+          smarter. It was to stop asking people to understand the system — and to build a system that
+          understands them instead.
+        </p>
+        <p>
+          That&rsquo;s the thread through everything here. The best interaction is often not a better version of
+          the old one. It&rsquo;s the one nobody has to do at all.
+        </p>
+      </CaseTextSection>
+
+      <CaseStudyOutro
+        title="Rehabilitation platform IA"
+        href="/case-studies/rehabilitation-platform"
+      />
+    </>
+  );
+}
+
+const CASE_BODIES: Record<string, () => React.ReactNode> = {
+  "rehabilitation-platform": RehabilitationBody,
+  "bank-account-opening": BankAccountBody,
+  "document-upload": DocumentUploadBody,
+};
 
 function CaseStudyMeta({ items }: { items: [string, string][] }) {
   return (
@@ -616,6 +869,71 @@ function CaseImage({
   );
 }
 
+// A prototype recording, shown with its Figma Make editor frame intact — the
+// editor is deliberately part of the story (prototyping in Figma to feel motion
+// and interaction, not static mockups). Autoplays muted + looped so the motion
+// reads on the page; controls let the viewer scrub.
+function CaseVideo({
+  src,
+  poster,
+  caption,
+}: {
+  src: string;
+  poster?: string;
+  caption?: string;
+}) {
+  return (
+    <div className="case-img mt-14">
+      <div className="overflow-hidden rounded-[var(--radius-frame)] bg-[var(--color-surface)]">
+        <video
+          className="h-auto w-full"
+          src={src}
+          poster={poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+        />
+      </div>
+      {caption ? (
+        <p className="mt-4 text-[15px] italic leading-[1.5] text-[var(--color-text)]">{caption}</p>
+      ) : null}
+    </div>
+  );
+}
+
+// One explored design direction, with a status badge (Rejected / Interim /
+// Shipped), a short rationale, and its visual. Used in the "Directions" section
+// to show the three approaches that led to the chosen one.
+function SolutionDirection({
+  status,
+  title,
+  body,
+}: {
+  status: "Rejected" | "Interim" | "Shipped";
+  title: string;
+  body: string;
+}) {
+  const isShipped = status === "Shipped";
+  return (
+    <div className="border-t border-[var(--color-line)] pt-8">
+      <span
+        className={`${GeistMono.className} inline-block text-sm uppercase tracking-normal ${
+          isShipped ? "text-[var(--color-accent)]" : "text-[var(--color-text)]"
+        }`}
+      >
+        {status}
+      </span>
+      <h3 className="mt-3 text-xl font-normal leading-[1.25] tracking-[-0.008em] text-[var(--color-ink)]">
+        {title}
+      </h3>
+      <p className="mt-4 text-base leading-[1.65] text-[var(--color-text)]">{body}</p>
+    </div>
+  );
+}
+
 function FieldPhoto({
   src,
   alt,
@@ -634,6 +952,48 @@ function FieldPhoto({
         {caption}
       </figcaption>
     </figure>
+  );
+}
+
+// The case's single strongest data point, pulled out large so it lands instead
+// of getting swallowed in a body paragraph.
+function StatCallout({ value, children }: { value: string; children: React.ReactNode }) {
+  return (
+    <div className="my-16">
+      <p
+        className="font-normal leading-[0.9] tracking-[-0.03em] text-[var(--color-accent)]"
+        style={{ fontSize: "clamp(4rem, 12vw, 7rem)" }}
+      >
+        {value}
+      </p>
+      <p className="mt-6 max-w-[34rem] text-xl leading-[1.45] text-[var(--color-ink)]">{children}</p>
+    </div>
+  );
+}
+
+function MentalModelComparison() {
+  return (
+    <div className="mt-14 grid gap-4 sm:grid-cols-2">
+      <div className="rounded-[var(--radius-frame)] border border-[var(--color-line)] bg-[var(--color-surface)] p-8">
+        <p className={`${GeistMono.className} mb-4 text-sm uppercase tracking-normal text-[var(--color-accent)]`}>
+          User
+        </p>
+        <p className="text-lg leading-[1.5] text-[var(--color-ink)]">“I have documents.”</p>
+      </div>
+      <div className="rounded-[var(--radius-frame)] border border-[var(--color-line)] bg-[var(--color-surface)] p-8">
+        <p className={`${GeistMono.className} mb-4 text-sm uppercase tracking-normal text-[var(--color-accent)]`}>
+          System
+        </p>
+        <ol className="space-y-2 text-lg leading-[1.5] text-[var(--color-ink)]">
+          <li>Choose category</li>
+          <li>Choose topic</li>
+          <li>Choose state</li>
+          <li>Choose group</li>
+          <li>Upload</li>
+          <li>Repeat</li>
+        </ol>
+      </div>
+    </div>
   );
 }
 
