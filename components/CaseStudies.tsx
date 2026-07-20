@@ -11,10 +11,10 @@ export default function CaseStudies() {
     <section id="cases" className="pt-16 pb-20 md:pt-20 md:pb-24">
       <HomeContainer>
         <div className="grid gap-x-6 gap-y-16 md:grid-cols-2">
-          {caseStudies.map((c)=>(
+          {caseStudies.map((c, index)=>(
             <article
               key={c.slug}
-              className="flex flex-col gap-6"
+              className={`case-card-enter case-card-enter-${index + 1} flex flex-col gap-6`}
             >
               {/* Animated cover: clickable, leads to the case page. */}
               <CursorBubble label="View">

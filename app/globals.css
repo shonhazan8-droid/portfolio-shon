@@ -117,6 +117,18 @@ p { text-wrap: pretty; }
 @keyframes header-drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
 .header-drop { animation: header-drop 1s var(--ease-gallery) both; animation-delay: 1.1s; }
 
+/* Home case cards join the hero entrance instead of appearing fully formed.
+   The small stagger gives each card its own arrival without slowing access. */
+@keyframes case-card-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.case-card-enter {
+  animation: case-card-enter .9s var(--ease-gallery) both;
+}
+.case-card-enter-1 { animation-delay: .58s; }
+.case-card-enter-2 { animation-delay: .69s; }
+
 /* Case-study load rhythm — no route overlay. The content itself settles in:
    headline first, then media, metadata, intro, and the narrative sections. */
 @keyframes case-load {
