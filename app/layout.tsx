@@ -4,7 +4,6 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import PageTransition from "@/components/PageTransition";
 import SmoothScroll from "@/components/SmoothScroll";
-import Splash from "@/components/Splash";
 import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
@@ -201,14 +200,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
         />
-        {/* Mark repeat visits before paint so the splash only plays once per session */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{if(sessionStorage.getItem('sh-splash'))document.documentElement.dataset.splash='seen';else sessionStorage.setItem('sh-splash','1')}catch(e){}",
-          }}
-        />
-        <Splash />
         <CustomCursor />
         <SmoothScroll />
         <PageTransition>{children}</PageTransition>

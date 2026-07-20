@@ -117,38 +117,6 @@ p { text-wrap: pretty; }
 @keyframes header-drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
 .header-drop { animation: header-drop 1s var(--ease-gallery) both; animation-delay: 1.1s; }
 
-/* First-visit splash — accent cover, logo spins in, whole thing lifts by ~1.9s.
-   Pure CSS timeline so it can never get stuck; repeat visits (html[data-splash="seen"],
-   set by an inline script before paint) and reduced-motion skip it entirely. */
-.splash {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: grid;
-  place-items: center;
-  background: var(--color-accent);
-  pointer-events: none;
-  animation: splash-out .55s var(--ease-gallery) 1.35s both;
-}
-.splash-inner { perspective: 600px; }
-.splash svg {
-  width: 56px;
-  height: 56px;
-  transform-origin: 47.97% 50.46%; /* icon's true visual centroid, not the box center — keeps the spin pinned in place */
-  will-change: transform, opacity;
-  animation:
-    splash-logo-fade .4s ease-out both,
-    splash-logo-spin 1.3s cubic-bezier(0.65, 0, 0.35, 1) both;
-}
-@keyframes splash-out { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
-@keyframes splash-logo-fade { from { opacity: 0; } to { opacity: 1; } }
-@keyframes splash-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-html[data-splash="seen"] .splash { display: none; }
-@media (prefers-reduced-motion: reduce) { .splash { display: none; } }
-
 /* Case-study load rhythm — no route overlay. The content itself settles in:
    headline first, then media, metadata, intro, and the narrative sections. */
 @keyframes case-load {
