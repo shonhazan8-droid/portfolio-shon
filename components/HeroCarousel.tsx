@@ -24,6 +24,7 @@ export default function HeroCarousel({
   const [paused, setPaused] = useState(false);
   const reducedRef = useRef(false);
   const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
   const len = slides.length;
 
   const go = useCallback((dir: number) => {
@@ -58,13 +59,21 @@ export default function HeroCarousel({
   // Horizontal swipe on touch devices → previous/next slide.
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   };
   const onTouchEnd = (e: React.TouchEvent) => {
-    const start = touchStartX.current;
+    const startX = touchStartX.current;
+    const startY = touchStartY.current;
     touchStartX.current = null;
-    if (start == null) return;
-    const dx = e.changedTouches[0].clientX - start;
-    if (Math.abs(dx) < 40) return;
+    touchStartY.current = null;
+    if (startX == null || startY == null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+
+    // A vertical page scroll often includes a little horizontal drift. Only
+    // change slides when the gesture is clearly horizontal, so scrolling past
+    // the gallery never advances it accidentally.
+    if (Math.abs(dx) < 40 || Math.abs(dx) <= Math.abs(dy) * 1.25) return;
     go(dx < 0 ? 1 : -1);
   };
 
@@ -164,12 +173,27 @@ export default function HeroCarousel({
         </div>
 
         {/* Info card */}
-        <div
-          key={current.src}
-          aria-live="polite"
-          className="info-fade mt-4 rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)] p-6"
-        >
-          {infoCardInner}
+        <div aria-live="polite" className="mt-4 grid">
+          {slides.map((slide, i) => (
+            <div
+              key={slide.src}
+              aria-hidden={i !== index}
+              className={`col-start-1 row-start-1 rounded-[36px] [corner-shape:squircle] bg-[var(--color-surface)] p-6 transition-opacity duration-300 ease-[var(--ease-out)] ${
+                i === index ? "opacity-100" : "pointer-events-none opacity-0"
+              }`}
+            >
+              <span className="mb-4 inline-block rounded-full bg-[color-mix(in_srgb,var(--color-accent)_9%,transparent)] px-3 py-1.5 text-xs font-medium tracking-normal text-[var(--color-accent)]">
+                {pad(i + 1)}/{pad(len)}
+              </span>
+              <h3 className="text-base tracking-[-0.008em]">
+                {slide.client ? <span className="text-[var(--color-ink)]">{slide.client} · </span> : null}
+                <span className="font-medium text-[var(--color-ink)]">{slide.name}</span>
+              </h3>
+              {slide.description ? (
+                <p className="mt-2 text-base leading-[1.55] text-[var(--color-text)]">{slide.description}</p>
+              ) : null}
+            </div>
+          ))}
         </div>
 
         {/* Dot indicator */}
